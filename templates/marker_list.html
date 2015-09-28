@@ -1,0 +1,141 @@
+<!Doctype html>
+<html xmlns=http://www.w3.org/1999/xhtml>
+	<head lang="en">
+		<meta http-equiv=Content-Type content="text/html;charset=utf-8">
+		<title>燃烧吧，Python</title>
+		<!-- <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
+		<style type="text/css">
+		* {
+			margin: 0px;
+			padding: 0px;
+		}
+		body {
+			background: url("/static/background.jpg") no-repeat fixed top;
+		}
+		ul {
+			list-style-type: none;
+		}
+		.container {
+			width: 900px;
+			margin: 0 auto;
+			border: 1px solid black;
+			padding: 10px;
+		}
+		.user_info {
+			vertical-align: middle;
+			width: 100px;
+			min-height: 100px;
+			float: left;
+			text-align: center;
+		}
+		.user_info img {
+			max-width: 50px;
+			max-height: 50px;
+			margin-top: 10px;
+		}
+		.user_info span {
+			font-size: 12px;
+			line-height: 20px;
+		}
+		.mark_content {
+			overflow: hidden;
+		}
+		ul li {
+			display: block;
+			overflow: hidden;
+		}
+		.title {
+			background: #eee;
+			font-size: 18px;
+			line-height: 30px;
+			text-indent: 10px;
+			font-family: "宋体";
+		}
+		.content {
+			padding: 10px;
+			font-size: 13px;
+			line-height: 20px;
+		}
+		</style>
+	</head>
+	<body>
+		<div class="container">
+			<ul>
+				<li>
+					<div class="user_info">
+						<img src="/static/images/face.jpg">
+						<span>Mr.Eleven</span>
+					</div>
+					<div class="mark_content">
+						<h2 class="title">
+							今天争取把Banner管理的东西做完
+						</h2>
+						<p class="content">
+							之前答应晶矿是昨天做完的，但是由于技术方案变了，所以还没有完成。<br />
+							今天一定要完成。执行力才是关键。
+						</p>
+					</div>
+				</li>
+				<li>
+					<div class="user_info">
+						<img src="/static/images/face.jpg">
+						<span>Mr.Eleven</span>
+					</div>
+					<div class="mark_content">
+						<h2 class="title">
+							整理好心情开始上班
+						</h2>
+						<p class="content">
+							今天要开始做晶矿给我的任务了。
+							今天龙泉也不在，只能自己一个人先去十布那边拿代码了。
+						</p>
+					</div>
+				</li>
+				<li>
+					<div class="user_info">
+						<img src="/static/images/face.jpg">
+						<span>Mr.Eleven</span>
+					</div>
+					<div class="mark_content">
+						<h2 class="title">
+							十五的月亮，十六元。
+						</h2>
+						<p class="content">
+							今天要把公司发的月饼送到小姑姑家去。
+							还要看会《Effective Java》。
+						</p>
+					</div>
+				</li>
+				<li>
+					<div class="user_info">
+						<img src="/static/images/face.jpg">
+						<span>Mr.Eleven</span>
+					</div>
+					<div class="mark_content">
+						<h2 class="title">
+							女神约我看电影。。。好激动
+						</h2>
+						<p class="content">
+							今天学妹突然打电话过来说要请我看电影。<br>
+							想想还有点小激动了，中午看了一会React.js的视频。<br>
+							下午大概四点左右去和姗姗看电影，然后一起吃晚饭。<br>
+							PS：姗姗好可爱。要是她是我女朋友就好了。O(^_^)O
+						</p>
+					</div>
+				</li>
+			</ul>
+		</div>
+		<script type="text/javascript" src="/static/jquery-1.9.1.js"></script>
+		<script type="text/javascript">
+			$("#push_button").click(function() {
+				var token = $("#token").val();
+				var road = $('input[name="road"]:checked').val();
+				var content = $('#content').val();
+				data = {"token": token, "road": road, "content": content}
+				$.post("/push", data, function(data){
+					alert(data);
+				});
+			});
+		</script>
+	</body>
+</html>
