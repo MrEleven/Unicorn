@@ -1,16 +1,13 @@
 <!Doctype html>
-<html xmlns=http://www.w3.org/1999/xhtml>
+<html>
 	<head lang="en">
 		<meta http-equiv=Content-Type content="text/html;charset=utf-8">
 		<title>燃烧吧，Python</title>
-		<!-- <link rel="stylesheet" href="http://cdn.bootcss.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
+		<link rel="stylesheet" type="text/css" href="/static/css/main.css">
 		<style type="text/css">
 		* {
 			margin: 0px;
 			padding: 0px;
-		}
-		body {
-			background: url("/static/background.jpg") no-repeat fixed top;
 		}
 		ul {
 			list-style-type: none;
@@ -41,7 +38,6 @@
 			overflow: hidden;
 		}
 		ul li {
-			display: block;
 			overflow: hidden;
 		}
 		.title {
@@ -56,9 +52,28 @@
 			font-size: 13px;
 			line-height: 20px;
 		}
+		.create_time {
+			float: right;
+			line-height: 30px;
+			font-size: 12px;
+			margin-right: 10px;
+			color: #666;
+		}
 		</style>
 	</head>
 	<body>
+		<div class="nav">
+			<ul>
+				<li><a href="/marker/list">签到</a>
+				</li>
+				<li><a href="">目标</a>
+				</li>
+				<li><a href="#">代办事项</a>
+				</li>
+				<li><a href="#">成就</a>
+				</li>
+			</ul>
+		</div>
 		<div class="container">
 			<ul>
 				<li>
@@ -69,6 +84,7 @@
 					<div class="mark_content">
 						<h2 class="title">
 							今天争取把Banner管理的东西做完
+							<span class="create_time">2015-09-30 09:12:12</span>
 						</h2>
 						<p class="content">
 							之前答应晶矿是昨天做完的，但是由于技术方案变了，所以还没有完成。<br />
@@ -84,6 +100,7 @@
 					<div class="mark_content">
 						<h2 class="title">
 							整理好心情开始上班
+							<span class="create_time">2015-09-28 12:12:12</span>
 						</h2>
 						<p class="content">
 							今天要开始做晶矿给我的任务了。
@@ -99,6 +116,7 @@
 					<div class="mark_content">
 						<h2 class="title">
 							十五的月亮，十六元。
+							<span class="create_time">2015-09-27 09:12:12</span>
 						</h2>
 						<p class="content">
 							今天要把公司发的月饼送到小姑姑家去。
@@ -114,6 +132,7 @@
 					<div class="mark_content">
 						<h2 class="title">
 							女神约我看电影。。。好激动
+							<span class="create_time">2015-09-26 09:12:12</span>
 						</h2>
 						<p class="content">
 							今天学妹突然打电话过来说要请我看电影。<br>
@@ -127,15 +146,6 @@
 		</div>
 		<script type="text/javascript" src="/static/jquery-1.9.1.js"></script>
 		<script type="text/javascript">
-			$("#push_button").click(function() {
-				var token = $("#token").val();
-				var road = $('input[name="road"]:checked').val();
-				var content = $('#content').val();
-				data = {"token": token, "road": road, "content": content}
-				$.post("/push", data, function(data){
-					alert(data);
-				});
-			});
 		</script>
 	</body>
 </html>

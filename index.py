@@ -34,7 +34,7 @@ class OrderHandler(tornado.web.RequestHandler):
 if __name__ == "__main__":
     tornado.options.parse_command_line()
     app = tornado.web.Application(
-        handlers=[(r"/list", ListHandler), (r'/add', AddHandler)],
+        handlers=[(r"/marker/list", ListHandler), (r'/add', AddHandler)],
         template_path=os.path.join(os.path.dirname(__file__), "templates"),
         static_path=os.path.join(os.path.dirname(__file__), "static"),
         cookie_secret="bZJc2sWbQLKos6GkHn/VB9oXwQt8S0R0kRvJ5/xJ89E=",
