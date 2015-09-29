@@ -17,6 +17,7 @@
 			margin: 0 auto;
 			border: 1px solid black;
 			padding: 10px;
+			margin-top: 10px;
 		}
 		.user_info {
 			vertical-align: middle;
@@ -40,14 +41,14 @@
 		ul li {
 			overflow: hidden;
 		}
-		.title {
+		.mark_content .title {
 			background: #eee;
 			font-size: 18px;
 			line-height: 30px;
 			text-indent: 10px;
 			font-family: "宋体";
 		}
-		.content {
+		.mark_content .content {
 			padding: 10px;
 			font-size: 13px;
 			line-height: 20px;
@@ -59,22 +60,95 @@
 			margin-right: 10px;
 			color: #666;
 		}
+		#add_marker {
+
+
+			overflow: hidden;
+		}
+		#add_marker > div {
+			overflow: hidden;
+			line-height: 30px;
+			padding: 10px;
+		}
+		#add_marker .label {
+			font-size: 12px;
+			float: left;
+			width: 50px;
+			text-align: right;
+			display: inline-block;
+		}
+		#add_marker label {
+			padding-right: 10px;
+		}
+		#add_marker .title {
+			display: block;
+			line-height: 30px;
+			width: 95%;
+			border-radius: 3px;
+			padding-left: 10px;
+			border: 1px solid black;
+			padding-right: 10px;
+		}
+		#add_marker .content {
+			overflow: hidden;
+		}
+		#add_marker .content textarea {
+			width: 95%;
+			border-radius: 3px;
+			line-height: 20px;
+			font-size: 13px;
+			padding-top: 10px;
+			padding-left: 10px;
+			padding-right: 10px;
+			min-height: 100px;
+		}
+		#btn_add_marker {
+			border: 1px solid black;
+			background: transparent;
+			padding: 5px 10px;
+			font-size: 14px;
+			float: right;
+			margin-right: 25px;
+			margin-bottom: 10px;
+		}
 		</style>
 	</head>
 	<body>
 		<div class="nav">
 			<ul>
-				<li><a href="/marker/list">签到</a>
+				<li>
+					<a href="/marker/list">签到</a>
 				</li>
-				<li><a href="">目标</a>
+				<li>
+					<a href="#">目标</a>
 				</li>
-				<li><a href="#">代办事项</a>
+				<li>
+					<a href="#">代办事项</a>
 				</li>
-				<li><a href="#">成就</a>
+				<li>
+					<a href="#">成就</a>
 				</li>
 			</ul>
 		</div>
 		<div class="container">
+			<form id="add_marker">
+				<div>
+					<div class="label"><label>主题</label></div>
+					<div class="content">
+						<input class="title" type="text" name="title">
+					</div>
+				</div>
+				<div>
+					<div class="label"><label>目标</label></div>
+					<div class="content">
+						<textarea></textarea>
+					</div>
+				</div>
+				<input type="submit" id="btn_add_marker" value="签到" />
+			</form>
+		</div>
+		<div class="container">
+			
 			<ul>
 				<li>
 					<div class="user_info">
