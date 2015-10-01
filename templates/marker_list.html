@@ -110,6 +110,7 @@
 			float: right;
 			margin-right: 25px;
 			margin-bottom: 10px;
+			cursor: pointer;
 		}
 		</style>
 	</head>
@@ -148,8 +149,8 @@
 			</form>
 		</div>
 		<div class="container">
-			
 			<ul>
+				{% for marker in marker_list %}
 				<li>
 					<div class="user_info">
 						<img src="/static/images/face.jpg">
@@ -157,65 +158,15 @@
 					</div>
 					<div class="mark_content">
 						<h2 class="title">
-							今天争取把Banner管理的东西做完
-							<span class="create_time">2015-09-30 09:12:12</span>
+							{{ marker.get("title", "") }}
+							<span class="create_time">{{ marker.get("create_time", "") }}</span>
 						</h2>
 						<p class="content">
-							之前答应晶矿是昨天做完的，但是由于技术方案变了，所以还没有完成。<br />
-							今天一定要完成。执行力才是关键。
+							{{ marker.get("marker", "") }}
 						</p>
 					</div>
 				</li>
-				<li>
-					<div class="user_info">
-						<img src="/static/images/face.jpg">
-						<span>Mr.Eleven</span>
-					</div>
-					<div class="mark_content">
-						<h2 class="title">
-							整理好心情开始上班
-							<span class="create_time">2015-09-28 12:12:12</span>
-						</h2>
-						<p class="content">
-							今天要开始做晶矿给我的任务了。
-							今天龙泉也不在，只能自己一个人先去十布那边拿代码了。
-						</p>
-					</div>
-				</li>
-				<li>
-					<div class="user_info">
-						<img src="/static/images/face.jpg">
-						<span>Mr.Eleven</span>
-					</div>
-					<div class="mark_content">
-						<h2 class="title">
-							十五的月亮，十六元。
-							<span class="create_time">2015-09-27 09:12:12</span>
-						</h2>
-						<p class="content">
-							今天要把公司发的月饼送到小姑姑家去。
-							还要看会《Effective Java》。
-						</p>
-					</div>
-				</li>
-				<li>
-					<div class="user_info">
-						<img src="/static/images/face.jpg">
-						<span>Mr.Eleven</span>
-					</div>
-					<div class="mark_content">
-						<h2 class="title">
-							女神约我看电影。。。好激动
-							<span class="create_time">2015-09-26 09:12:12</span>
-						</h2>
-						<p class="content">
-							今天学妹突然打电话过来说要请我看电影。<br>
-							想想还有点小激动了，中午看了一会React.js的视频。<br>
-							下午大概四点左右去和姗姗看电影，然后一起吃晚饭。<br>
-							PS：姗姗好可爱。要是她是我女朋友就好了。O(^_^)O
-						</p>
-					</div>
-				</li>
+				{% end %}
 			</ul>
 		</div>
 		<script type="text/javascript" src="/static/jquery-1.9.1.js"></script>

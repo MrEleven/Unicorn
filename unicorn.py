@@ -10,31 +10,33 @@ import tornado.options
 import tornado.web
 import tornado.httpclient
 import tornado.gen
-import os
+import os, config
+from importlib import import_module
 
 from tornado.options import define, options
 define("port", default=8888, help="run on the given port", type=int)
 
-class ListHandler(tornado.web.RequestHandler):
-    """签到列表"""
-    def get(self):
-        self.render("marker_list.html")
+def get_handlers():
+    """获取url映射关系"""
+    handlers = []
+    api_list = ["marker"]
+    for bussiness_name in api_list:
+        bussiness_module = import_module("api." + bussiness_name)
+        for attr in dir(bussiness_module):
+            if attr.endswith("Handler"):
+                handler_cls = getattr(bussiness_module, attr)
+                if issubclass(handler_cls, tornado.web.RequestHandler):
+                    url = "/" + bussiness_name + "/" +  attr.replace("Handler", "").lower()
+                    handlers.append((url, handler_cls))
+    print handlers
+    return handlers
 
-class AddHandler(tornado.web.RequestHandler):
-    """增加新签到"""
-    def post(self):
-        print "hello world"
-
-
-
-class OrderHandler(tornado.web.RequestHandler):
-    def get(self):
-        self.render("order_test.html")
 
 if __name__ == "__main__":
     tornado.options.parse_command_line()
+    handlers = get_handlers()
     app = tornado.web.Application(
-        handlers=[(r"/marker/list", ListHandler), (r'/add', AddHandler)],
+        handlers=handlers,
         template_path=os.path.join(os.path.dirname(__file__), "templates"),
         static_path=os.path.join(os.path.dirname(__file__), "static"),
         cookie_secret="bZJc2sWbQLKos6GkHn/VB9oXwQt8S0R0kRvJ5/xJ89E=",
