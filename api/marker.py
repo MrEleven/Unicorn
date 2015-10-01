@@ -18,6 +18,9 @@ class ListHandler(tornado.web.RequestHandler):
 class AddHandler(tornado.web.RequestHandler):
     """增加新签到"""
     def post(self):
-        print "hello world"
+        title = self.get_argument("title", "")
+        marker = self.get_argument("marker", "")
+        marker_ctrl.add_marker(title, marker)
+        return self.redirect("/marker/list")
 
 

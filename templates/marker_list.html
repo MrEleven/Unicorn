@@ -132,7 +132,7 @@
 			</ul>
 		</div>
 		<div class="container">
-			<form id="add_marker">
+			<form id="add_marker" method="POST" action="/marker/add">
 				<div>
 					<div class="label"><label>主题</label></div>
 					<div class="content">
@@ -142,7 +142,7 @@
 				<div>
 					<div class="label"><label>目标</label></div>
 					<div class="content">
-						<textarea></textarea>
+						<textarea name="marker"></textarea>
 					</div>
 				</div>
 				<input type="submit" id="btn_add_marker" value="签到" />
