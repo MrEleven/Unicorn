@@ -17,6 +17,7 @@
 			margin: 0 auto;
 			border: 1px solid black;
 			padding: 10px;
+			margin-top: 10px;
 		}
 		.user_info {
 			vertical-align: middle;
@@ -40,14 +41,14 @@
 		ul li {
 			overflow: hidden;
 		}
-		.title {
+		.mark_content .title {
 			background: #eee;
 			font-size: 18px;
 			line-height: 30px;
 			text-indent: 10px;
 			font-family: "宋体";
 		}
-		.content {
+		.mark_content .content {
 			padding: 10px;
 			font-size: 13px;
 			line-height: 20px;
@@ -59,23 +60,97 @@
 			margin-right: 10px;
 			color: #666;
 		}
+		#add_marker {
+
+
+			overflow: hidden;
+		}
+		#add_marker > div {
+			overflow: hidden;
+			line-height: 30px;
+			padding: 10px;
+		}
+		#add_marker .label {
+			font-size: 12px;
+			float: left;
+			width: 50px;
+			text-align: right;
+			display: inline-block;
+		}
+		#add_marker label {
+			padding-right: 10px;
+		}
+		#add_marker .title {
+			display: block;
+			line-height: 30px;
+			width: 95%;
+			border-radius: 3px;
+			padding-left: 10px;
+			border: 1px solid black;
+			padding-right: 10px;
+		}
+		#add_marker .content {
+			overflow: hidden;
+		}
+		#add_marker .content textarea {
+			width: 95%;
+			border-radius: 3px;
+			line-height: 20px;
+			font-size: 13px;
+			padding-top: 10px;
+			padding-left: 10px;
+			padding-right: 10px;
+			min-height: 100px;
+		}
+		#btn_add_marker {
+			border: 1px solid black;
+			background: transparent;
+			padding: 5px 10px;
+			font-size: 14px;
+			float: right;
+			margin-right: 25px;
+			margin-bottom: 10px;
+			cursor: pointer;
+		}
 		</style>
 	</head>
 	<body>
 		<div class="nav">
 			<ul>
-				<li><a href="/marker/list">签到</a>
+				<li>
+					<a href="/marker/list">签到</a>
 				</li>
-				<li><a href="">目标</a>
+				<li>
+					<a href="#">目标</a>
 				</li>
-				<li><a href="#">代办事项</a>
+				<li>
+					<a href="#">代办事项</a>
 				</li>
-				<li><a href="#">成就</a>
+				<li>
+					<a href="#">成就</a>
 				</li>
 			</ul>
 		</div>
 		<div class="container">
+			<form id="add_marker" method="POST" action="/marker/add">
+				<div>
+					<div class="label"><label>主题</label></div>
+					<div class="content">
+						<input class="title" type="text" name="title">
+					</div>
+				</div>
+				<div>
+					<div class="label"><label>目标</label></div>
+					<div class="content">
+						<textarea name="marker"></textarea>
+					</div>
+				</div>
+				<input type="submit" id="btn_add_marker" value="签到" />
+			</form>
+		</div>
+		<div class="container">
 			<ul>
+				{% for marker in marker_list %}
 				<li>
 					<div class="user_info">
 						<img src="/static/images/face.jpg">
@@ -83,65 +158,15 @@
 					</div>
 					<div class="mark_content">
 						<h2 class="title">
-							今天争取把Banner管理的东西做完
-							<span class="create_time">2015-09-30 09:12:12</span>
+							{{ marker.get("title", "") }}
+							<span class="create_time">{{ marker.get("create_time", "") }}</span>
 						</h2>
 						<p class="content">
-							之前答应晶矿是昨天做完的，但是由于技术方案变了，所以还没有完成。<br />
-							今天一定要完成。执行力才是关键。
+							{{ marker.get("marker", "") }}
 						</p>
 					</div>
 				</li>
-				<li>
-					<div class="user_info">
-						<img src="/static/images/face.jpg">
-						<span>Mr.Eleven</span>
-					</div>
-					<div class="mark_content">
-						<h2 class="title">
-							整理好心情开始上班
-							<span class="create_time">2015-09-28 12:12:12</span>
-						</h2>
-						<p class="content">
-							今天要开始做晶矿给我的任务了。
-							今天龙泉也不在，只能自己一个人先去十布那边拿代码了。
-						</p>
-					</div>
-				</li>
-				<li>
-					<div class="user_info">
-						<img src="/static/images/face.jpg">
-						<span>Mr.Eleven</span>
-					</div>
-					<div class="mark_content">
-						<h2 class="title">
-							十五的月亮，十六元。
-							<span class="create_time">2015-09-27 09:12:12</span>
-						</h2>
-						<p class="content">
-							今天要把公司发的月饼送到小姑姑家去。
-							还要看会《Effective Java》。
-						</p>
-					</div>
-				</li>
-				<li>
-					<div class="user_info">
-						<img src="/static/images/face.jpg">
-						<span>Mr.Eleven</span>
-					</div>
-					<div class="mark_content">
-						<h2 class="title">
-							女神约我看电影。。。好激动
-							<span class="create_time">2015-09-26 09:12:12</span>
-						</h2>
-						<p class="content">
-							今天学妹突然打电话过来说要请我看电影。<br>
-							想想还有点小激动了，中午看了一会React.js的视频。<br>
-							下午大概四点左右去和姗姗看电影，然后一起吃晚饭。<br>
-							PS：姗姗好可爱。要是她是我女朋友就好了。O(^_^)O
-						</p>
-					</div>
-				</li>
+				{% end %}
 			</ul>
 		</div>
 		<script type="text/javascript" src="/static/jquery-1.9.1.js"></script>
