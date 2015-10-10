@@ -1,4 +1,7 @@
-# Unicorn
-Simple Web Framework Based On WSGI
+# 开发规范
 
-> 写这个网站的是一个很帅的人
+* 分支模型采用[git-flow](https://github.com/nvie/gitflow, "git flow")。
+* 每次发布前不要忘记升版本，写更新日志。
+
+# Unicorn
+http://eleven.name/
