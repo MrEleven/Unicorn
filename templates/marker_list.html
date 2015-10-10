@@ -150,7 +150,7 @@
 		</div>
 		<div class="container">
 			<ul>
-				{% for marker in marker_list %}
+				{% for marker in result.get("marker_list", []) %}
 				<li>
 					<div class="user_info">
 						<img src="/static/images/face.jpg">

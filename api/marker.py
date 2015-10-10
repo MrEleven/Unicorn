@@ -13,7 +13,7 @@ class ListHandler(tornado.web.RequestHandler):
         page = self.get_argument("page", 1)
         page_size = self.get_argument("page_size", 10)
         marker_list = marker_ctrl.get_marker_list(int(page), int(page_size))
-        self.render("marker_list.html", marker_list=marker_list)
+        self.render("marker_list.html", result={"marker_list": marker_list})
 
 class AddHandler(tornado.web.RequestHandler):
     """增加新签到"""
@@ -21,6 +21,4 @@ class AddHandler(tornado.web.RequestHandler):
         title = self.get_argument("title", "")
         marker = self.get_argument("marker", "")
         marker_ctrl.add_marker(title, marker)
-        return self.redirect("/marker/list")
-
-
+        return self.redirect("/marker/list", result={})

@@ -2,10 +2,10 @@
 <html>
 	<head lang="en">
 		<meta http-equiv=Content-Type content="text/html;charset=utf-8">
-		<title>燃烧吧，Python</title>
+		<title>注册</title>
 		<link rel="stylesheet" type="text/css" href="/static/css/main.css">
 		<style type="text/css">
-			#login_form {
+			#regist_form {
 				position: absolute;
 				top: 200px;
 				left: 30%;
@@ -15,23 +15,23 @@
 				border-radius: 5px;
 				background: rgba(255, 255, 255, 0.5);
 			}
-			#login_form > ul > li {
+			#regist_form > ul > li {
 				min-height: 40px;
 				line-height: 40px;
 				text-indent: 10px;
 				margin-bottom: 10px;
 			}
-			#input_phone, #input_password {
+			#input_phone, #input_email, #input_nickname, #input_password {
 				border: 1px solid #ccc;
 				background: white;
 			}
-			#input_phone input, #input_password input {
+			#input_phone input, #input_email input, #input_nickname input, #input_password input {
 				line-height: 40px;
 				border: 0;
 				width: 90%;
 				font-size: 20px;
 			}
-			#login-btn {
+			#regist-btn {
 				display: block;
 				border: 0;
 				background: #669900;
@@ -40,18 +40,6 @@
 				line-height: 40px;
 				font-size: 20px;
 				color: white;
-			}
-			#regist_wrap {
-				text-align: right;
-			}
-			#regist_wrap a {
-				color: #333;
-				font-weight: bold;
-				text-decoration: none;
-				margin-right: 20px;
-			}
-			#regist_wrap a:hover {
-				text-decoration: underline;
 			}
 			#input_msg {
 				font-size: 15px;
@@ -64,16 +52,14 @@
 		</style>
 	</head>
 	<body>
-		<form id="login_form" action="/user/login" method="post">
+		<form id="regist_form" action="/user/regist" method="post">
 			{% raw xsrf_form_html() %}
 			<ul>
 				<li id="input_phone"><input type="text" name="phone" value="{{ result.get("phone", "")}}" placeholder="手机号码" /></li>
-				<li id="input_password"><input type="password" name="password" value="{{result.get("password")}}" placeholder="密码" /></li>
-				{% if result.get("msg", "")%}
-				<li id="input_msg">{{result.get("msg", "")}}</li>
-				{% end %}
-				<li><input id="login-btn" type="submit" value="登录"></li>
-				<li id="regist_wrap"><a href="/user/regist">注册</a></li>
+				<li id="input_email"><input type="text" name="email" value="{{ result.get("phone", "")}}" placeholder="Email" /></li>
+				<li id="input_nickname"><input type="text" name="nickname" value="{{ result.get("phone", "")}}" placeholder="昵称" /></li>
+				<li id="input_password"><input type="password" name="password" value="{{ result.get("password", "")}}" placeholder="密码" /></li>
+				<li><input id="regist-btn" type="submit" value="注册"></li>
 			</ul>
 		</form>
 		<script type="text/javascript" src="/static/js/jquery-1.9.1.min.js"></script>

@@ -7,11 +7,17 @@
 from config import db
 from datetime import datetime
 
-def add_user(login_name, nick_name, password):
+def add_user(phone, email, nickname, avatar_url, password):
     """增加新用户"""
-    create_time = datetime.now()
-    sql = "insert into user (phone, nick_name, password, create_time) values (%s, %s, %s, %s);"
-    return db.execute(sql, login_name, nick_name, password, create_time)
+    regist_time = datetime.now()
+    sql = "insert into user (phone, email, nickname, avatar_url, password, regist_time) values (%s, %s, %s, %s, %s, %s);"
+    return db.execute(sql, phone, email, nickname, avatar_url, password, regist_time)
+
+def checkout_login(phone, password):
+    """先只支持手机号码登录吧"""
+    sql = "select id from user where phone = %s and password = %s;"
+    user_id = db.get(sql, phone, password)
+    return user_id["id"] if user_id else 0
 
 def get_member_by_login_name(login_name):
     """根据login_name获取用户"""
