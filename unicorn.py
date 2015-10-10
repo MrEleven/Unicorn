@@ -19,7 +19,7 @@ define("port", default=8888, help="run on the given port", type=int)
 def get_handlers():
     """获取url映射关系"""
     handlers = []
-    api_list = ["marker", "member"]
+    api_list = ["marker", "user"]
     for bussiness_name in api_list:
         bussiness_module = import_module("api." + bussiness_name)
         for attr in dir(bussiness_module):
@@ -40,6 +40,8 @@ if __name__ == "__main__":
         template_path=os.path.join(os.path.dirname(__file__), "templates"),
         static_path=os.path.join(os.path.dirname(__file__), "static"),
         cookie_secret="bZJc2sWbQLKos6GkHn/VB9oXwQt8S0R0kRvJ5/xJ89E=",
+        xsrf_cookies=True,
+        login_url="/login",
         debug=True,
     )
     http_server = tornado.httpserver.HTTPServer(app)

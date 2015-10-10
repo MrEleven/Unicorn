@@ -5,6 +5,9 @@
 ul {
 	list-style-type: none;
 }
+input,button,select,textarea {
+	outline:none;
+}
 .nav {
 	height: 50px;
 	color: white;
