@@ -1,1 +1,9 @@
 *.pyc
+*~
+*.log
+.DS_Store
+build/*
+unicorn.egg-info/*
+dist/*
+.\#*
+*.swp
