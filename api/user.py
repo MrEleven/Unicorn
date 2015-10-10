@@ -5,7 +5,7 @@
 # Email : julycw@gmail.com
 
 import tornado.web
-import module.member_ctrl as member_ctrl
+import module.user_ctrl as user_ctrl
 import utils.utils as utils
 
 class LoginHandler(tornado.web.RequestHandler):
@@ -14,16 +14,16 @@ class LoginHandler(tornado.web.RequestHandler):
         self.render("login.html")
 
     def post(self):
-        login_name = self.get_argument("username", "")
+        phone = self.get_argument("phone", "")
         password = self.get_argument("password", "")
-        if login_name == "" or password == "":
-            return self.redirect("/member/login")
-        user = member_ctrl.get_member_by_login_name(login_name)
+        if phone == "" or password == "":
+            return self.redirect("/user/login")
+        user = user_ctrl.get_user_by_login_name(login_name)
         if len(user) == 0:
-            return self.redirect("/member/login")
+            return self.redirect("/user/login")
 
         if user[0].password != utils.md5(password):
-            return self.redirect("/member/login")
+            return self.redirect("/user/login")
             
         # todo: record session and update last login ip/time
         return self.redirect("/marker/list")
@@ -37,16 +37,16 @@ class RegisterHandler(tornado.web.RequestHandler):
         login_name = self.get_argument("username", "")
         password = self.get_argument("password", "")
         if login_name == "" or password == "":
-            return self.redirect("/member/register")
+            return self.redirect("/user/register")
 
         nick_name = self.get_argument("nickname", "")
-        member_ctrl.add_member(login_name, nick_name, utils.md5(password))
-        return self.redirect("/member/login")
+        user_ctrl.add_user(login_name, nick_name, utils.md5(password))
+        return self.redirect("/user/login")
 
 class LogoutHandler(tornado.web.RequestHandler):
     """登出"""
     def get(self):
         # todo: clear session for safety logout
-        return self.redirect("/member/logout")
+        return self.redirect("/user/logout")
 
 
