@@ -5,20 +5,30 @@
 # Email : yumi@meishixing.com
 
 import tornado.web
+from api.base import BaseHandler
 import module.marker_ctrl as marker_ctrl
 
-class ListHandler(tornado.web.RequestHandler):
+class ListHandler(BaseHandler):
     """签到列表"""
     def get(self):
         page = self.get_argument("page", 1)
-        page_size = self.get_argument("page_size", 10)
+        page_size = self.get_argument("page_size", 200) # 先不做分页
         marker_list = marker_ctrl.get_marker_list(int(page), int(page_size))
-        self.render("marker_list.html", result={"marker_list": marker_list})
+        user_id = self.get_current_user()
+        self.render("marker_list.html", result={"marker_list": marker_list, "user_id": user_id})
 
-class AddHandler(tornado.web.RequestHandler):
+class AddHandler(BaseHandler):
     """增加新签到"""
+    @tornado.web.authenticated
+    def get(self):
+        return self.redirect("/marker/list")
+
+    @tornado.web.authenticated
     def post(self):
         title = self.get_argument("title", "")
         marker = self.get_argument("marker", "")
-        marker_ctrl.add_marker(title, marker)
-        return self.redirect("/marker/list", result={})
+        if not (title and marker):
+            return self.render_string("标题和内容不能为空")
+        user_id = self.get_current_user()
+        marker_ctrl.add_marker(title, marker, user_id)
+        return self.redirect("/marker/list")

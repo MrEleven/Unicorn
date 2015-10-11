@@ -2,7 +2,7 @@
 <html>
 	<head lang="en">
 		<meta http-equiv=Content-Type content="text/html;charset=utf-8">
-		<title>燃烧吧，Python</title>
+		<title>签到</title>
 		<link rel="stylesheet" type="text/css" href="/static/css/main.css">
 		<style type="text/css">
 		* {
@@ -131,8 +131,10 @@
 				</li>
 			</ul>
 		</div>
+		{% if result.get("user_id") %}
 		<div class="container">
 			<form id="add_marker" method="POST" action="/marker/add">
+				{% raw xsrf_form_html() %}
 				<div>
 					<div class="label"><label>主题</label></div>
 					<div class="content">
@@ -148,13 +150,18 @@
 				<input type="submit" id="btn_add_marker" value="签到" />
 			</form>
 		</div>
+		{% else %}
+		<div class="container">
+			<a href="/marker/add">我也要签到</a>
+		</div>
+		{% end %}
 		<div class="container">
 			<ul>
 				{% for marker in result.get("marker_list", []) %}
 				<li>
 					<div class="user_info">
-						<img src="/static/images/face.jpg">
-						<span>Mr.Eleven</span>
+						<img src="{{ marker.get("avatar_url", "http://image.lanrenzhoumo.com/leo/img/20151011163317_07b20ebf75bf2e730f79621d5afd8afd.jpg") }}">
+						<div><span>{{ marker.get("nickname", "") }}</span></div>
 					</div>
 					<div class="mark_content">
 						<h2 class="title">
@@ -169,8 +176,16 @@
 				{% end %}
 			</ul>
 		</div>
-		<script type="text/javascript" src="/static/jquery-1.9.1.js"></script>
+		<script type="text/javascript" src="/static/js/jquery-1.9.1.min.js"></script>
 		<script type="text/javascript">
+			$("#add_marker").submit(function(e) {
+				var title = $("#add_marker .title").val();
+				var content = $("#add_marker textarea").val();
+				if (!(title && content)) {
+					e.preventDefault();
+					return;
+				};
+			});
 		</script>
 	</body>
 </html>

@@ -9,12 +9,12 @@ from datetime import datetime
 
 def get_marker_list(page=1, page_size=10):
     start = (page-1) * page_size
-    sql = "select * from marker order by id desc limit %s, %s;"
+    sql = "select title, nickname, avatar_url, marker, create_time, user_id from marker, user where user.id = marker.user_id limit %s, %s;"
     return db.query(sql, start, page_size)
 
-def add_marker(title, marker):
+def add_marker(title, marker, user_id):
     """增加新的签到"""
     create_time = datetime.now()
-    sql = "insert into marker (title, marker, create_time) values (%s, %s, %s);"
-    return db.execute(sql, title, marker, create_time)
+    sql = "insert into marker (title, marker, user_id, create_time) values (%s, %s, %s, %s);"
+    return db.execute(sql, title, marker, user_id, create_time)
     
