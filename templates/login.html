@@ -42,13 +42,18 @@
 				color: white;
 			}
 			#regist_wrap {
-				text-align: right;
+				overflow: hidden;
 			}
 			#regist_wrap a {
 				color: #333;
 				font-weight: bold;
 				text-decoration: none;
+			}
+			#regist_link {
+				float: right;
 				margin-right: 20px;
+			}
+			#nologin_vistor {
 			}
 			#regist_wrap a:hover {
 				text-decoration: underline;
@@ -73,7 +78,7 @@
 				<li id="input_msg">{{result.get("msg", "")}}</li>
 				{% end %}
 				<li><input id="login-btn" type="submit" value="登录"></li>
-				<li id="regist_wrap"><a href="/user/regist">注册</a></li>
+				<li id="regist_wrap"><a id="nologin_vistor" href="/marker/list">随便看看</a> <a id="regist_link" href="/user/regist">注册</a></li>
 			</ul>
 		</form>
 		<script type="text/javascript" src="/static/js/jquery-1.9.1.min.js"></script>

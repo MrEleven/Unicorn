@@ -12,6 +12,7 @@ import tornado.httpclient
 import tornado.gen
 import os, config
 from importlib import import_module
+from api.base import BaseHandler
 
 from tornado.options import define, options
 define("port", default=8888, help="run on the given port", type=int)
@@ -25,7 +26,7 @@ def get_handlers():
         for attr in dir(bussiness_module):
             if attr.endswith("Handler"):
                 handler_cls = getattr(bussiness_module, attr)
-                if issubclass(handler_cls, tornado.web.RequestHandler):
+                if issubclass(handler_cls, BaseHandler) and (handler_cls != BaseHandler):
                     url = "/" + bussiness_name + "/" +  attr.replace("Handler", "").lower()
                     handlers.append((url, handler_cls))
     print handlers
@@ -41,7 +42,7 @@ if __name__ == "__main__":
         static_path=os.path.join(os.path.dirname(__file__), "static"),
         cookie_secret="bZJc2sWbQLKos6GkHn/VB9oXwQt8S0R0kRvJ5/xJ89E=",
         xsrf_cookies=True,
-        login_url="/login",
+        login_url="/user/login",
         debug=True,
     )
     http_server = tornado.httpserver.HTTPServer(app)
