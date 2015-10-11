@@ -55,19 +55,36 @@
 		<form id="regist_form" action="/user/regist" method="post">
 			{% raw xsrf_form_html() %}
 			<ul>
-				<li id="input_phone"><input type="text" name="phone" value="{{ result.get("phone", "")}}" placeholder="手机号码" /></li>
-				<li id="input_email"><input type="text" name="email" value="{{ result.get("phone", "")}}" placeholder="Email" /></li>
-				<li id="input_nickname"><input type="text" name="nickname" value="{{ result.get("phone", "")}}" placeholder="昵称" /></li>
-				<li id="input_password"><input type="password" name="password" value="{{ result.get("password", "")}}" placeholder="密码" /></li>
-				<li><input id="regist-btn" type="submit" value="注册"></li>
+				<li id="input_phone">
+					<input type="text" name="phone" value="{{ result.get("phone", "")}}" placeholder="手机号码" />
+				</li>
+				<li id="input_email">
+					<input type="text" name="email" value="{{ result.get("email", "")}}" placeholder="Email" />
+				</li>
+				<li id="input_nickname">
+					<input type="text" name="nickname" value="{{ result.get("nickname", "")}}" placeholder="昵称" />
+				</li>
+				<li id="input_password">
+					<input type="password" name="password" value="{{ result.get("password", "")}}" placeholder="密码" />
+				</li>
+				{% if result.get("msg", "")%}
+				<li id="input_msg">
+					{{result.get("msg", "")}}
+				</li>
+				{% end %}
+				<li>
+					<input id="regist-btn" type="submit" value="注册">
+				</li>
 			</ul>
 		</form>
 		<script type="text/javascript" src="/static/js/jquery-1.9.1.min.js"></script>
 		<script type="text/javascript">
-			$("#login_form").submit(function(e) {
+			$("#regist_form").submit(function(e) {
 				var phone = $("#input_phone > input").val();
 				var password = $("#input_password > input").val();
-				if (!phone || !password) {
+				var nickname = $("#input_nickname > input").val();
+				var email = $("#input_email > input").val();
+				if (!phone || !password || !nickname || !email) {
 					e.preventDefault();
 				};
 			})
