@@ -19,7 +19,8 @@ def checkout_login(phone, password):
     user_id = db.get(sql, phone, password)
     return user_id["id"] if user_id else 0
 
-def get_member_by_login_name(login_name):
-    """根据login_name获取用户"""
-    sql = "select * from member where login_name = %s;"
-    return db.query(sql,login_name)
+def get_user(user_id):
+    """根据id获取用户"""
+    sql = "select * from user where id = %s;"
+    user = db.get(sql, user_id)
+    return user
