@@ -9,7 +9,7 @@ from datetime import datetime
 
 def get_marker_list(page=1, page_size=10):
     start = (page-1) * page_size
-    sql = "select title, nickname, avatar_url, marker, create_time, user_id from marker, user where user.id = marker.user_id limit %s, %s;"
+    sql = "select title, nickname, avatar_url, marker, create_time, user_id from marker, user where user.id = marker.user_id order by marker.id desc limit %s, %s;"
     return db.query(sql, start, page_size)
 
 def add_marker(title, marker, user_id):
