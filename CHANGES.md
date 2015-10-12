@@ -1,5 +1,9 @@
 # unicorn change log
 
+# 2015-10-12 0.0.5 MrEleven
+
+* 将签到顺序改为倒叙
+
 # 2015-10-11 0.0.4 MrEleven
 
 * 支持多人签到
