@@ -1,5 +1,9 @@
 # unicorn change log
 
+# 2015-10-12 0.0.6 MrEleven
+
+* 修复大屏幕登录背景平铺的bug
+
 # 2015-10-12 0.0.5 MrEleven
 
 * 将签到顺序改为倒叙
