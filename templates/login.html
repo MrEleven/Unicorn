@@ -74,7 +74,7 @@
 			{% raw xsrf_form_html() %}
 			<ul>
 				<li id="input_phone"><input type="text" name="phone" value="{{ result.get("phone", "")}}" placeholder="手机号码" /></li>
-				<li id="input_password"><input type="password" name="password" value="{{result.get("password")}}" placeholder="密码" /></li>
+				<li id="input_password"><input type="password" name="password" value="{{result.get("password", "")}}" placeholder="密码" /></li>
 				{% if result.get("msg", "")%}
 				<li id="input_msg">{{result.get("msg", "")}}</li>
 				{% end %}
