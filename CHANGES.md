@@ -1,5 +1,9 @@
 # unicorn change log
 
+# 2015-10-14 0.0.8 MrEleven
+
+* 增加Textarea换行与html显示问题
+
 # 2015-10-13 0.0.7 MrEleven
 
 * 增加注册时候的确认密码
