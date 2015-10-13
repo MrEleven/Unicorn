@@ -1,5 +1,10 @@
 # unicorn change log
 
+# 2015-10-13 0.0.7 MrEleven
+
+* 增加注册时候的确认密码
+* 取消默认密码的bug
+
 # 2015-10-12 0.0.6 MrEleven
 
 * 修复大屏幕登录背景平铺的bug
