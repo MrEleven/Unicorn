@@ -138,13 +138,13 @@
 				<div>
 					<div class="label"><label>主题</label></div>
 					<div class="content">
-						<input class="title" type="text" name="title">
+						<input class="title" type="text" name="title" placeholder="今天的主题" />
 					</div>
 				</div>
 				<div>
 					<div class="label"><label>目标</label></div>
 					<div class="content">
-						<textarea name="marker"></textarea>
+						<textarea name="marker" placeholder="这里是写你今天要做的事情，爱护互联网环境，请大家不要写一些乱七八糟的东西。现在已经支持换行了!O(^_^)O"></textarea>
 					</div>
 				</div>
 				<input type="submit" id="btn_add_marker" value="签到" />
@@ -186,6 +186,14 @@
 					return;
 				};
 			});
+			$(function() {
+				var mark_list = $(".mark_content .content");
+				for (var i = mark_list.length - 1; i >= 0; i--) {
+					var content = mark_list[i].innerHTML;
+					content = content.trim().replace(/\n/g,"<br/>");
+					mark_list[i].innerHTML = content;
+				};
+			})
 		</script>
 	</body>
 </html>
