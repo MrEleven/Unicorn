@@ -9,4 +9,3 @@ import hashlib
 def md5(text):
     """md5加密"""
     return hashlib.md5(text).hexdigest()
-
