@@ -127,6 +127,9 @@
 			margin-bottom: 10px;
 			cursor: pointer;
 		}
+		p.content {
+			white-space: pre-wrap;
+		}
 		</style>
 	</head>
 	<body>
@@ -195,7 +198,7 @@
 							<span class="create_time">{{ marker.get("create_time", "") }}</span>
 						</h2>
 						<!-- 注意，这里p标记内部不要有额外的空格和换行 -->
-						<p class="content" style="white-space: pre-wrap;">{{ marker.get("marker", "") }}</p>
+						<p class="content">{{ marker.get("marker", "") }}</p>
 					</div>
 				</li>
 				{% end %}
@@ -231,14 +234,13 @@
 				};
 			});
 
-			// var mark_list = $(".mark_content .content");
-			// for (var i = mark_list.length - 1; i >= 0; i--) {
-			// 	var content = mark_list[i].innerHTML;
-			// 	content = content.trim().replace(/\n/g,"<br/>");
-			// 	mark_list[i].innerHTML = content;
-			// };
+			var mark_list = $(".mark_content .content");
+			for (var i = mark_list.length - 1; i >= 0; i--) {
+				var content = mark_list[i].innerHTML;
+				content = content.trim().replace(/\n/g,"<br/>");
+				mark_list[i].innerHTML = content;
+			};
 		});
-
 		</script>
 	</body>
 </html>
