@@ -7,6 +7,11 @@
 from config import db
 from datetime import datetime
 
+def get_user_marker_list(user_id, page=1, page_size=10):
+    start = (page-1) * page_size
+    sql = "select title, nickname, avatar_url, marker, create_time, user_id from marker, user where marker.user_id = %s and user.id = marker.user_id order by marker.id desc limit %s, %s;"
+    return db.query(sql, user_id, start, page_size)
+
 def get_marker_list(page=1, page_size=10):
     start = (page-1) * page_size
     sql = "select title, nickname, avatar_url, marker, create_time, user_id from marker, user where user.id = marker.user_id order by marker.id desc limit %s, %s;"

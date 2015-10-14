@@ -11,9 +11,15 @@ import module.marker_ctrl as marker_ctrl
 class ListHandler(BaseHandler):
     """签到列表"""
     def get(self):
+        filter_user_id = self.get_argument("u", 0) # u 表示 user_id
         page = self.get_argument("page", 1)
         page_size = self.get_argument("page_size", 200) # 先不做分页
-        marker_list = marker_ctrl.get_marker_list(int(page), int(page_size))
+
+        if filter_user_id > 0:
+            marker_list = marker_ctrl.get_user_marker_list(int(filter_user_id), int(page), int(page_size))
+        else:
+            marker_list = marker_ctrl.get_marker_list(int(page), int(page_size))
+        
         user_id = self.get_current_user()
         self.render("marker_list.html", result={"marker_list": marker_list, "user_id": user_id})
 
