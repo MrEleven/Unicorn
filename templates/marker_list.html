@@ -196,9 +196,11 @@
 							{{ marker.get("title", "") }}
 							<span class="create_time">{{ marker.get("create_time", "") }}</span>
 						</h2>
-						<p class="content">
-							{{ marker.get("marker", "") }}
-						</p>
+						<div>
+							<pre class="content">
+								{{ marker.get("marker", "") }}
+							</pre>
+						</div>
 					</div>
 				</li>
 				{% end %}
@@ -234,12 +236,12 @@
 				};
 			});
 
-			var mark_list = $(".mark_content .content");
-			for (var i = mark_list.length - 1; i >= 0; i--) {
-				var content = mark_list[i].innerHTML;
-				content = content.trim().replace(/\n/g,"<br/>");
-				mark_list[i].innerHTML = content;
-			};
+			// var mark_list = $(".mark_content .content");
+			// for (var i = mark_list.length - 1; i >= 0; i--) {
+			// 	var content = mark_list[i].innerHTML;
+			// 	content = content.trim().replace(/\n/g,"<br/>");
+			// 	mark_list[i].innerHTML = content;
+			// };
 		});
 
 		</script>
