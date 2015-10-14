@@ -222,7 +222,6 @@
 							});
 						});
 					}
-
 					var $empty;
 					if (!title) {
 						$empty = $("#add_marker .title");
@@ -233,13 +232,6 @@
 					return;
 				};
 			});
-
-			var mark_list = $(".mark_content .content");
-			for (var i = mark_list.length - 1; i >= 0; i--) {
-				var content = mark_list[i].innerHTML;
-				content = content.trim().replace(/\n/g,"<br/>");
-				mark_list[i].innerHTML = content;
-			};
 		});
 		</script>
 	</body>
