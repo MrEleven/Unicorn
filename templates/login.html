@@ -83,14 +83,18 @@
 			</ul>
 		</form>
 		<script type="text/javascript" src="/static/js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="/static/js/md5.min.js"></script>
 		<script type="text/javascript">
 			$("#login_form").submit(function(e) {
 				var phone = $("#input_phone > input").val();
 				var password = $("#input_password > input").val();
 				if (!phone || !password) {
 					e.preventDefault();
+					return false;
 				};
-			})
+				var password_md5 = window.md5(password);
+				$("#input_password > input").val(password_md5);
+			});
 		</script>
 	</body>
 </html>
