@@ -6,7 +6,6 @@
 
 from api.base import BaseHandler
 import module.user_ctrl as user_ctrl
-from util import md5
 import random
 import re
 
@@ -44,7 +43,10 @@ class RegistHandler(BaseHandler):
             result={"phone": phone, "email": email, "nickname": nickname, "msg": msg}
             return self.render("regist.html", result=result)
         avatar_url = self.gen_avatar_url()
-        user_ctrl.add_user(phone, email, nickname, avatar_url, password)
+        user_id, msg = user_ctrl.add_user(phone, email, nickname, avatar_url, password)
+        if not user_id:
+            result={"phone": phone, "email": email, "nickname": nickname, "msg": msg}
+            return self.render("regist.html", result=result)
         return self.redirect("/user/login")
 
     def _validate_params(self, phone, email, nickname, password):
@@ -61,7 +63,6 @@ class RegistHandler(BaseHandler):
         if len(password) < 6:
             return False, "密码必须大于6位"
         return True, "验证成功"
-        
 
     def gen_avatar_url(self):
         """随机选择一个头像"""
