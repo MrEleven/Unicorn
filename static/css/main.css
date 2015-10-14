@@ -8,6 +8,10 @@ ul {
 input,button,select,textarea {
 	outline:none;
 }
+pre {
+	white-space: pre-wrap;
+	word-wrap: break-word;
+}
 .nav {
 	height: 50px;
 	color: white;
