@@ -9,6 +9,13 @@ from datetime import datetime
 
 def add_user(phone, email, nickname, avatar_url, password):
     """增加新用户"""
+    # 检查手机和Email是否存在
+    sql = "select id from user where phone = %s;"
+    if db.query(sql, phone):
+        return 0, "该手机号已经存在"
+    sql = "select id from user where email = %s;"
+    if db.query(sql, email):
+        return 0, "该Email已经被注册"
     regist_time = datetime.now()
     sql = "insert into user (phone, email, nickname, avatar_url, password, regist_time) values (%s, %s, %s, %s, %s, %s);"
     return db.execute(sql, phone, email, nickname, avatar_url, password, regist_time)

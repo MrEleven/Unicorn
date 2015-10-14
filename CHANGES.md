@@ -1,5 +1,10 @@
 # unicorn change log
 
+# 2015-10-14 0.0.11 July&MrEleven
+
+* 增加手机号和邮箱的重复验证
+* 确定采用white-space: pre-wrap的方案解决换行空格和制表符的问题。
+
 # 2015-10-14 0.0.10 MrEleven
 
 * 增加浏览器md5加密密码
