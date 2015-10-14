@@ -34,9 +34,10 @@
 			color: rgba(0, 0, 0, 0);
 			background-color: rgba(255,255,255,0);
 			font-size: 10px;
+			line-height:100px;
 		}
 		.user_info_mask:hover{
-			background-color: rgba(255,255,255,0.5);
+			background-color: rgba(255,255,255,0.9);
 			color: rgba(0, 0, 0, 1);
 			cursor: pointer;
 		}
@@ -180,27 +181,21 @@
 						</a>
 						{% else %}
 						<a href="/marker/list?u={{ marker.get("user_id")}}">
-							<div class="user_info_mask">👇只看该用户</div>
+							<div class="user_info_mask">👉只看该用户</div>
 						</a>
 						{% end %}
 						<img src="{{ marker.get("avatar_url", "http://image.lanrenzhoumo.com/leo/img/20151011163317_07b20ebf75bf2e730f79621d5afd8afd.jpg") }}">
 						<div>
 							<span>{{ marker.get("nickname", "") }}</span>
 						</div>
-						<!-- <div>
-							<span><a href="" alt="只看他/她">只看他👉</a></span>
-						</div> -->
 					</div>
 					<div class="mark_content">
 						<h2 class="title">
 							{{ marker.get("title", "") }}
 							<span class="create_time">{{ marker.get("create_time", "") }}</span>
 						</h2>
-						<div>
-							<pre class="content">
-								{{ marker.get("marker", "") }}
-							</pre>
-						</div>
+						<!-- 注意，这里p标记内部不要有额外的空格和换行 -->
+						<p class="content" style="white-space: pre-wrap;">{{ marker.get("marker", "") }}</p>
 					</div>
 				</li>
 				{% end %}
