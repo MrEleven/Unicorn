@@ -61,8 +61,6 @@
 			color: #666;
 		}
 		#add_marker {
-
-
 			overflow: hidden;
 		}
 		#add_marker > div {
@@ -81,19 +79,16 @@
 			padding-right: 10px;
 		}
 		#add_marker .title {
-			display: block;
 			line-height: 30px;
-			width: 95%;
 			border-radius: 3px;
 			padding-left: 10px;
 			border: 1px solid black;
 			padding-right: 10px;
 		}
 		#add_marker .content {
-			overflow: hidden;
+			/*overflow: hidden;*/
 		}
 		#add_marker .content textarea {
-			width: 95%;
 			border-radius: 3px;
 			line-height: 20px;
 			font-size: 13px;
@@ -101,6 +96,11 @@
 			padding-left: 10px;
 			padding-right: 10px;
 			min-height: 100px;
+		}
+		#add_marker .title, #add_marker textarea {
+			display: inline-block;
+			width: 793px;
+			position: relative;
 		}
 		#btn_add_marker {
 			border: 1px solid black;
@@ -183,6 +183,24 @@
 				var content = $("#add_marker textarea").val();
 				if (!(title && content)) {
 					e.preventDefault();
+					var shark = function(){
+						var that = this;
+						var dif = '5px';
+						var duration = 50;
+						that.animate({left:dif},duration,function(){
+							that.animate({left:'-'+dif},duration,function(){
+								that.animate({left:'0px'},duration);
+							});
+						});
+					}
+
+					var $empty;
+					if (!title) {
+						$empty = $("#add_marker .title");
+					}else{
+						$empty = $("#add_marker textarea");
+					}
+					shark.apply($empty.focus());
 					return;
 				};
 			});
