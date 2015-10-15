@@ -18,7 +18,7 @@ def add_user(phone, email, nickname, avatar_url, password):
         return 0, "该Email已经被注册"
     regist_time = datetime.now()
     sql = "insert into user (phone, email, nickname, avatar_url, password, regist_time) values (%s, %s, %s, %s, %s, %s);"
-    return db.execute(sql, phone, email, nickname, avatar_url, password, regist_time)
+    return db.execute(sql, phone, email, nickname, avatar_url, password, regist_time), "注册成功"
 
 def checkout_login(phone, password):
     """先只支持手机号码登录吧"""
