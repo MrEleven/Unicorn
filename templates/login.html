@@ -65,6 +65,7 @@
 			body {
 				background: url("http://image.lanrenzhoumo.com/leo/img/20151011011004_bf70e3f79f8457dd734b0b23aedacba0.jpg");
 				background-attachment: fixed;
+				background-size: cover;
 			}
 		</style>
 	</head>
@@ -73,7 +74,7 @@
 			{% raw xsrf_form_html() %}
 			<ul>
 				<li id="input_phone"><input type="text" name="phone" value="{{ result.get("phone", "")}}" placeholder="手机号码" /></li>
-				<li id="input_password"><input type="password" name="password" value="{{result.get("password")}}" placeholder="密码" /></li>
+				<li id="input_password"><input type="password" name="password" value="{{result.get("password", "")}}" placeholder="密码" /></li>
 				{% if result.get("msg", "")%}
 				<li id="input_msg">{{result.get("msg", "")}}</li>
 				{% end %}
@@ -82,14 +83,18 @@
 			</ul>
 		</form>
 		<script type="text/javascript" src="/static/js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="/static/js/md5.min.js"></script>
 		<script type="text/javascript">
 			$("#login_form").submit(function(e) {
 				var phone = $("#input_phone > input").val();
 				var password = $("#input_password > input").val();
 				if (!phone || !password) {
 					e.preventDefault();
+					return false;
 				};
-			})
+				var password_md5 = window.md5(password);
+				$("#input_password > input").val(password_md5);
+			});
 		</script>
 	</body>
 </html>

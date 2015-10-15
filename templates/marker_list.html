@@ -25,6 +25,21 @@
 			min-height: 100px;
 			float: left;
 			text-align: center;
+			position: relative;
+		}
+		.user_info_mask {
+			min-height: 100px;
+			width: 100px;
+			position: absolute;
+			color: rgba(0, 0, 0, 0);
+			background-color: rgba(255,255,255,0);
+			font-size: 10px;
+			line-height:100px;
+		}
+		.user_info_mask:hover{
+			background-color: rgba(255,255,255,0.9);
+			color: rgba(0, 0, 0, 1);
+			cursor: pointer;
 		}
 		.user_info img {
 			max-width: 50px;
@@ -61,8 +76,6 @@
 			color: #666;
 		}
 		#add_marker {
-
-
 			overflow: hidden;
 		}
 		#add_marker > div {
@@ -81,19 +94,16 @@
 			padding-right: 10px;
 		}
 		#add_marker .title {
-			display: block;
 			line-height: 30px;
-			width: 95%;
 			border-radius: 3px;
 			padding-left: 10px;
 			border: 1px solid black;
 			padding-right: 10px;
 		}
 		#add_marker .content {
-			overflow: hidden;
+			/*overflow: hidden;*/
 		}
 		#add_marker .content textarea {
-			width: 95%;
 			border-radius: 3px;
 			line-height: 20px;
 			font-size: 13px;
@@ -101,6 +111,11 @@
 			padding-left: 10px;
 			padding-right: 10px;
 			min-height: 100px;
+		}
+		#add_marker .title, #add_marker textarea {
+			display: inline-block;
+			width: 793px;
+			position: relative;
 		}
 		#btn_add_marker {
 			border: 1px solid black;
@@ -111,6 +126,9 @@
 			margin-right: 25px;
 			margin-bottom: 10px;
 			cursor: pointer;
+		}
+		p.content {
+			white-space: pre-wrap;
 		}
 		</style>
 	</head>
@@ -138,13 +156,13 @@
 				<div>
 					<div class="label"><label>主题</label></div>
 					<div class="content">
-						<input class="title" type="text" name="title">
+						<input class="title" type="text" name="title" placeholder="今天的主题" />
 					</div>
 				</div>
 				<div>
 					<div class="label"><label>目标</label></div>
 					<div class="content">
-						<textarea name="marker"></textarea>
+						<textarea name="marker" placeholder="这里是写你今天要做的事情，爱护互联网环境，请大家不要写一些乱七八糟的东西。现在已经支持换行了!O(^_^)O"></textarea>
 					</div>
 				</div>
 				<input type="submit" id="btn_add_marker" value="签到" />
@@ -160,17 +178,27 @@
 				{% for marker in result.get("marker_list", []) %}
 				<li>
 					<div class="user_info">
+						{% if result.get("user_filter_id") %}
+						<a href="/marker/list">
+							<div class="user_info_mask">👀全部用户</div>
+						</a>
+						{% else %}
+						<a href="/marker/list?u={{ marker.get("user_id")}}">
+							<div class="user_info_mask">👉只看该用户</div>
+						</a>
+						{% end %}
 						<img src="{{ marker.get("avatar_url", "http://image.lanrenzhoumo.com/leo/img/20151011163317_07b20ebf75bf2e730f79621d5afd8afd.jpg") }}">
-						<div><span>{{ marker.get("nickname", "") }}</span></div>
+						<div>
+							<span>{{ marker.get("nickname", "") }}</span>
+						</div>
 					</div>
 					<div class="mark_content">
 						<h2 class="title">
 							{{ marker.get("title", "") }}
 							<span class="create_time">{{ marker.get("create_time", "") }}</span>
 						</h2>
-						<p class="content">
-							{{ marker.get("marker", "") }}
-						</p>
+						<!-- 注意，这里p标记内部不要有额外的空格和换行 -->
+						<p class="content">{{ marker.get("marker", "") }}</p>
 					</div>
 				</li>
 				{% end %}
@@ -178,14 +206,33 @@
 		</div>
 		<script type="text/javascript" src="/static/js/jquery-1.9.1.min.js"></script>
 		<script type="text/javascript">
+		$(function(){
 			$("#add_marker").submit(function(e) {
 				var title = $("#add_marker .title").val();
 				var content = $("#add_marker textarea").val();
 				if (!(title && content)) {
 					e.preventDefault();
+					var shark = function(){
+						var that = this;
+						var dif = '5px';
+						var duration = 50;
+						that.animate({left:dif},duration,function(){
+							that.animate({left:'-'+dif},duration,function(){
+								that.animate({left:'0px'},duration);
+							});
+						});
+					}
+					var $empty;
+					if (!title) {
+						$empty = $("#add_marker .title");
+					}else{
+						$empty = $("#add_marker textarea");
+					}
+					shark.apply($empty.focus());
 					return;
 				};
 			});
+		});
 		</script>
 	</body>
 </html>

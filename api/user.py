@@ -6,7 +6,6 @@
 
 from api.base import BaseHandler
 import module.user_ctrl as user_ctrl
-from util import md5
 import random
 import re
 
@@ -20,15 +19,13 @@ class LoginHandler(BaseHandler):
         password = self.get_argument("password", "")
         if phone == "" or password == "":
             return self.redirect("/user/login")
-        password_md5 = md5(password)
-        user_id = user_ctrl.checkout_login(phone, password_md5)
+        user_id = user_ctrl.checkout_login(phone, password)
         if user_id:
             self.set_secure_cookie("session_id", str(user_id))
             return self.redirect("/marker/list")
         else:
             msg = "手机号或密码错误"
-            return self.render("login.html", result={"password": password,\
-                                                 "phone": phone, "msg": msg})
+            return self.render("login.html", result={"phone": phone, "msg": msg})
 
 class RegistHandler(BaseHandler):
     """注册"""
@@ -43,11 +40,13 @@ class RegistHandler(BaseHandler):
         password = self.get_argument("password", "")
         validate_result, msg = self._validate_params(phone, email, nickname, password)
         if not validate_result:
-            result={"phone": phone, "password": password, "email": email, \
-                    "nickname": nickname, "msg": msg}
+            result={"phone": phone, "email": email, "nickname": nickname, "msg": msg}
             return self.render("regist.html", result=result)
         avatar_url = self.gen_avatar_url()
-        user_ctrl.add_user(phone, email, nickname, avatar_url, md5(password))
+        user_id, msg = user_ctrl.add_user(phone, email, nickname, avatar_url, password)
+        if not user_id:
+            result={"phone": phone, "email": email, "nickname": nickname, "msg": msg}
+            return self.render("regist.html", result=result)
         return self.redirect("/user/login")
 
     def _validate_params(self, phone, email, nickname, password):
@@ -64,7 +63,6 @@ class RegistHandler(BaseHandler):
         if len(password) < 6:
             return False, "密码必须大于6位"
         return True, "验证成功"
-        
 
     def gen_avatar_url(self):
         """随机选择一个头像"""

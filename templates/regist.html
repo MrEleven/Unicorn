@@ -21,11 +21,11 @@
 				text-indent: 10px;
 				margin-bottom: 10px;
 			}
-			#input_phone, #input_email, #input_nickname, #input_password {
+			#input_phone, #input_email, #input_nickname, #input_password, #input_confirm_password{
 				border: 1px solid #ccc;
 				background: white;
 			}
-			#input_phone input, #input_email input, #input_nickname input, #input_password input {
+			#input_phone input, #input_email input, #input_nickname input, #input_password input, #input_confirm_password input {
 				line-height: 40px;
 				border: 0;
 				width: 90%;
@@ -48,6 +48,7 @@
 			body {
 				background: url("http://image.lanrenzhoumo.com/leo/img/20151011011004_bf70e3f79f8457dd734b0b23aedacba0.jpg");
 				background-attachment: fixed;
+				background-size: cover;
 			}
 		</style>
 	</head>
@@ -67,6 +68,9 @@
 				<li id="input_password">
 					<input type="password" name="password" value="{{ result.get("password", "")}}" placeholder="密码" />
 				</li>
+				<li id="input_confirm_password">
+					<input type="password" name="password" value="" placeholder="确认密码" />
+				</li>
 				{% if result.get("msg", "")%}
 				<li id="input_msg">
 					{{result.get("msg", "")}}
@@ -78,16 +82,28 @@
 			</ul>
 		</form>
 		<script type="text/javascript" src="/static/js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="/static/js/md5.min.js"></script>
 		<script type="text/javascript">
 			$("#regist_form").submit(function(e) {
 				var phone = $("#input_phone > input").val();
 				var password = $("#input_password > input").val();
 				var nickname = $("#input_nickname > input").val();
 				var email = $("#input_email > input").val();
+				var password_confirm = $("#input_confirm_password > input").val();
+				if (password_confirm != password) {
+					e.preventDefault();
+					alert("验证密码和密码不一致，请重新输入");
+					$("#input_confirm_password > input").val("");
+					$("#input_password > input").val("");
+					return false;
+				};
 				if (!phone || !password || !nickname || !email) {
 					e.preventDefault();
+					return false;
 				};
-			})
+				var password_md5 = window.md5(password);
+				$("#input_password > input").val(password_md5);
+			});
 		</script>
 	</body>
 </html>
