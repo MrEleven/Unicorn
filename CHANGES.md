@@ -1,5 +1,9 @@
 # unicorn change log
 
+# 2015-10-15 0.0.12 MrEleven
+
+* 修复一个用户注册的bug
+
 # 2015-10-14 0.0.11 July&MrEleven
 
 * 增加手机号和邮箱的重复验证
