@@ -30,5 +30,5 @@ class AddHandler(BaseHandler):
         user_id = self.get_current_user()
         comment_ctrl.add_comment(user_id, marker_id, content)
         marker_ctrl.inc_comment_count(marker_id)
-        return self.write("评论成功")
+        # return self.write("评论成功")
         

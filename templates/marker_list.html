@@ -133,7 +133,8 @@
 			$(".comment-input .comment-btn").on("click", function() {
 				var $comment_btn = $(this);
 				var marker_id = $(this).attr("marker-id");
-				var content = $(this).parent(".comment-input").find("textarea").val();
+				var $textarea_content = $(this).parent(".comment-input").find("textarea");
+				var content = $textarea_content.val();
 				var _xsrf = $(this).parent(".comment-input").find("input[name=_xsrf]").val();
 				if (!marker_id || !content) {
 					return false;
@@ -142,10 +143,9 @@
 				$.post("/comment/add", params, function(data) {
 					if (data) {
 						alert(data);
+						return false;
 					}
-					else {
-						alert("成功");
-					}
+					$textarea_content.val("");
 					var comment_count = $comment_btn.parents(".markerlist-rwrap").find(".ops .comment-href b");
 					comment_count.html(parseInt(comment_count.html()) + 1);
 					var $comment_list = $comment_btn.parents(".markerlist-rwrap").find(".ul-comment-list");
