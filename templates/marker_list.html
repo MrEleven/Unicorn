@@ -2,6 +2,7 @@
 <html>
 	<head lang="en">
 		<meta http-equiv=Content-Type content="text/html;charset=utf-8">
+		<meta name="format-detection" content="telephone=no" />
 		<title>签到</title>
 		<link rel="stylesheet" type="text/css" href="/static/css/main.css">
 		<link rel="stylesheet" type="text/css" href="/static/css/marker_list.css">
@@ -66,7 +67,7 @@
 							<p class="content">{{ marker.get("marker", "") }}</p>
 						</div>
 						<div class="ops">
-							<span><a class="comment-href">评论(10)</a></span><span class="create_time">{{ marker.get("create_time", "") }}</span>
+							<span><a class="comment-href">评论(<b>{{ marker.get("comment_count", 0) }}</b>)</a></span><span class="create_time">{{ marker.get("create_time", "") }}</span>
 						</div>
 						<div class="comment-list-wrap">
 							<div class="comment-input-wrap">
@@ -74,25 +75,12 @@
 									<img class="avatar" src="http://image.lanrenzhoumo.com/leo/img/20151011162452_2f06eaa77fef3774de0e4f736bcc310b.jpg" alt="avatar" />
 								</div>
 								<div class="comment-input">
+									{% raw xsrf_form_html() %}
 									<textarea></textarea>
-									<a class="comment-btn">评论</a>
+									<a class="comment-btn" marker-id={{ marker.get("id", 0) }}>评论</a>
 								</div>
 							</div>
-							<ul class="ul-comment-list">
-								<li>
-									<div class="avatar-wrap">
-										<img class="avatar" src="http://image.lanrenzhoumo.com/leo/img/20151011162452_2f06eaa77fef3774de0e4f736bcc310b.jpg" alt="avatar">
-									</div>
-									<div class="comment-rwrap">
-										<p class="content">
-										<span class="username">Mr.Eleven</span> : 
-										我好困，再看一会儿推广方面东西就准备回家了，这里节奏太快啦，我有点累，明后天好好出去玩玩。自从来到这里，心情也不大美丽，
-										</p>
-										<div class="time-ops-wrap">
-											<span class="create_time">2015-10-16 20:06:22</span>
-										</div>
-									</div>
-								</li>
+							<ul class="ul-comment-list" marker-id={{ marker.get("id", 0) }}>
 							</ul>
 						</div>
 					</div>
@@ -130,15 +118,67 @@
 				};
 			});
 			$(".ops .comment-href").on("click", function() {
-				var $comment_list = $(this).parents(".markerlist-rwrap").find(".comment-list-wrap");
-				if ($comment_list.css("display") == "none") {
-					$comment_list.css("display", "block");
+				var $comment_list_wrap = $(this).parents(".markerlist-rwrap").find(".comment-list-wrap");
+				if ($comment_list_wrap.css("display") == "none") {
+					$comment_list_wrap.css("display", "block");
+					var $comment_list = $comment_list_wrap.find(".ul-comment-list");
+					if (!$comment_list.html().trim()) {
+						load_comment_list($comment_list)
+					};
 				}
 				else {
-					$comment_list.css("display", "none");
+					$comment_list_wrap.css("display", "none");
 				}
 			});
+			$(".comment-input .comment-btn").on("click", function() {
+				var $comment_btn = $(this);
+				var marker_id = $(this).attr("marker-id");
+				var content = $(this).parent(".comment-input").find("textarea").val();
+				var _xsrf = $(this).parent(".comment-input").find("input[name=_xsrf]").val();
+				if (!marker_id || !content) {
+					return false;
+				};
+				var params = {"marker_id": marker_id, "content": content, "_xsrf": _xsrf};
+				$.post("/comment/add", params, function(data) {
+					if (data) {
+						alert(data);
+					}
+					else {
+						alert("成功");
+					}
+					var comment_count = $comment_btn.parents(".markerlist-rwrap").find(".ops .comment-href b");
+					comment_count.html(parseInt(comment_count.html()) + 1);
+					var $comment_list = $comment_btn.parents(".markerlist-rwrap").find(".ul-comment-list");
+					load_comment_list($comment_list);
+				});
+			});
+			function load_comment_list(comment_list_container) {
+				var marker_id = comment_list_container.attr("marker-id");
+				var url = "/comment/list?marker_id=" + marker_id;
+				$.get(url, function(data) {
+					var html = Mustache.render($("#comment-list-template").html(), data);
+					comment_list_container.html(html);
+				});
+			};
 		});
+		</script>
+		<script type="text/template" id="comment-list-template">
+			{{!#.}}
+			<li>
+				<div class="avatar-wrap">
+					<img class="avatar" src="{{!avatar_url}}" alt="avatar">
+				</div>
+				<div class="comment-rwrap">
+					<p class="content">
+					<span class="username">{{!nickname}}</span> : 
+					{{!content}}
+					</p>
+					<div class="time-ops-wrap">
+						<span class="create_time">{{!create_time}}</span>
+					</div>
+				</div>
+			</li>
+			{{!/.}}
 		</script>
 	</body>
 </html>
