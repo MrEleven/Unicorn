@@ -70,7 +70,14 @@ class RegistHandler(BaseHandler):
             "http://image.lanrenzhoumo.com/leo/img/20151011024819_18199bd27cd7a6ac8cebf4bdf45fb070.jpg",
             "http://image.lanrenzhoumo.com/leo/img/20151011025414_a27de62e3ee2e3fdfd2b4e7d987f18da.jpg",
             "http://image.lanrenzhoumo.com/leo/img/20151011025547_29c0c0f96f0db2cc28553c806e1efc0f.jpg",
-            "http://image.lanrenzhoumo.com/leo/img/20151011025708_8be0a8a0ea1e9a827b54bfed38fc94a8.jpg"
+            "http://image.lanrenzhoumo.com/leo/img/20151011025708_8be0a8a0ea1e9a827b54bfed38fc94a8.jpg",
+            "http://image.lanrenzhoumo.com/leo/img/20151017231014_cf7d11a4fe95062cf4dcd09332c44bc1.jpeg",
+            "http://image.lanrenzhoumo.com/leo/img/20151017231546_24f8086859e20bfacab7b082a3959329.jpg",
+            "http://image.lanrenzhoumo.com/leo/img/20151017231621_74990d5e6fee8d9e2a8d4ab2a4f7a150.jpg",
+            "http://image.lanrenzhoumo.com/leo/img/20151017231626_af3ea4549c1984d00a088e958e85cddc.png",
+            "http://image.lanrenzhoumo.com/leo/img/20151017231655_cc3aed24a302a18a9cf869a9186f0831.jpg",
+            "http://image.lanrenzhoumo.com/leo/img/20151017231814_8f94e8dbe27c467f18ca44225377a971.jpeg",
+            "http://image.lanrenzhoumo.com/leo/img/20151011163317_07b20ebf75bf2e730f79621d5afd8afd.jpg",
         ]
         return fix_avatar_list[random.randint(0, len(fix_avatar_list)-1)]
         
@@ -78,7 +85,7 @@ class RegistHandler(BaseHandler):
 class LogoutHandler(BaseHandler):
     """登出"""
     def get(self):
-        # todo: clear session for safety logout
-        return self.redirect("/user/logout")
+        self.clear_cookie("session_id")
+        return self.redirect("/user/login")
 
 
