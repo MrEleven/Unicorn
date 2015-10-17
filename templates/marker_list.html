@@ -8,22 +8,7 @@
 		<link rel="stylesheet" type="text/css" href="/static/css/marker_list.css">
 	</head>
 	<body>
-		<div class="nav">
-			<ul>
-				<li>
-					<a href="/marker/list">签到</a>
-				</li>
-				<li>
-					<a href="#">目标</a>
-				</li>
-				<li>
-					<a href="#">代办事项</a>
-				</li>
-				<li>
-					<a href="#">成就</a>
-				</li>
-			</ul>
-		</div>
+		{% module nav() %}
 		{% if result.get("user_id") %}
 		<div class="container">
 			<form id="add_marker" method="POST" action="/marker/add">

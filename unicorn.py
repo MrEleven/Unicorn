@@ -12,7 +12,7 @@ import tornado.httpclient
 import tornado.gen
 import os, config
 from importlib import import_module
-from api.base import BaseHandler
+from api.base import BaseHandler, NavUIModule
 
 from tornado.options import define, options
 define("port", default=8888, help="run on the given port", type=int)
@@ -38,6 +38,7 @@ if __name__ == "__main__":
     handlers = get_handlers()
     app = tornado.web.Application(
         handlers=handlers,
+        ui_modules={"nav": NavUIModule},
         template_path=os.path.join(os.path.dirname(__file__), "templates"),
         static_path=os.path.join(os.path.dirname(__file__), "static"),
         cookie_secret="bZJc2sWbQLKos6GkHn/VB9oXwQt8S0R0kRvJ5/xJ89E=",
