@@ -21,7 +21,7 @@ class LoginHandler(BaseHandler):
             return self.redirect("/user/login")
         user_id = user_ctrl.checkout_login(phone, password)
         if user_id:
-            self.set_secure_cookie("session_id", str(user_id))
+            self.set_user_id(str(user_id))
             return self.redirect("/marker/list")
         else:
             msg = "手机号或密码错误"

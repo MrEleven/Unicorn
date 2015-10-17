@@ -1,0 +1,187 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+ul {
+	list-style-type: none;
+}
+.container {
+	width: 900px;
+	margin: 0 auto;
+	border: 1px solid black;
+	padding: 10px;
+	margin-top: 10px;
+}
+.user_info {
+	vertical-align: middle;
+	width: 100px;
+	min-height: 100px;
+	float: left;
+	text-align: center;
+	position: relative;
+}
+.markerlist-rwrap {
+	overflow: hidden;
+}
+.user_info_mask {
+	min-height: 100px;
+	width: 100px;
+	position: absolute;
+	color: rgba(0, 0, 0, 0);
+	background-color: rgba(255,255,255,0);
+	font-size: 10px;
+	line-height:100px;
+}
+.user_info_mask:hover{
+	background-color: rgba(255,255,255,0.9);
+	color: rgba(0, 0, 0, 1);
+	cursor: pointer;
+}
+.user_info img {
+	width: 50px;
+	height: 50px;
+}
+.user_info span {
+	font-size: 12px;
+	line-height: 20px;
+}
+.mark_content {
+	overflow: hidden;
+}
+.mark_content .title {
+	background: #eee;
+	font-size: 18px;
+	line-height: 30px;
+	text-indent: 10px;
+	font-family: "宋体";
+}
+.mark_content .content {
+	padding: 10px;
+	font-size: 13px;
+	line-height: 20px;
+}
+.create_time {
+	float: right;
+	font-size: 12px;
+	margin-right: 10px;
+	color: rgb(170, 170, 170);
+}
+#add_marker {
+	overflow: hidden;
+}
+#add_marker > div {
+	overflow: hidden;
+	line-height: 30px;
+	padding: 10px;
+}
+#add_marker .label {
+	font-size: 12px;
+	float: left;
+	width: 50px;
+	text-align: right;
+	display: inline-block;
+}
+#add_marker label {
+	padding-right: 10px;
+}
+#add_marker .title {
+	line-height: 30px;
+	border-radius: 3px;
+	padding-left: 10px;
+	border: 1px solid black;
+	padding-right: 10px;
+}
+#add_marker .content {
+	/*overflow: hidden;*/
+}
+#add_marker .content textarea {
+	border-radius: 3px;
+	line-height: 20px;
+	font-size: 13px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	min-height: 100px;
+}
+#add_marker .title, #add_marker textarea {
+	display: inline-block;
+	width: 793px;
+	position: relative;
+}
+#btn_add_marker {
+	border: 1px solid black;
+	background: transparent;
+	padding: 5px 10px;
+	font-size: 14px;
+	float: right;
+	margin-right: 25px;
+	margin-bottom: 10px;
+	cursor: pointer;
+}
+.mark_content .content {
+	white-space: pre-wrap;
+}
+.ops {
+	padding: 0 10px 0 10px;
+	height: 20px;
+	line-height: 20px;
+	margin-bottom: 10px;
+}
+.ops span {
+	font-size: 12px;
+	color: rgb(170, 170, 170);
+}
+.comment-list-wrap {
+	display: none;
+}
+.comment-list-wrap .avatar {
+	width: 30px;
+	height: 30px;
+}
+.comment-input-wrap {
+	padding: 10px;
+}
+.avatar-wrap {
+	float: left;
+	margin-right: 10px;
+}
+.comment-input {
+
+}
+.comment-input textarea {
+	line-height: 12px;
+	font-size: 12px;
+	overflow: hidden;
+	border: 1px solid orange;
+	vertical-align: middle;
+	padding: 5px 2px 0px 6px;
+	width: 650px;
+}
+.comment-btn, .comment-btn:hover, .comment-btn:visited {
+	height: 30px;
+	width: 60px;
+	line-height: 30px;
+	background: white;
+	display: inline-block;
+	vertical-align:	top;
+	background: orange;
+	color: white;
+	font-size: 12px;
+	text-align: center;
+	cursor: pointer;
+	text-decoration: none;
+}
+.ul-comment-list li {
+	overflow: hidden;
+	padding: 10px;
+}
+.ul-comment-list .time-ops-wrap .create_time {
+	float: none;
+}
+.comment-rwrap {
+	font-size: 12px;
+	overflow: hidden;
+}
+.comment-rwrap .content {
+	line-height: 20px;
+}

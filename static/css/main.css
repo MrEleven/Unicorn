@@ -8,6 +8,20 @@ ul {
 input,button,select,textarea {
 	outline:none;
 }
+a {
+	text-decoration: none;
+	color: inherit;
+	cursor: pointer;
+}
+a:hover {
+	text-decoration: underline;
+	color: inherit;
+	cursor: pointer;
+}
+a:visited {
+	color: inherit;
+	cursor: pointer;
+}
 .nav {
 	height: 50px;
 	color: white;
