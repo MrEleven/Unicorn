@@ -33,23 +33,3 @@ class BaseHandler(tornado.web.RequestHandler):
         self.set_header("Content-Type", "text/json")
         return self.write(json.dumps(json_obj))
 
-class NavUIModule(tornado.web.UIModule):
-    """导航栏"""
-    def render(self):
-        return self.render_string("modules/nav.html")
-#         return """<div class="nav">
-# <ul>
-# <li>
-# <a href="/marker/list">签到</a>
-# </li>
-# <li>
-# <a href="#">目标</a>
-# </li>
-# <li>
-# <a href="#">代办事项</a>
-# </li>
-# <li>
-# <a href="#">成就</a>
-# </li>
-# </ul>
-# </div>"""
