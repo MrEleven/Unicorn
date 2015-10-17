@@ -1,5 +1,10 @@
 # unicorn change log
 
+# 2015-10-17 0.1.0 MrEleven
+
+* 增加评论功能
+* 增加cookie的过期时间
+
 # 2015-10-15 0.0.12 MrEleven
 
 * 修复一个用户注册的bug

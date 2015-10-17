@@ -2,153 +2,13 @@
 <html>
 	<head lang="en">
 		<meta http-equiv=Content-Type content="text/html;charset=utf-8">
+		<meta name="format-detection" content="telephone=no" />
 		<title>签到</title>
 		<link rel="stylesheet" type="text/css" href="/static/css/main.css">
-		<style type="text/css">
-		* {
-			margin: 0px;
-			padding: 0px;
-		}
-		ul {
-			list-style-type: none;
-		}
-		.container {
-			width: 900px;
-			margin: 0 auto;
-			border: 1px solid black;
-			padding: 10px;
-			margin-top: 10px;
-		}
-		.user_info {
-			vertical-align: middle;
-			width: 100px;
-			min-height: 100px;
-			float: left;
-			text-align: center;
-			position: relative;
-		}
-		.user_info_mask {
-			min-height: 100px;
-			width: 100px;
-			position: absolute;
-			color: rgba(0, 0, 0, 0);
-			background-color: rgba(255,255,255,0);
-			font-size: 10px;
-			line-height:100px;
-		}
-		.user_info_mask:hover{
-			background-color: rgba(255,255,255,0.9);
-			color: rgba(0, 0, 0, 1);
-			cursor: pointer;
-		}
-		.user_info img {
-			max-width: 50px;
-			max-height: 50px;
-			padding-top: 10px;
-		}
-		.user_info span {
-			font-size: 12px;
-			line-height: 20px;
-		}
-		.mark_content {
-			overflow: hidden;
-		}
-		ul li {
-			overflow: hidden;
-		}
-		.mark_content .title {
-			background: #eee;
-			font-size: 18px;
-			line-height: 30px;
-			text-indent: 10px;
-			font-family: "宋体";
-		}
-		.mark_content .content {
-			padding: 10px;
-			font-size: 13px;
-			line-height: 20px;
-		}
-		.create_time {
-			float: right;
-			line-height: 30px;
-			font-size: 12px;
-			margin-right: 10px;
-			color: #666;
-		}
-		#add_marker {
-			overflow: hidden;
-		}
-		#add_marker > div {
-			overflow: hidden;
-			line-height: 30px;
-			padding: 10px;
-		}
-		#add_marker .label {
-			font-size: 12px;
-			float: left;
-			width: 50px;
-			text-align: right;
-			display: inline-block;
-		}
-		#add_marker label {
-			padding-right: 10px;
-		}
-		#add_marker .title {
-			line-height: 30px;
-			border-radius: 3px;
-			padding-left: 10px;
-			border: 1px solid black;
-			padding-right: 10px;
-		}
-		#add_marker .content {
-			/*overflow: hidden;*/
-		}
-		#add_marker .content textarea {
-			border-radius: 3px;
-			line-height: 20px;
-			font-size: 13px;
-			padding-top: 10px;
-			padding-left: 10px;
-			padding-right: 10px;
-			min-height: 100px;
-		}
-		#add_marker .title, #add_marker textarea {
-			display: inline-block;
-			width: 793px;
-			position: relative;
-		}
-		#btn_add_marker {
-			border: 1px solid black;
-			background: transparent;
-			padding: 5px 10px;
-			font-size: 14px;
-			float: right;
-			margin-right: 25px;
-			margin-bottom: 10px;
-			cursor: pointer;
-		}
-		p.content {
-			white-space: pre-wrap;
-		}
-		</style>
+		<link rel="stylesheet" type="text/css" href="/static/css/marker_list.css">
 	</head>
 	<body>
-		<div class="nav">
-			<ul>
-				<li>
-					<a href="/marker/list">签到</a>
-				</li>
-				<li>
-					<a href="#">目标</a>
-				</li>
-				<li>
-					<a href="#">代办事项</a>
-				</li>
-				<li>
-					<a href="#">成就</a>
-				</li>
-			</ul>
-		</div>
+		{% module nav() %}
 		{% if result.get("user_id") %}
 		<div class="container">
 			<form id="add_marker" method="POST" action="/marker/add">
@@ -173,38 +33,48 @@
 			<a href="/marker/add">我也要签到</a>
 		</div>
 		{% end %}
+
 		<div class="container">
-			<ul>
+			<ul class="markerlist-big-wrap">
 				{% for marker in result.get("marker_list", []) %}
 				<li>
 					<div class="user_info">
-						{% if result.get("user_filter_id") %}
-						<a href="/marker/list">
-							<div class="user_info_mask">👀全部用户</div>
-						</a>
-						{% else %}
-						<a href="/marker/list?u={{ marker.get("user_id")}}">
-							<div class="user_info_mask">👉只看该用户</div>
-						</a>
-						{% end %}
-						<img src="{{ marker.get("avatar_url", "http://image.lanrenzhoumo.com/leo/img/20151011163317_07b20ebf75bf2e730f79621d5afd8afd.jpg") }}">
+						<img src="{{ marker.get("avatar_url", "http://image.lanrenzhoumo.com/leo/img/20151011163317_07b20ebf75bf2e730f79621d5afd8afd.jpg") }}" alt="user_avatar" /> 
 						<div>
-							<span>{{ marker.get("nickname", "") }}</span>
+							<span>{{ marker.get("nickname", "")}}</span>
 						</div>
 					</div>
-					<div class="mark_content">
-						<h2 class="title">
-							{{ marker.get("title", "") }}
-							<span class="create_time">{{ marker.get("create_time", "") }}</span>
-						</h2>
-						<!-- 注意，这里p标记内部不要有额外的空格和换行 -->
-						<p class="content">{{ marker.get("marker", "") }}</p>
+					<div class="markerlist-rwrap">
+						<div class="mark_content">
+							<h2 class="title">
+								{{ marker.get("title", "") }}
+							</h2>
+							<p class="content">{{ marker.get("marker", "") }}</p>
+						</div>
+						<div class="ops">
+							<span><a class="comment-href">评论(<b>{{ marker.get("comment_count", 0) }}</b>)</a></span><span class="create_time">{{ marker.get("create_time", "") }}</span>
+						</div>
+						<div class="comment-list-wrap">
+							<div class="comment-input-wrap">
+								<div class="avatar-wrap">
+									<img class="avatar" src="http://image.lanrenzhoumo.com/leo/img/20151011162452_2f06eaa77fef3774de0e4f736bcc310b.jpg" alt="avatar" />
+								</div>
+								<div class="comment-input">
+									{% raw xsrf_form_html() %}
+									<textarea></textarea>
+									<a class="comment-btn" marker-id={{ marker.get("id", 0) }}>评论</a>
+								</div>
+							</div>
+							<ul class="ul-comment-list" marker-id={{ marker.get("id", 0) }}>
+							</ul>
+						</div>
 					</div>
 				</li>
 				{% end %}
 			</ul>
 		</div>
 		<script type="text/javascript" src="/static/js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="/static/js/mustache.js"></script>
 		<script type="text/javascript">
 		$(function(){
 			$("#add_marker").submit(function(e) {
@@ -232,7 +102,68 @@
 					return;
 				};
 			});
+			$(".ops .comment-href").on("click", function() {
+				var $comment_list_wrap = $(this).parents(".markerlist-rwrap").find(".comment-list-wrap");
+				if ($comment_list_wrap.css("display") == "none") {
+					$comment_list_wrap.css("display", "block");
+					var $comment_list = $comment_list_wrap.find(".ul-comment-list");
+					if (!$comment_list.html().trim()) {
+						load_comment_list($comment_list)
+					};
+				}
+				else {
+					$comment_list_wrap.css("display", "none");
+				}
+			});
+			$(".comment-input .comment-btn").on("click", function() {
+				var $comment_btn = $(this);
+				var marker_id = $(this).attr("marker-id");
+				var $textarea_content = $(this).parent(".comment-input").find("textarea");
+				var content = $textarea_content.val();
+				var _xsrf = $(this).parent(".comment-input").find("input[name=_xsrf]").val();
+				if (!marker_id || !content) {
+					return false;
+				};
+				var params = {"marker_id": marker_id, "content": content, "_xsrf": _xsrf};
+				$.post("/comment/add", params, function(data) {
+					if (data) {
+						alert(data);
+						return false;
+					}
+					$textarea_content.val("");
+					var comment_count = $comment_btn.parents(".markerlist-rwrap").find(".ops .comment-href b");
+					comment_count.html(parseInt(comment_count.html()) + 1);
+					var $comment_list = $comment_btn.parents(".markerlist-rwrap").find(".ul-comment-list");
+					load_comment_list($comment_list);
+				});
+			});
+			function load_comment_list(comment_list_container) {
+				var marker_id = comment_list_container.attr("marker-id");
+				var url = "/comment/list?marker_id=" + marker_id;
+				$.get(url, function(data) {
+					var html = Mustache.render($("#comment-list-template").html(), data);
+					comment_list_container.html(html);
+				});
+			};
 		});
+		</script>
+		<script type="text/template" id="comment-list-template">
+			{{!#.}}
+			<li>
+				<div class="avatar-wrap">
+					<img class="avatar" src="{{!avatar_url}}" alt="avatar">
+				</div>
+				<div class="comment-rwrap">
+					<p class="content">
+					<span class="username">{{!nickname}}</span> : 
+					{{!content}}
+					</p>
+					<div class="time-ops-wrap">
+						<span class="create_time">{{!create_time}}</span>
+					</div>
+				</div>
+			</li>
+			{{!/.}}
 		</script>
 	</body>
 </html>
