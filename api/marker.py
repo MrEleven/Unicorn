@@ -19,7 +19,6 @@ class ListHandler(BaseHandler):
             marker_list = marker_ctrl.get_user_marker_list(int(user_filter_id), int(page), int(page_size))
         else:
             marker_list = marker_ctrl.get_marker_list(int(page), int(page_size))
-        
         user_id = self.get_current_user()
         self.render("marker_list.html", result={
             "marker_list": marker_list, 

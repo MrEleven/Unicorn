@@ -11,8 +11,13 @@ import json
 
 class BaseHandler(tornado.web.RequestHandler):
     """api的基类型"""
+    def set_user_id(self, user_id):
+        """设置cookie"""
+        self.set_secure_cookie("session_id", str(user_id), expires_days=1)
+    
     def get_current_user(self):
-        return self.get_secure_cookie("session_id")
+        user_id = self.get_secure_cookie("session_id")
+        return int(user_id) if user_id else 0
 
     def render_json(self, json_obj):
         """渲染json"""
