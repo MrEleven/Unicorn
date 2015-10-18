@@ -12,6 +12,8 @@ import re
 class LoginHandler(BaseHandler):
     """登陆"""
     def get(self):
+        if self.get_current_user():
+            return self.redirect("/marker/list")
         self.render("login.html", result={})
 
     def post(self):
