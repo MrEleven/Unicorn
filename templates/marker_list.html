@@ -9,30 +9,7 @@
 	</head>
 	<body>
 		{% module nav() %}
-		{% if result.get("user_id") %}
-		<div class="container">
-			<form id="add_marker" method="POST" action="/marker/add">
-				{% raw xsrf_form_html() %}
-				<div>
-					<div class="label"><label>主题</label></div>
-					<div class="content">
-						<input class="title" type="text" name="title" placeholder="今天的主题" />
-					</div>
-				</div>
-				<div>
-					<div class="label"><label>目标</label></div>
-					<div class="content">
-						<textarea name="marker" placeholder="这里是写你今天要做的事情，爱护互联网环境，请大家不要写一些乱七八糟的东西。现在已经支持换行了!O(^_^)O"></textarea>
-					</div>
-				</div>
-				<input type="submit" id="btn_add_marker" value="签到" />
-			</form>
-		</div>
-		{% else %}
-		<div class="container">
-			<a href="/marker/add">我也要签到</a>
-		</div>
-		{% end %}
+		{% module addmarker() %}
 
 		<div class="container">
 			<ul class="markerlist-big-wrap">

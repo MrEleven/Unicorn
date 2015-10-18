@@ -7,10 +7,15 @@
 from config import db
 from datetime import datetime
 
-def get_user_marker_list(user_id, page=1, page_size=10):
+def get_marker_list_by_user_id(user_id, page=1, page_size=10, orderby=1):
     start = (page-1) * page_size
-    sql = "select marker.id, title, nickname, avatar_url, marker, create_time, user_id from marker, user where marker.user_id = %s and user.id = marker.user_id order by marker.id desc limit %s, %s;"
+    sql = "select marker.id, title, nickname, avatar_url, marker, create_time, user_id from marker, user where marker.user_id = %s and user.id = marker.user_id order by marker.id " + "desc" if orderby else "asc" + " limit %s, %s;"
     return db.query(sql, user_id, start, page_size)
+
+def check_user_marked(user_id, start_time):
+    """检查用户是否已经签到过"""
+    sql = "select create_time from marker where user_id = %s and create_time > %s;"
+    return db.query(sql, user_id, start_time)
 
 def get_marker_list(page=1, page_size=10):
     start = (page-1) * page_size
