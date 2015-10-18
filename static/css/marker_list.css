@@ -131,6 +131,9 @@ ul {
 	font-size: 12px;
 	color: rgb(170, 170, 170);
 }
+.ops .comment-href {
+	color: black;
+}
 .comment-list-wrap {
 	display: none;
 }
@@ -184,4 +187,12 @@ ul {
 }
 .comment-rwrap .content {
 	line-height: 20px;
+}
+.comment-list-wrap .anonym-notice strong {
+	color: orange;
+}
+.anonym-notice {
+	color: #ccc;
+	font-size: 12px;
+	margin-left: 10px;
 }

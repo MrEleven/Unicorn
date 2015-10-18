@@ -52,9 +52,10 @@
 							<p class="content">{{ marker.get("marker", "") }}</p>
 						</div>
 						<div class="ops">
-							<span><a class="comment-href">评论(<b>{{ marker.get("comment_count", 0) }}</b>)</a></span><span class="create_time">{{ marker.get("create_time", "") }}</span>
+							<span><a class="comment-href">评论(<strong>{{ marker.get("comment_count", 0) }}</strong>)</a></span><span class="create_time">{{ marker.get("create_time", "") }}</span>
 						</div>
 						<div class="comment-list-wrap">
+							{% if result.get("user_id", 0) %}
 							<div class="comment-input-wrap">
 								<div class="avatar-wrap">
 									<img class="avatar" src="http://image.lanrenzhoumo.com/leo/img/20151011162452_2f06eaa77fef3774de0e4f736bcc310b.jpg" alt="avatar" />
@@ -65,6 +66,11 @@
 									<a class="comment-btn" marker-id={{ marker.get("id", 0) }}>评论</a>
 								</div>
 							</div>
+							{% else %}
+							<div class="anonym-notice">
+								您还没有登录，<a href="/user/login"><strong>登录</strong></a>后才能评论。
+							</div>
+							{% end %}
 							<ul class="ul-comment-list" marker-id={{ marker.get("id", 0) }}>
 							</ul>
 						</div>
@@ -131,7 +137,7 @@
 						return false;
 					}
 					$textarea_content.val("");
-					var comment_count = $comment_btn.parents(".markerlist-rwrap").find(".ops .comment-href b");
+					var comment_count = $comment_btn.parents(".markerlist-rwrap").find(".ops .comment-href strong");
 					comment_count.html(parseInt(comment_count.html()) + 1);
 					var $comment_list = $comment_btn.parents(".markerlist-rwrap").find(".ul-comment-list");
 					load_comment_list($comment_list);
