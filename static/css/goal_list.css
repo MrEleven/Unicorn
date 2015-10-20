@@ -1,0 +1,125 @@
+#goal-nav {
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    width: 150px;
+    position: fixed;
+    top: 100px;
+}
+#goal-nav ul li {
+    border-top: 1px solid black;
+    text-align: center;
+    min-height: 40px;
+    line-height: 40px;
+}
+#goal-nav ul li a {
+    display: block;
+    text-decoration: none;
+    background: orange;
+    color: white;
+    font-weight: bolder;
+}
+#goal-nav ul li a:hover {
+    background: lightgoldenrodyellow;
+    color: #555;
+}
+#goal-list-wrap {
+    width: 900px;
+    margin: 0 auto;
+    min-height: 300px;
+    margin-top: 20px;
+    padding: 10px;
+}
+.goal-wrap {
+    border: 1px solid black;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+}
+.goal-info {
+    overflow: hidden;
+}
+.goal-icon-wrap {
+    float: left;
+    padding: 10px;
+}
+.goal-icon {
+    width: 100px;
+    height: 100px;
+}
+.goal-info-rwrap {
+    overflow: hidden;
+    padding-top: 30px;
+    padding-left: 20px;
+}
+.goal-info .goal-name {
+    color: orange;
+    font-size: 20px;
+    font-weight: bolder;
+    text-shadow: 0px 0px 10px #cccccc;
+}
+.goal-desc {
+    margin-top: 10px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #555;
+    text-shadow: 0px 0px 2px #cccccc;
+}
+.todo-list-ul {
+    border: 1px solid #cccccc;
+    margin-top: 10px;
+    overflow: hidden;
+    min-height: 180px;
+}
+.todo-list-ul li {
+    /*border-top: 1px solid #cccccc;*/
+    min-height: 45px;
+    line-height: 45px;
+    overflow: hidden;
+}
+.todo-list-ul .todo-wrap .finish {
+    border: 1px solid black;
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-left: 10px;
+    margin-right: 5px;
+}
+.todo-wrap {
+    width: 150%;
+}
+.todo-wrap:hover {
+    background: rgb(249, 249, 249);
+    width: auto;
+}
+.todo-wrap .todo-name {
+
+}
+.todo-ops {
+    float: right;
+    display: inline-block;
+    font-size: 12px;
+    margin-right: 5px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+#todo-edit-wrap {
+    border: 1px solid black;
+    width: 150px;
+    position: fixed;
+    right: 0px;
+    top: 100px;
+    min-height: 200px;
+
+}
