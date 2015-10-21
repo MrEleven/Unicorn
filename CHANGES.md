@@ -1,5 +1,9 @@
 # unicorn change log
 
+# 2015-10-21 0.2.1 MrEleven
+
+* 修复了评论输入框旁头像都是玉米的bug
+
 # 2015-10-18 0.2.0 MrEleven
 
 * 增加了签到次数的限制。
