@@ -6,6 +6,7 @@
 
 import tornado.web
 from api.base import BaseHandler
+import module.user_ctrl as user_ctrl
 import module.marker_ctrl as marker_ctrl
 
 class ListHandler(BaseHandler):
@@ -20,10 +21,12 @@ class ListHandler(BaseHandler):
         else:
             marker_list = marker_ctrl.get_marker_list(int(page), int(page_size))
         user_id = self.get_current_user()
+        user_info = user_ctrl.get_user(user_id)
         self.render("marker_list.html", result={
             "marker_list": marker_list, 
             "user_id": user_id, 
-            "user_filter_id": user_filter_id
+            "user_filter_id": user_filter_id,
+            "user_info": user_info
         })
 
 class AddHandler(BaseHandler):
