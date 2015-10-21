@@ -7,3 +7,4 @@ unicorn.egg-info/*
 dist/*
 .\#*
 *.swp
+.idea

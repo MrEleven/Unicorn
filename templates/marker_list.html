@@ -35,7 +35,7 @@
 							{% if result.get("user_id", 0) %}
 							<div class="comment-input-wrap">
 								<div class="avatar-wrap">
-									<img class="avatar" src="http://image.lanrenzhoumo.com/leo/img/20151011162452_2f06eaa77fef3774de0e4f736bcc310b.jpg" alt="avatar" />
+									<img class="avatar" src="{{ result.get("user_info", {}).get("avatar_url", "") }}" alt="avatar" />
 								</div>
 								<div class="comment-input">
 									{% raw xsrf_form_html() %}
