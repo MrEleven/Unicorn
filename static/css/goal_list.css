@@ -1,0 +1,304 @@
+#goal-nav {
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    width: 150px;
+    position: fixed;
+    top: 100px;
+}
+#goal-nav ul li {
+    border-top: 1px solid black;
+    text-align: center;
+    min-height: 40px;
+    line-height: 40px;
+}
+#goal-nav ul li a {
+    display: block;
+    text-decoration: none;
+    background: orange;
+    color: white;
+    font-weight: bolder;
+}
+#goal-nav ul li a:hover {
+    background: lightgoldenrodyellow;
+    color: #555;
+}
+#goal-nav #add-goal {
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-top: 1px solid black;
+    font-weight: bolder;
+    color: white;
+    background: green;
+    display: block;
+}
+#goal-nav #add-goal:hover {
+    background: lightgreen;
+    text-decoration: none;
+    color: #555;
+}
+#goal-list-wrap {
+    width: 900px;
+    margin: 0 auto;
+    min-height: 300px;
+    margin-top: 20px;
+    padding: 10px;
+}
+.goal-wrap {
+    border: 1px solid black;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    position: relative;
+}
+.goal-wrap .ops {
+    display: none;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: #000;
+    font-weight: bolder;
+}
+.goal-info {
+    overflow: hidden;
+}
+.goal-icon-wrap {
+    float: left;
+    padding: 10px;
+}
+.goal-icon {
+    width: 100px;
+    height: 100px;
+}
+.goal-info-rwrap {
+    overflow: hidden;
+    padding-top: 30px;
+    padding-left: 20px;
+}
+.goal-info .goal-name {
+    color: orange;
+    font-size: 20px;
+    font-weight: bolder;
+    text-shadow: 0px 0px 10px #cccccc;
+}
+.goal-desc {
+    margin-top: 10px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #555;
+    text-shadow: 0px 0px 2px #cccccc;
+}
+.todo-list-ul {
+    border: 1px solid #cccccc;
+    margin-top: 10px;
+    overflow: hidden;
+    min-height: 180px;
+}
+.todo-list-ul li {
+    /*border-top: 1px solid #cccccc;*/
+    min-height: 45px;
+    line-height: 45px;
+    overflow: hidden;
+}
+.todo-list-ul .todo-wrap .finish {
+    border: 1px solid black;
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-left: 10px;
+    margin-right: 5px;
+}
+.todo-wrap {
+    width: 150%;
+}
+.todo-wrap:hover {
+    background: rgb(249, 249, 249);
+    width: auto;
+}
+.todo-wrap .todo-name {
+
+}
+.todo-ops {
+    float: right;
+    display: inline-block;
+    font-size: 12px;
+    margin-right: 5px;
+}
+.add-todo-wrap .name-input {
+    display: none;
+    width: 830px;
+    height: 40px;
+    line-height: 45px;
+    font-size: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.add-todo-wrap .name-input:focus {
+    border: 1px solid #F76333;
+    background: #FFEDE7;
+}
+
+
+
+
+
+.goal-edit-wrap {
+    width: 362px;
+    min-height: 300px;
+    background: white;
+    margin: 10px auto 0px auto;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    box-shadow: 0px 0px 10px #000;
+    padding: 10px;
+}
+.goal-edit-wrap > div {
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+.goal-edit-wrap > span {
+    font-size: 15px;
+}
+.goal-edit-wrap .name-input {
+    width: 350px;
+    height: 30px;
+    font-size: 15px;
+    padding: 0px 5px;
+}
+.goal-edit-wrap .desc-input {
+    resize: none;
+    width: 350px;
+    min-height: 200px;
+    border: 1px solid #cccccc;
+    padding: 5px;
+}
+.album-wrap .album {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.album-file-input {
+    display: none;
+}
+.goal-edit-wrap button {
+    border: 0px;
+    height: 30px;
+    width: 100px;
+    color: white;
+    font-weight: bolder;
+    line-height: 30px;
+    font-size: 14px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+#goal-edit-save-btn, #goal-add-save-btn {
+    background: #669900;
+}
+#goal-edit-save-btn:hover, #goal-add-save-btn:hover {
+    background: #32CD32;
+}
+#goal-edit-cancel-btn, #goal-add-cancel-btn {
+    float: right;
+    background: #cccccc;
+}
+#goal-edit-cancel-btn:hover, #goal-add-cancel-btn:hover {
+    background: #dddddd;
+}
+
+
+
+
+
+.todo-edit-wrap {
+    width: 362px;
+    min-height: 300px;
+    background: white;
+    margin: 10px auto 0px auto;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    box-shadow: 0px 0px 10px #000;
+    padding: 10px;
+}
+.todo-edit-wrap > div {
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+.todo-edit-wrap > span {
+    font-size: 15px;
+}
+.todo-edit-wrap .name-input {
+    width: 350px;
+    height: 30px;
+    font-size: 15px;
+    padding: 0px 5px;
+}
+.todo-edit-wrap .note-input {
+    resize: none;
+    width: 350px;
+    min-height: 200px;
+    border: 1px solid #cccccc;
+    padding: 5px;
+}
+.album-wrap .album {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.album-file-input {
+    display: none;
+}
+.todo-edit-wrap button {
+    border: 0px;
+    height: 30px;
+    width: 100px;
+    color: white;
+    font-weight: bolder;
+    line-height: 30px;
+    font-size: 14px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+#todo-edit-save-btn {
+    background: #669900;
+}
+#todo-edit-save-btn:hover {
+    background: #32CD32;
+}
+#todo-edit-cancel-btn {
+    float: right;
+    background: #cccccc;
+}
+#todo-edit-cancel-btn:hover {
+    background: #dddddd;
+}
+
+
+/*#todo-edit-wrap {*/
+    /*border: 1px solid black;*/
+    /*width: 150px;*/
+    /*position: relative;*/
+    /*min-height: 200px;*/
+    /*background: white;*/
+    /*margin: 0 auto;*/
+    /*margin-top: 200px;*/
+/*}*/
