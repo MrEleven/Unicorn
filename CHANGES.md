@@ -1,5 +1,9 @@
 # unicorn change log
 
+# 2015-10-25 0.2.2 MrEleven
+
+* 增加目标的设计页面
+
 # 2015-10-21 0.2.1 MrEleven
 
 * 修复了评论输入框旁头像都是玉米的bug
