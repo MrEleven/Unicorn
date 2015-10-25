@@ -4,6 +4,7 @@
     width: 150px;
     position: fixed;
     top: 100px;
+    z-index: 2;
 }
 #goal-nav ul li {
     border-top: 1px solid black;

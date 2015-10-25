@@ -6,7 +6,7 @@
 
 from api.base import BaseHandler
 import tornado.web
-import module.goal_ctr as goal_ctrl
+import module.goal_ctrl as goal_ctrl
 
 class GoalUIHandler(BaseHandler):
     """目标"""
