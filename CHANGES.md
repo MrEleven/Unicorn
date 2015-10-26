@@ -1,5 +1,9 @@
 # unicorn change log
 
+# 2015-10-26 0.2.3 MrEleven
+
+* 增加根路径的对应的页面
+
 # 2015-10-25 0.2.2 MrEleven
 
 * 增加目标的设计页面
