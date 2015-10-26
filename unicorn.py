@@ -19,7 +19,8 @@ define("port", default=8888, help="run on the given port", type=int)
 
 def get_handlers():
     """获取url映射关系"""
-    handlers = []
+    from api.marker import ListHandler
+    handlers = [("/", ListHandler)]
     api_list = ["marker", "user", "comment", "goal"]
     for bussiness_name in api_list:
         bussiness_module = import_module("api." + bussiness_name)
