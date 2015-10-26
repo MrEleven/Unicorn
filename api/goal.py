@@ -22,7 +22,7 @@ class AddHandler(BaseHandler):
         image = self.get_argument("image", "")
         description = self.get_argument("description", "")
         goal_id = goal_ctrl.add_goal(user_id, name, image, description)
-        return self.write(goal_id)
+        return self.write(str(goal_id))
 
 class ListHandler(BaseHandler):
     """获取目标列表"""
@@ -45,10 +45,10 @@ class UpdateHandler(BaseHandler):
         if not goal_id:
             raise Exception("goal/update msg: goal_id cant be %s" % goal_id)
         user_id = self.get_current_user()
-        if not goal_ctrl.check_owner(user_id, goal_id):
+        if not goal_ctrl.check_owner(user_id, int(goal_id)):
             raise Exception("user_id: %s want to update goal(id: %s) raise no permission Exception")
         name = self.get_argument("name")
         image = self.get_argument("image")
         description = self.get_argument("description")
-        rst = goal_ctrl.update_goal(goal_id, name, image, description)
-        return self.write(rst)
+        rst = goal_ctrl.update_goal(int(goal_id), name, image, description)
+        return self.write(str(rst))

@@ -41,10 +41,11 @@ def update_goal(goal_id, name="", image="", description=""):
     update_cond_tmp = [key + " = %s" for key in update_key_list]
     update_prefix = ", ".join(update_cond_tmp)
     sql = "update goal set " + update_prefix + " where id = %s;"
-    return db.execute(sql, **(update_value_list.append(goal_id)))
+    update_value_list.append(goal_id)
+    return db.execute(sql, *update_value_list)
 
 def check_owner(user_id, goal_id):
     """验证目标Id和用户Id是否相匹配"""
-    sql = "select goal_id from goal where id = %s and user_id = %s;"
+    sql = "select id from goal where id = %s and user_id = %s;"
     return db.query(sql, goal_id, user_id)
 
