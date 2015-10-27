@@ -12,6 +12,9 @@ ul {
 	padding: 10px;
 	margin-top: 10px;
 }
+.pageinfo {
+	border: 0px;
+}
 .user_info {
 	vertical-align: middle;
 	width: 100px;
