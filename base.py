@@ -7,10 +7,9 @@
 import tornado.web
 from datetime import datetime
 from util import to_utf8
-import json
 
 class BaseHandler(tornado.web.RequestHandler):
-    """api的基类型"""
+    """页面的基类型"""
     def set_user_id(self, user_id):
         """设置cookie"""
         self.set_secure_cookie("session_id", str(user_id), expires_days=1)
@@ -19,7 +18,7 @@ class BaseHandler(tornado.web.RequestHandler):
         user_id = self.get_secure_cookie("session_id")
         return int(user_id) if user_id else 0
 
-    def render_json(self, json_obj):
+    def render_json(self, json_obj, status=200, msg="", append_info={}):
         """渲染json"""
         def to_json(model):
             """将datetime类型转化成str"""
@@ -30,6 +29,5 @@ class BaseHandler(tornado.web.RequestHandler):
                     model[key] = to_utf8(value)
             return model
         json_obj = to_json(json_obj)
-        self.set_header("Content-Type", "text/json")
-        return self.write(json.dumps(json_obj))
-
+        result = {"status": status, "msg": msg, "append_info": append_info, "result": json_obj}
+        return self.write(result)

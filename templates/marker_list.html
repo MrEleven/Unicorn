@@ -14,7 +14,7 @@
 		<div class="container">
 			<ul class="markerlist-big-wrap">
 				{% for marker in result.get("marker_list", []) %}
-				<li>
+				<li marker-id="{{ marker.get("id", "0") }}">
 					<div class="user_info">
 						<img src="{{ marker.get("avatar_url", "http://image.lanrenzhoumo.com/leo/img/20151011163317_07b20ebf75bf2e730f79621d5afd8afd.jpg") }}" alt="user_avatar" /> 
 						<div>
@@ -55,6 +55,7 @@
 				</li>
 				{% end %}
 			</ul>
+			<div class="load-more-wrap"><a class="load-more">查看更多</a></div>
 		</div>
 		<script type="text/javascript" src="/static/js/jquery-1.9.1.min.js"></script>
 		<script type="text/javascript" src="/static/js/mustache.js"></script>
@@ -85,7 +86,7 @@
 					return;
 				};
 			});
-			$(".ops .comment-href").on("click", function() {
+			$(document).on("click", ".ops .comment-href", function () {
 				var $comment_list_wrap = $(this).parents(".markerlist-rwrap").find(".comment-list-wrap");
 				if ($comment_list_wrap.css("display") == "none") {
 					$comment_list_wrap.css("display", "block");
@@ -98,7 +99,7 @@
 					$comment_list_wrap.css("display", "none");
 				}
 			});
-			$(".comment-input .comment-btn").on("click", function() {
+			$(document).on("click", ".comment-input .comment-btn", function() {
 				var $comment_btn = $(this);
 				var marker_id = $(this).attr("marker-id");
 				var $textarea_content = $(this).parent(".comment-input").find("textarea");
@@ -122,12 +123,25 @@
 			});
 			function load_comment_list(comment_list_container) {
 				var marker_id = comment_list_container.attr("marker-id");
-				var url = "/comment/list?marker_id=" + marker_id;
+				var url = "/a/comment/list?marker_id=" + marker_id;
 				$.get(url, function(data) {
-					var html = Mustache.render($("#comment-list-template").html(), data);
+					var html = Mustache.render($("#comment-list-template").html(), data["result"]);
 					comment_list_container.html(html);
 				});
 			};
+			function load_marker_list(last_id) {
+				$.get("/a/marker/list?last_id=" + last_id, function(data) {
+					if (data["result"].length == 0) {
+						$(".load-more-wrap").hide();
+					}
+					var html = Mustache.render($("#marker-list-template").html(), data["result"]);
+					$(".markerlist-big-wrap").append(html);
+				});
+			};
+			$(".load-more").on("click", function() {
+				var last_id = $(".markerlist-big-wrap li").last().attr("marker-id");
+				load_marker_list(last_id);
+			});
 		});
 		</script>
 		<script type="text/template" id="comment-list-template">
@@ -143,6 +157,48 @@
 					</p>
 					<div class="time-ops-wrap">
 						<span class="create_time">{{!create_time}}</span>
+					</div>
+				</div>
+			</li>
+			{{!/.}}
+		</script>
+		<script type="text/template" id="marker-list-template">
+			{{!#.}}
+			<li marker-id="{{!id}}">
+				<div class="user_info">
+					<img src="{{!avatar_url}}" alt="user_avatar" />
+					<div>
+						<span>{{!nickname}}</span>
+					</div>
+				</div>
+				<div class="markerlist-rwrap">
+					<div class="mark_content">
+						<h2 class="title">{{!title}}
+						</h2>
+						<p class="content">{{!marker}}</p>
+					</div>
+					<div class="ops">
+						<span><a class="comment-href">评论(<strong>{{!comment_count}}</strong>)</a></span><span class="create_time">{{!create_time}}</span>
+					</div>
+					<div class="comment-list-wrap">
+						{% if result.get("user_id", 0) %}
+						<div class="comment-input-wrap">
+							<div class="avatar-wrap">
+								<img class="avatar" src="{{ result.get("user_info", {}).get("avatar_url", "") }}" alt="avatar" />
+							</div>
+							<div class="comment-input">
+								{% raw xsrf_form_html() %}
+								<textarea></textarea>
+								<a class="comment-btn" marker-id={{!id}}>评论</a>
+							</div>
+						</div>
+						{% else %}
+						<div class="anonym-notice">
+							您还没有登录，<a href="/user/login"><strong>登录</strong></a>后才能评论。
+						</div>
+						{% end %}
+						<ul class="ul-comment-list" marker-id={{!id}}>
+						</ul>
 					</div>
 				</div>
 			</li>

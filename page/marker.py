@@ -5,18 +5,24 @@
 # Email : yumi@meishixing.com
 
 import tornado.web
-from api.apibase import APIHandler
+from page.pagebase import PageHandler
+import module.user_ctrl as user_ctrl
 import module.marker_ctrl as marker_ctrl
 
-class ListHandler(APIHandler):
+class ListHandler(PageHandler):
     """签到列表"""
     def get(self):
-        last_id = self.get_argument("last_id", 0)
         page_size = self.get_argument("page_size", 30) # 先不做分页
-        marker_list = marker_ctrl.get_marker_list(int(last_id), int(page_size))
-        return self.render_json(marker_list)
+        marker_list = marker_ctrl.get_marker_list(last_id=0, page_size=int(page_size))
+        user_id = self.get_current_user()
+        user_info = user_ctrl.get_user(user_id)
+        self.render("marker_list.html", result={
+            "marker_list": marker_list, 
+            "user_id": user_id, 
+            "user_info": user_info
+        })
 
-class AddHandler(APIHandler):
+class AddHandler(PageHandler):
     """增加新签到"""
     @tornado.web.authenticated
     def get(self):

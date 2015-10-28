@@ -4,16 +4,16 @@
 # Author: Master Yumi
 # Email : yumi@meishixing.com
 
-from api.base import BaseHandler
+from page.pagebase import PageHandler
 import tornado.web
 import module.goal_ctrl as goal_ctrl
 
-class GoalUIHandler(BaseHandler):
+class GoalUIHandler(PageHandler):
     """目标"""
     def get(self):
         return self.render("goal_ui.html", result={})
 
-class AddHandler(BaseHandler):
+class AddHandler(PageHandler):
     """增加目标"""
     @tornado.web.authenticated
     def post(self):
@@ -24,7 +24,7 @@ class AddHandler(BaseHandler):
         goal_id = goal_ctrl.add_goal(user_id, name, image, description)
         return self.write(str(goal_id))
 
-class ListHandler(BaseHandler):
+class ListHandler(PageHandler):
     """获取目标列表"""
     def get(self):
         user_id = self.get_argument("user_id", 0)
@@ -37,7 +37,7 @@ class ListHandler(BaseHandler):
             goal_list = goal_ctrl.get_goal_list(user_id)
         return self.render("goal_list.html", result={"goal_list": goal_list})
 
-class UpdateHandler(BaseHandler):
+class UpdateHandler(PageHandler):
     """更新目标"""
     @tornado.web.authenticated
     def post(self):
