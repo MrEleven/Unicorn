@@ -16,7 +16,8 @@ class NavUIModule(tornado.web.UIModule):
         greeting = ""
         if user_id:
             user_info = user_ctrl.get_user(user_id)
-            greeting = self.gen_greeting(to_utf8(user_info["nickname"]))
+            # greeting = self.gen_greeting(to_utf8(user_info["nickname"]))
+            greeting = to_utf8(user_info["nickname"])
         return self.render_string("ui_module/nav.html", result={"user_id": user_id, "greeting": greeting})
 
     def gen_greeting(self, nickname):

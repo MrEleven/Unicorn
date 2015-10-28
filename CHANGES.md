@@ -1,5 +1,11 @@
 # unicorn change log
 
+# 2015-10-27 0.2.4 zebraline
+
+* 增加mark list分页
+* 修改签到字体大小
+* 删除了问候语
+
 # 2015-10-26 0.2.3 MrEleven
 
 * 增加根路径的对应的页面

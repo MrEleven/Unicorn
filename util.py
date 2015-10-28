@@ -18,3 +18,10 @@ def to_utf8(text):
     if isinstance(text, datetime):
         return text.strftime("%Y-%m-%d %H:%M:%S")    
     return str(text)
+
+def gen_total_page(total_num, page_size):
+    if total_num % page_size == 0:
+        total_page = total_num/page_size
+    else:
+        total_page = total_num/page_size + 1
+    return total_page
