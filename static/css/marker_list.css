@@ -10,6 +10,7 @@ ul {
 	margin: 0 auto;
 	border: 1px solid black;
 	padding: 10px;
+	margin-bottom: 40px;
 	margin-top: 10px;
 }
 .user_info {
@@ -195,4 +196,14 @@ ul {
 	color: #ccc;
 	font-size: 12px;
 	padding: 10px;
+}
+.load-more-wrap {
+	border: 1px solid black;
+	height: 40px;
+	background: #cccccc;
+	line-height: 40px;
+	text-align: center;
+}
+.load-more-wrap .load-more {
+	display: block;
 }

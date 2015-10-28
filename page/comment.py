@@ -5,11 +5,11 @@
 # Email : yumi@meishixing.com
 
 import tornado.web
-from api.apibase import APIHandler
+from page.pagebase import PageHandler
 import module.marker_ctrl as marker_ctrl
 import module.comment_ctrl as comment_ctrl
 
-class ListHandler(APIHandler):
+class ListHandler(PageHandler):
     """评论列表"""
     def get(self):
         marker_id = self.get_argument("marker_id", 0)
@@ -19,7 +19,7 @@ class ListHandler(APIHandler):
         self.render_json(comment_list)
 
 
-class AddHandler(APIHandler):
+class AddHandler(PageHandler):
     """增加评论"""
     @tornado.web.authenticated
     def post(self):
@@ -30,4 +30,5 @@ class AddHandler(APIHandler):
         user_id = self.get_current_user()
         comment_ctrl.add_comment(user_id, marker_id, content)
         marker_ctrl.inc_comment_count(marker_id)
+        # return self.write("评论成功")
         

@@ -4,12 +4,12 @@
 # Author: July
 # Email : julycw@gmail.com
 
-from api.base import BaseHandler
+from page.pagebase import PageHandler
 import module.user_ctrl as user_ctrl
 import random
 import re
 
-class LoginHandler(BaseHandler):
+class LoginHandler(PageHandler):
     """登陆"""
     def get(self):
         if self.get_current_user():
@@ -29,7 +29,7 @@ class LoginHandler(BaseHandler):
             msg = "手机号或密码错误"
             return self.render("login.html", result={"phone": phone, "msg": msg})
 
-class RegistHandler(BaseHandler):
+class RegistHandler(PageHandler):
     """注册"""
     def get(self):
         """注册，先这么简单弄一下，以后要加上短信和邮箱验证，和上传头像"""
@@ -84,7 +84,7 @@ class RegistHandler(BaseHandler):
         return fix_avatar_list[random.randint(0, len(fix_avatar_list)-1)]
         
 
-class LogoutHandler(BaseHandler):
+class LogoutHandler(PageHandler):
     """登出"""
     def get(self):
         self.clear_cookie("session_id")

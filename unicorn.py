@@ -12,22 +12,34 @@ import tornado.httpclient
 import tornado.gen
 import os, config
 from importlib import import_module
-from api.base import BaseHandler
+from api.apibase import APIHandler
+from page.pagebase import PageHandler
 
 from tornado.options import define, options
 define("port", default=8888, help="run on the given port", type=int)
 
 def get_handlers():
-    """获取url映射关系"""
-    from api.marker import ListHandler
+    """获取url映射关系,包括页面和api"""
+    from page.marker import ListHandler
     handlers = [("/", ListHandler)]
-    api_list = ["marker", "user", "comment", "goal"]
+    # API接口
+    api_list = ["marker", "comment"]
     for bussiness_name in api_list:
         bussiness_module = import_module("api." + bussiness_name)
         for attr in dir(bussiness_module):
             if attr.endswith("Handler"):
                 handler_cls = getattr(bussiness_module, attr)
-                if issubclass(handler_cls, BaseHandler) and (handler_cls != BaseHandler):
+                if issubclass(handler_cls, APIHandler) and (handler_cls != APIHandler):
+                    url = "/a/" + bussiness_name + "/" +  attr.replace("Handler", "").lower()
+                    handlers.append((url, handler_cls))
+    # 网页接口
+    page_list = ["marker", "user", "comment", "goal"]
+    for bussiness_name in page_list:
+        bussiness_module = import_module("page." + bussiness_name)
+        for attr in dir(bussiness_module):
+            if attr.endswith("Handler"):
+                handler_cls = getattr(bussiness_module, attr)
+                if issubclass(handler_cls, PageHandler) and (handler_cls != PageHandler):
                     url = "/" + bussiness_name + "/" +  attr.replace("Handler", "").lower()
                     handlers.append((url, handler_cls))
     print handlers
