@@ -4,9 +4,9 @@
 # Author: Master Yumi
 # Email : yumi@meishixing.com
 
-from api.base import BaseHandler
+from page.pagebase import PageHandler
 
-class GoalUIHandler(BaseHandler):
+class GoalUIHandler(PageHandler):
     """目标"""
     def get(self):
         return self.render("goal_ui.html", result={})
