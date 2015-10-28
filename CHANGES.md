@@ -1,5 +1,9 @@
 # unicorn change log
 
+# 2015-10-26 0.2.4 MrEleven
+
+* 增加分页
+
 # 2015-10-26 0.2.3 MrEleven
 
 * 增加根路径的对应的页面
