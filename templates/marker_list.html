@@ -16,7 +16,7 @@
 				{% for marker in result.get("marker_list", []) %}
 				<li marker-id="{{ marker.get("id", "0") }}">
 					<div class="user_info">
-						<img src="{{ marker.get("avatar_url", "http://image.lanrenzhoumo.com/leo/img/20151011163317_07b20ebf75bf2e730f79621d5afd8afd.jpg") }}" alt="user_avatar" /> 
+						<img src="{{ marker.get("avatar_url", "http://image.lanrenzhoumo.com/leo/img/20151011163317_07b20ebf75bf2e730f79621d5afd8afd.jpg") }}@50w_50h_100Q.jpg" alt="user_avatar" /> 
 						<div>
 							<span>{{ marker.get("nickname", "")}}</span>
 						</div>
@@ -35,7 +35,7 @@
 							{% if result.get("user_id", 0) %}
 							<div class="comment-input-wrap">
 								<div class="avatar-wrap">
-									<img class="avatar" src="{{ result.get("user_info", {}).get("avatar_url", "") }}" alt="avatar" />
+									<img class="avatar" src="{{ result.get("user_info", {}).get("avatar_url", "") }}@50w_50h_100Q.jpg" alt="avatar" />
 								</div>
 								<div class="comment-input">
 									{% raw xsrf_form_html() %}
@@ -148,7 +148,7 @@
 			{{!#.}}
 			<li>
 				<div class="avatar-wrap">
-					<img class="avatar" src="{{!avatar_url}}" alt="avatar">
+					<img class="avatar" src="{{!avatar_url}}@50w_50h_100Q.jpg" alt="avatar">
 				</div>
 				<div class="comment-rwrap">
 					<p class="content">
@@ -166,7 +166,7 @@
 			{{!#.}}
 			<li marker-id="{{!id}}">
 				<div class="user_info">
-					<img src="{{!avatar_url}}" alt="user_avatar" />
+					<img src="{{!avatar_url}}@50w_50h_100Q.jpg" alt="user_avatar" />
 					<div>
 						<span>{{!nickname}}</span>
 					</div>
@@ -184,7 +184,7 @@
 						{% if result.get("user_id", 0) %}
 						<div class="comment-input-wrap">
 							<div class="avatar-wrap">
-								<img class="avatar" src="{{ result.get("user_info", {}).get("avatar_url", "") }}" alt="avatar" />
+								<img class="avatar" src="{{ result.get("user_info", {}).get("avatar_url", "") }}@50w_50h_100Q.jpg" alt="avatar" />
 							</div>
 							<div class="comment-input">
 								{% raw xsrf_form_html() %}

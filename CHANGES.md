@@ -1,6 +1,10 @@
 # unicorn change log
 
-# 2015-10-26 0.2.4 MrEleven
+# 2015-10-29 0.2.5 MrEleven
+
+* 使用阿里云Oss的图片服务节省带宽
+
+# 2015-10-28 0.2.4 MrEleven
 
 * 增加分页
 
