@@ -1,5 +1,9 @@
 # unicorn change log
 
+# 2015-11-01 0.2.6 MrEleven
+
+* 支持登录和注册随机背景
+
 # 2015-10-29 0.2.5 MrEleven
 
 * 使用阿里云Oss的图片服务节省带宽
