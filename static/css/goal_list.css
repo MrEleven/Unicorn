@@ -53,12 +53,15 @@
     position: relative;
 }
 .goal-wrap .ops {
-    display: none;
+    visibility: hidden;
     position: absolute;
     right: 10px;
     top: 10px;
     color: #000;
     font-weight: bolder;
+}
+.goal-wrap:hover .ops {
+    visibility: visible;
 }
 .goal-info {
     overflow: hidden;
@@ -112,7 +115,7 @@
     margin-right: 5px;
 }
 .todo-wrap {
-    width: 150%;
+    position: relative;
 }
 .todo-wrap:hover {
     background: rgb(249, 249, 249);
@@ -121,11 +124,16 @@
 .todo-wrap .todo-name {
 
 }
-.todo-ops {
-    float: right;
+.todo-wrap .todo-ops {
+    position: absolute;
     display: inline-block;
     font-size: 12px;
     margin-right: 5px;
+    right: 0px;
+    visibility: hidden;
+}
+.todo-wrap:hover .todo-ops {
+    visibility: visible;
 }
 .add-todo-wrap .name-input {
     display: none;

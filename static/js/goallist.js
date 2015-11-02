@@ -103,6 +103,7 @@ var Todo = React.createClass({
             <li className="todo-wrap">
                 <div className="finish"></div>
                 <span className="todo-name">{this.props.data.name}</span>
+                <div className="todo-ops"><a className="edit">编辑</a> | <a className="delete">删除</a></div>
             </li>
         );
     }
@@ -144,6 +145,9 @@ var GoalWrap = React.createClass({
     render: function() {
         return (
             <li id={"goal-" + this.props.data.id} className="goal-wrap" goal-id={this.props.data.id}>
+                <div className="ops">
+                    <a className="add-todo">增加代办事项</a> ｜ <a className="edit">编辑</a> | <a className="delete">删除</a>
+                </div>
                 <GoalInfo data={this.props.data} />
                 <TodoList data={this.props.data.todolist} />
             </li>
