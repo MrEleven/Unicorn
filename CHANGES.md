@@ -1,5 +1,9 @@
 # unicorn change log
 
+# 2015-11-05 0.2.7 MrEleven
+
+* 更换背景图片
+
 # 2015-11-01 0.2.6 MrEleven
 
 * 支持登录和注册随机背景
