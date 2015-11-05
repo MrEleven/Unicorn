@@ -14,8 +14,11 @@ def gen_background():
     background_list = [
         "http://image.lanrenzhoumo.com/leo/img/20151101104358_c3fe2c228b6710f7680c7b3a430a85b2.jpg",
         "http://image.lanrenzhoumo.com/leo/img/20151101105230_36ef607d73196da90b86bcc7dca58ee6.jpg",
-        "http://image.lanrenzhoumo.com/leo/img/20151101105315_91363184563a335b7b2c1fc176e81e4a.jpg",
-        "http://image.lanrenzhoumo.com/leo/img/20151101105331_3e87ea432f1cc057416fb4341b5d720e.jpg"
+        "http://image.lanrenzhoumo.com/leo/img/20151101105331_3e87ea432f1cc057416fb4341b5d720e.jpg",
+        "http://image.lanrenzhoumo.com/leo/img/20151105100656_2cb55aa631eab011024215e3b11637db.jpg",
+        "http://image.lanrenzhoumo.com/leo/img/20151105101014_030d7e8e966169ab4c7f67c291c333f4.jpg",
+        "http://image.lanrenzhoumo.com/leo/img/20151105101104_5d88fa421e119f04cd5ce64e3cf7c3e4.jpg",
+        "http://image.lanrenzhoumo.com/leo/img/20151105101150_8eed7b1e86c45cd880591743bd2195dd.jpg"
     ]
     index = random.randint(0, len(background_list) - 1)
     return background_list[index]
