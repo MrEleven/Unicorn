@@ -103,7 +103,7 @@ var Todo = React.createClass({
             <li className="todo-wrap">
                 <div className="finish"></div>
                 <span className="todo-name">{this.props.data.name}</span>
-                <div className="todo-ops"><a className="edit">编辑</a> | <a className="delete">删除</a></div>
+                <div className="todo-ops"><a className="edit" onClick={this.props.onTodoEditClick}>编辑</a> | <a className="delete">删除</a></div>
             </li>
         );
     }
@@ -112,14 +112,15 @@ var Todo = React.createClass({
 
 var TodoList = React.createClass({
     render: function() {
+        var onTodoEditClick = this.props.onTodoEditClick;
         var todo_list = this.props.data.map(function(todo) {
-            return <Todo key={todo.id} data={todo} />
+            return <Todo key={todo.id} data={todo} onTodoEditClick={onTodoEditClick} />
         });
         return (
             <ul className="todo-list-ul">
                 {todo_list}
             </ul>
-        )
+        );
     }
 });
 
@@ -136,7 +137,7 @@ var GoalInfo = React.createClass({
                     <p className="goal-desc">{this.props.data.description}</p>
                 </div>
             </div>
-        )
+        );
     }
 });
 
@@ -146,10 +147,10 @@ var GoalWrap = React.createClass({
         return (
             <li id={"goal-" + this.props.data.id} className="goal-wrap" goal-id={this.props.data.id}>
                 <div className="ops">
-                    <a className="add-todo">增加代办事项</a> ｜ <a className="edit">编辑</a> | <a className="delete">删除</a>
+                    <a className="add-todo">增加代办事项</a> ｜ <a className="edit" id="123" onClick={this.props.onGoalEditClick}>编辑</a> | <a className="delete">删除</a>
                 </div>
                 <GoalInfo data={this.props.data} />
-                <TodoList data={this.props.data.todolist} />
+                <TodoList data={this.props.data.todolist} onTodoEditClick={this.props.onTodoEditClick} />
             </li>
         );
     }
@@ -158,9 +159,11 @@ var GoalWrap = React.createClass({
 
 var GoalList = React.createClass({
     render: function() {
+        var onGoalEditClick = this.props.onGoalEditClick;
+        var onTodoEditClick = this.props.onTodoEditClick;
         var goal_list = this.props.data.map(function (goal) {
             return (
-                <GoalWrap key={goal.id} data={goal} />
+                <GoalWrap key={goal.id} data={goal} onGoalEditClick={onGoalEditClick} onTodoEditClick={onTodoEditClick} />
             )
         });
         return (
@@ -177,7 +180,7 @@ var GoalListNav = React.createClass({
     render: function() {
         var goal_list = this.props.data.map(function (goal) {
             return (
-                <li key={goal.id}><a goal-id={goal.id}>{goal.name}</a></li>
+                <li key={goal.id}><a data-goal-id={goal.id}>{goal.name}</a></li>
             );
         });
         return (<nav id="goal-nav">
@@ -203,7 +206,7 @@ var GoalListWrap = React.createClass({
     render : function() {
         return (<div>
             <GoalListNav data={this.props.data} onAddGoalClick={this.showAddGoalModal} />
-            <GoalList data={this.props.data} />
+            <GoalList data={this.props.data} onGoalEditClick={this.showGoalEditModal} onTodoEditClick={this.showTodoEditModal} />
             <GoalAddModal ref="goalAddModal" />
             <GoalEditModal ref="goalEditModal" />
             <TodoEditModal ref="todoEditModal" />
@@ -223,3 +226,18 @@ ReactDOM.render(
     <GoalListWrap data={goal_list} />,
     document.getElementById("main")
 );
+
+
+$(function () {
+    function click_scroll(obj_id) {
+        var scroll_offset = $(obj_id).offset();
+        $("body").animate({
+            scrollTop: scroll_offset.top-15
+        }, 250);
+    }
+    $("#goal-nav ul a").click(function () {
+        var goal_id = $(this).attr("data-goal-id");
+        var target_id = "#goal-" + goal_id;
+        click_scroll(target_id);
+    });
+});
