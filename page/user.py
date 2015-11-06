@@ -9,7 +9,7 @@ import module.user_ctrl as user_ctrl
 import random
 import re
 
-def gen_background():
+def gen_background(ismobile=False):
     """随机生成背景图片"""
     background_list = [
         "http://image.lanrenzhoumo.com/leo/img/20151101104358_c3fe2c228b6710f7680c7b3a430a85b2.jpg",
@@ -20,6 +20,14 @@ def gen_background():
         "http://image.lanrenzhoumo.com/leo/img/20151105101104_5d88fa421e119f04cd5ce64e3cf7c3e4.jpg",
         "http://image.lanrenzhoumo.com/leo/img/20151105101150_8eed7b1e86c45cd880591743bd2195dd.jpg"
     ]
+    mobile_bg_list = [
+        "http://image.lanrenzhoumo.com/leo/img/20151106124713_f217091424054d7b761aa13c5da1bf0b.jpeg",
+        "http://image.lanrenzhoumo.com/leo/img/20151106124842_413064d7fc717052d9a0f27e4b47ab2c.jpg",
+        "http://image.lanrenzhoumo.com/leo/img/20151106125030_38e1553fc77a75f7a5fba3ca57588690.jpg",
+        "http://image.lanrenzhoumo.com/leo/img/20151106125404_ac5d95d3e4c2874b132190e710c70d6a.jpg"
+    ]
+    if ismobile:
+        background_list = mobile_bg_list
     index = random.randint(0, len(background_list) - 1)
     return background_list[index]
     
@@ -29,9 +37,17 @@ class LoginHandler(PageHandler):
     def get(self):
         if self.get_current_user():
             return self.redirect("/marker/list")
-        background = gen_background()
+        background = gen_background(self.check_mobile())
         self.render("login.html", result={"background": background})
 
+    def check_mobile(self):
+        user_agent = self.request.headers.get("User-Agent", "").lower()
+        if user_agent.find("android") > 0:
+            return True
+        if user_agent.find("iphone") > 0:
+            return True
+        return False
+        
     def post(self):
         phone = self.get_argument("phone", "")
         password = self.get_argument("password", "")
