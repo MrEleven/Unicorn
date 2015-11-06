@@ -48,15 +48,14 @@ def get_handlers():
 def get_ui_modules():
     """获取UI模块"""
     ui_modules = {}
-    ui_list = ["nav", "add_marker"]
+    ui_list = ["nav", "add_marker", "fullscreen_bg"]
     for ui_module_name in ui_list:
         ui_module = import_module("ui_module." + ui_module_name)
         for attr in dir(ui_module):
             if attr.endswith("UIModule"):
                 ui_cls = getattr(ui_module, attr)
                 if issubclass(ui_cls, tornado.web.UIModule):
-                    ui_name = attr.replace("UIModule", "").lower()
-                    ui_modules[ui_name] = ui_cls
+                    ui_modules[ui_module_name] = ui_cls
     return ui_modules
 
 
