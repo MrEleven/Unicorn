@@ -8,4 +8,6 @@ from base import BaseHandler
 
 class PageHandler(BaseHandler):
     """网页的基类型"""
-    pass
+    def render(self, template_name, result={}):
+        super(BaseHandler, self).render(template_name, result=result)
+        

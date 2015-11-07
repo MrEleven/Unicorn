@@ -5,9 +5,7 @@
 # Email : yumi@meishixing.com
 
 import tornado.web
-from datetime import datetime
-import module.user_ctrl as user_ctrl
-from util import to_utf8
+from util import check_mobile
 import random
 
 def gen_background(ismobile=False):
@@ -35,5 +33,5 @@ def gen_background(ismobile=False):
 class FullScreenBGUIModule(tornado.web.UIModule):
     """背景图片"""
     def render(self):
-        background = gen_background()
+        background = gen_background(check_mobile(self))
         return self.render_string("ui_module/fullscreen_bg.html", result={"background": background})
