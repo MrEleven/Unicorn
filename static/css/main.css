@@ -79,3 +79,23 @@ a:visited {
 	background: rgba(0, 0, 0, 0.7);
 	z-index: 1024;
 }
+.fullscreen-bg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	-webkit-background-size: cover;
+	background-size: cover;
+	background-position: 50% 50%;
+}
+.fullscreen-bg:before {
+	content: '';
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background: rgba(0, 0, 0, 0.3);
+}

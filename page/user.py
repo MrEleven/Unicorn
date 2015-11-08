@@ -8,17 +8,6 @@ from page.pagebase import PageHandler
 import module.user_ctrl as user_ctrl
 import random
 import re
-
-def gen_background():
-    """随机生成背景图片"""
-    background_list = [
-        "http://image.lanrenzhoumo.com/leo/img/20151101104358_c3fe2c228b6710f7680c7b3a430a85b2.jpg",
-        "http://image.lanrenzhoumo.com/leo/img/20151101105230_36ef607d73196da90b86bcc7dca58ee6.jpg",
-        "http://image.lanrenzhoumo.com/leo/img/20151101105315_91363184563a335b7b2c1fc176e81e4a.jpg",
-        "http://image.lanrenzhoumo.com/leo/img/20151101105331_3e87ea432f1cc057416fb4341b5d720e.jpg"
-    ]
-    index = random.randint(0, len(background_list) - 1)
-    return background_list[index]
     
 
 class LoginHandler(PageHandler):
@@ -26,9 +15,8 @@ class LoginHandler(PageHandler):
     def get(self):
         if self.get_current_user():
             return self.redirect("/marker/list")
-        background = gen_background()
-        self.render("login.html", result={"background": background})
-
+        self.render("login.html")
+        
     def post(self):
         phone = self.get_argument("phone", "")
         password = self.get_argument("password", "")
@@ -40,30 +28,27 @@ class LoginHandler(PageHandler):
             return self.redirect("/marker/list")
         else:
             msg = "手机号或密码错误"
-            background = gen_background()
-            return self.render("login.html", result={"phone": phone, "msg": msg, "background": background})
+            return self.render("login.html", result={"phone": phone, "msg": msg})
 
 class RegistHandler(PageHandler):
     """注册"""
     def get(self):
         """注册，先这么简单弄一下，以后要加上短信和邮箱验证，和上传头像"""
-        background = gen_background()
-        self.render("regist.html", result={"background": background})
+        self.render("regist.html")
 
     def post(self):
-        background = gen_background()
         phone = self.get_argument("phone", "")
         email = self.get_argument("email", "")
         nickname = self.get_argument("nickname", "")
         password = self.get_argument("password", "")
         validate_result, msg = self._validate_params(phone, email, nickname, password)
         if not validate_result:
-            result={"phone": phone, "email": email, "nickname": nickname, "msg": msg, "background": background}
+            result={"phone": phone, "email": email, "nickname": nickname, "msg": msg}
             return self.render("regist.html", result=result)
         avatar_url = self.gen_avatar_url()
         user_id, msg = user_ctrl.add_user(phone, email, nickname, avatar_url, password)
         if not user_id:
-            result={"phone": phone, "email": email, "nickname": nickname, "msg": msg, "background": background}
+            result={"phone": phone, "email": email, "nickname": nickname, "msg": msg}
             return self.render("regist.html", result=result)
         return self.redirect("/user/login")
 

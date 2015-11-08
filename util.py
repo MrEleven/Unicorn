@@ -18,3 +18,11 @@ def to_utf8(text):
     if isinstance(text, datetime):
         return text.strftime("%Y-%m-%d %H:%M:%S")    
     return str(text)
+
+def check_mobile(self):
+    user_agent = self.request.headers.get("User-Agent", "").lower()
+    if user_agent.find("android") > 0:
+        return True
+    if user_agent.find("iphone") > 0:
+        return True
+    return False
