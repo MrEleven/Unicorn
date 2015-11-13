@@ -16,6 +16,7 @@ class ListHandler(APIHandler):
         marker_list = marker_ctrl.get_marker_list(int(last_id), int(page_size))
         return self.render_json(marker_list)
 
+
 class AddHandler(APIHandler):
     """增加新签到"""
     @tornado.web.authenticated

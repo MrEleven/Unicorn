@@ -72,6 +72,25 @@ var GoalAddModal = React.createClass({
     cancelClick: function(event) {
         this.setState({visiablity: false});
     },
+    addClick: function(event) {
+        var name = this.refs.name.value.trim();
+        var desc = this.refs.desc.value.trim();
+        var _xsrf = $("#_xsrf input[name=_xsrf]").val();
+        var goal_info = {"name": name, "description": desc, "_xsrf": _xsrf};
+        $.ajax({
+            url: '/a/goal/add',
+            dataType: 'json',
+            type: 'POST',
+            data: goal_info,
+            success: function(data) {
+                this.setState({visiablity: false})
+                this.props.addCallback();
+            }.bind(this),
+            error: function(xhr, status, err) {
+                console.error(this.props.url, status, err.toString());
+            }.bind(this)
+        });
+    },
     render: function() {
         return (
             <div id="goal-add-modal" className={this.state.visiablity? "modal": "empty"}>
@@ -83,13 +102,13 @@ var GoalAddModal = React.createClass({
                     </div>
                     <span>目标名称</span>
                     <div>
-                        <input className="name-input" type="text" name="name" />
+                        <input className="name-input" type="text" name="name" ref="name" />
                     </div>
                     <span>描述</span>
-                    <div><textarea name="desc" className="desc-input"></textarea></div>
+                    <div><textarea name="desc" className="desc-input" ref="desc"></textarea></div>
                     <div className="ops">
-                        <button id="goal-add-save-btn">添加</button>
-                        <button id="goal-add-cancel-btn" onClick={this.cancelClick}>取消</button>
+                        <button id="goal-add-save-btn" onClick={ this.addClick }>添加</button>
+                        <button id="goal-add-cancel-btn" onClick={ this.cancelClick }>取消</button>
                     </div>
                 </section>
             </div>
@@ -113,6 +132,10 @@ var Todo = React.createClass({
 var TodoList = React.createClass({
     render: function() {
         var onTodoEditClick = this.props.onTodoEditClick;
+        //if (!this.props.data) {
+        //    this.props.data = [];
+        //}
+
         var todo_list = this.props.data.map(function(todo) {
             return <Todo key={todo.id} data={todo} onTodoEditClick={onTodoEditClick} />
         });
@@ -150,7 +173,7 @@ var GoalWrap = React.createClass({
                     <a className="add-todo">增加代办事项</a> ｜ <a className="edit" id="123" onClick={this.props.onGoalEditClick}>编辑</a> | <a className="delete">删除</a>
                 </div>
                 <GoalInfo data={this.props.data} />
-                <TodoList data={this.props.data.todolist} onTodoEditClick={this.props.onTodoEditClick} />
+                <TodoList data={this.props.data.todolist || []} onTodoEditClick={this.props.onTodoEditClick} />
             </li>
         );
     }
@@ -194,6 +217,9 @@ var GoalListNav = React.createClass({
 
 
 var GoalListWrap = React.createClass({
+    getInitialState: function() {
+        return {data: []};
+    },
     showAddGoalModal: function() {
         this.refs.goalAddModal.setState({visiablity: true});
     },
@@ -203,11 +229,28 @@ var GoalListWrap = React.createClass({
     showTodoEditModal: function() {
         this.refs.todoEditModal.setState({visiablity: true});
     },
+    loadGoalListFromServer: function () {
+        $.ajax({
+            url: '/a/goal/list',
+            dataType: 'json',
+            cache: false,
+            success: function(data) {
+                console.log("from server get data " + JSON.stringify(data));
+                this.setState({data: data["result"]});
+            }.bind(this),
+            error: function(xhr, status, err) {
+                console.error(this.props.url, status, err.toString());
+            }.bind(this)
+        });
+    },
+    componentDidMount: function() {
+        this.loadGoalListFromServer();
+    },
     render : function() {
         return (<div>
-            <GoalListNav data={this.props.data} onAddGoalClick={this.showAddGoalModal} />
-            <GoalList data={this.props.data} onGoalEditClick={this.showGoalEditModal} onTodoEditClick={this.showTodoEditModal} />
-            <GoalAddModal ref="goalAddModal" />
+            <GoalListNav data={this.state.data} onAddGoalClick={this.showAddGoalModal} />
+            <GoalList data={this.state.data} onGoalEditClick={this.showGoalEditModal} onTodoEditClick={this.showTodoEditModal} />
+            <GoalAddModal ref="goalAddModal" addCallback={ this.loadGoalListFromServer } />
             <GoalEditModal ref="goalEditModal" />
             <TodoEditModal ref="todoEditModal" />
         </div>);
@@ -215,13 +258,14 @@ var GoalListWrap = React.createClass({
 });
 
 
-var goal_list = [
-    {"id": 1, "name": "资深前端工程师", "todolist": [{"id": 1, "name": "看《javascript权威指南》"}, {"id": 2, "name": "看《超越CSS》"}, {"id": 3, "name": "学习React.Js"}, {"id": 4, "name": "看w3cSchool关于HTML5的手册"}], "image": "http://image.lanrenzhoumo.com/leo/img/20151011162452_2f06eaa77fef3774de0e4f736bcc310b.jpg", "description": "一定要成为牛逼的web前端工程师，跟饺子一样帅。超越可可和乌龙。一定要成为牛逼的web前端工程师，跟饺子一样帅。超越可可和乌龙。一定要成为牛逼的web前端工程师，跟饺子一样帅。超越可可和乌龙。"},
-    {"id": 2, "name": "资深UDE", "todolist": [{"id": 1, "name": "看《javascript权威指南》"}, {"id": 2, "name": "看《超越CSS》"}, {"id": 3, "name": "学习React.Js"}, {"id": 4, "name": "看w3cSchool关于HTML5的手册"}], "image": "http://image.lanrenzhoumo.com/leo/img/20151011162452_2f06eaa77fef3774de0e4f736bcc310b.jpg", "description": "一定要成为牛逼的web前端工程师，跟饺子一样帅。超越可可和乌龙。一定要成为牛逼的web前端工程师，跟饺子一样帅。超越可可和乌龙。一定要成为牛逼的web前端工程师，跟饺子一样帅。超越可可和乌龙。"},
-    {"id": 3, "name": "资深Python工程师", "todolist": [{"id": 1, "name": "看《javascript权威指南》"}, {"id": 2, "name": "看《超越CSS》"}, {"id": 3, "name": "学习React.Js"}, {"id": 4, "name": "看w3cSchool关于HTML5的手册"}], "image": "http://image.lanrenzhoumo.com/leo/img/20151011162452_2f06eaa77fef3774de0e4f736bcc310b.jpg", "description": "一定要成为牛逼的web前端工程师，跟饺子一样帅。超越可可和乌龙。一定要成为牛逼的web前端工程师，跟饺子一样帅。超越可可和乌龙。一定要成为牛逼的web前端工程师，跟饺子一样帅。超越可可和乌龙。"},
-    {"id": 4, "name": "资深产品经理", "todolist": [{"id": 1, "name": "看《javascript权威指南》"}, {"id": 2, "name": "看《超越CSS》"}, {"id": 3, "name": "学习React.Js"}, {"id": 4, "name": "看w3cSchool关于HTML5的手册"}], "image": "http://image.lanrenzhoumo.com/leo/img/20151011162452_2f06eaa77fef3774de0e4f736bcc310b.jpg", "description": "一定要成为牛逼的web前端工程师，跟饺子一样帅。超越可可和乌龙。一定要成为牛逼的web前端工程师，跟饺子一样帅。超越可可和乌龙。一定要成为牛逼的web前端工程师，跟饺子一样帅。超越可可和乌龙。"},
-    {"id": 5, "name": "资深运帷工程师", "todolist": [{"id": 1, "name": "看《javascript权威指南》"}, {"id": 2, "name": "看《超越CSS》"}, {"id": 3, "name": "学习React.Js"}, {"id": 4, "name": "看w3cSchool关于HTML5的手册"}], "image": "http://image.lanrenzhoumo.com/leo/img/20151011162452_2f06eaa77fef3774de0e4f736bcc310b.jpg", "description": "一定要成为牛逼的web前端工程师，跟饺子一样帅。超越可可和乌龙。一定要成为牛逼的web前端工程师，跟饺子一样帅。超越可可和乌龙。一定要成为牛逼的web前端工程师，跟饺子一样帅。超越可可和乌龙。"}
-];
+//var goal_list = [
+//    {"id": 1, "name": "资深前端工程师", "todolist": [{"id": 1, "name": "看《javascript权威指南》"}, {"id": 2, "name": "看《超越CSS》"}, {"id": 3, "name": "学习React.Js"}, {"id": 4, "name": "看w3cSchool关于HTML5的手册"}], "image": "http://image.lanrenzhoumo.com/leo/img/20151011162452_2f06eaa77fef3774de0e4f736bcc310b.jpg", "description": "一定要成为牛逼的web前端工程师，跟饺子一样帅。超越可可和乌龙。一定要成为牛逼的web前端工程师，跟饺子一样帅。超越可可和乌龙。一定要成为牛逼的web前端工程师，跟饺子一样帅。超越可可和乌龙。"},
+//    {"id": 2, "name": "资深UDE", "todolist": [{"id": 1, "name": "看《javascript权威指南》"}, {"id": 2, "name": "看《超越CSS》"}, {"id": 3, "name": "学习React.Js"}, {"id": 4, "name": "看w3cSchool关于HTML5的手册"}], "image": "http://image.lanrenzhoumo.com/leo/img/20151011162452_2f06eaa77fef3774de0e4f736bcc310b.jpg", "description": "一定要成为牛逼的web前端工程师，跟饺子一样帅。超越可可和乌龙。一定要成为牛逼的web前端工程师，跟饺子一样帅。超越可可和乌龙。一定要成为牛逼的web前端工程师，跟饺子一样帅。超越可可和乌龙。"},
+//    {"id": 3, "name": "资深Python工程师", "todolist": [{"id": 1, "name": "看《javascript权威指南》"}, {"id": 2, "name": "看《超越CSS》"}, {"id": 3, "name": "学习React.Js"}, {"id": 4, "name": "看w3cSchool关于HTML5的手册"}], "image": "http://image.lanrenzhoumo.com/leo/img/20151011162452_2f06eaa77fef3774de0e4f736bcc310b.jpg", "description": "一定要成为牛逼的web前端工程师，跟饺子一样帅。超越可可和乌龙。一定要成为牛逼的web前端工程师，跟饺子一样帅。超越可可和乌龙。一定要成为牛逼的web前端工程师，跟饺子一样帅。超越可可和乌龙。"},
+//    {"id": 4, "name": "资深产品经理", "todolist": [{"id": 1, "name": "看《javascript权威指南》"}, {"id": 2, "name": "看《超越CSS》"}, {"id": 3, "name": "学习React.Js"}, {"id": 4, "name": "看w3cSchool关于HTML5的手册"}], "image": "http://image.lanrenzhoumo.com/leo/img/20151011162452_2f06eaa77fef3774de0e4f736bcc310b.jpg", "description": "一定要成为牛逼的web前端工程师，跟饺子一样帅。超越可可和乌龙。一定要成为牛逼的web前端工程师，跟饺子一样帅。超越可可和乌龙。一定要成为牛逼的web前端工程师，跟饺子一样帅。超越可可和乌龙。"},
+//    {"id": 5, "name": "资深运帷工程师", "todolist": [{"id": 1, "name": "看《javascript权威指南》"}, {"id": 2, "name": "看《超越CSS》"}, {"id": 3, "name": "学习React.Js"}, {"id": 4, "name": "看w3cSchool关于HTML5的手册"}], "image": "http://image.lanrenzhoumo.com/leo/img/20151011162452_2f06eaa77fef3774de0e4f736bcc310b.jpg", "description": "一定要成为牛逼的web前端工程师，跟饺子一样帅。超越可可和乌龙。一定要成为牛逼的web前端工程师，跟饺子一样帅。超越可可和乌龙。一定要成为牛逼的web前端工程师，跟饺子一样帅。超越可可和乌龙。"}
+//];
+var goal_list = [];
 ReactDOM.render(
     <GoalListWrap data={goal_list} />,
     document.getElementById("main")
@@ -234,8 +278,8 @@ $(function () {
         $("body").animate({
             scrollTop: scroll_offset.top-15
         }, 250);
-    }
-    $("#goal-nav ul a").click(function () {
+    };
+    $(document).on("click", "#goal-nav ul a", function () {
         var goal_id = $(this).attr("data-goal-id");
         var target_id = "#goal-" + goal_id;
         click_scroll(target_id);
