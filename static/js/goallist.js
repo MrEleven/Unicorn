@@ -116,6 +116,40 @@ var GoalAddModal = React.createClass({
     }
 });
 
+var AddTodoWrap = React.createClass({
+    getInitialState: function() {
+        return {visiablity: false};
+    },
+    componentDidUpdate: function () {
+        if (this.state.visiablity) {
+            this.nameInput.focus();
+        }
+    },
+    hiddenWrap: function() {
+        var name = this.nameInput.value;
+        this.setState({visiablity: false});
+    },
+    enter: function(event) {
+        if(event.keyCode==13) {
+            var _xsrf = $("#_xsrf input[name=_xsrf]").val();
+            var name = this.nameInput.value;
+            if (name) {
+                var todo_info = {"_xsrf": _xsrf, "name": name};
+                this.props.onEnter(todo_info);
+                this.nameInput.value = "";
+                this.setState({visiablity: false});
+            }
+        };
+    },
+    render: function() {
+        return (
+            <div className={this.state.visiablity ? "add-todo-wrap": "empty"}>
+                <input type="text" ref={(ref) => this.nameInput = ref} onBlur={ this.hiddenWrap } onKeyDown={ this.enter } className="name-input" placeholder="按Enter键盘完成添加" />
+            </div>
+        )
+    }
+});
+
 var Todo = React.createClass({
     render: function() {
         return (
@@ -166,14 +200,51 @@ var GoalInfo = React.createClass({
 
 
 var GoalWrap = React.createClass({
+    getInitialState: function() {
+        return {data: []};
+    },
+    addTodoEnter: function(todo_info) {
+        todo_info["goal_id"] = this.props.data.id;
+        $.ajax({
+            url: '/a/todo/add',
+            dataType: 'json',
+            type: 'POST',
+            data: todo_info,
+            success: function(data) {
+                console.log("comming");
+                console.log("cool data is" + JSON.stringify(data));
+                this.loadTodoList();
+            }.bind(this)
+        });
+    },
+    loadTodoList: function () {
+        $.ajax({
+            url: '/a/todo/list?goal_id=' + this.props.data.id,
+            dataType: 'json',
+            success: function(data) {
+                console.log("from server get data " + JSON.stringify(data));
+                this.setState({data: data["result"]});
+            }.bind(this),
+            error: function(xhr, status, err) {
+                console.error(this.props.url, status, err.toString());
+            }.bind(this)
+        });
+    },
+    showAddTodoWrap: function() {
+        this.refs.AddTodoWrap.setState({visiablity: true});
+    },
+    componentDidMount: function () {
+        this.loadTodoList();
+    },
     render: function() {
         return (
             <li id={"goal-" + this.props.data.id} className="goal-wrap" goal-id={this.props.data.id}>
                 <div className="ops">
-                    <a className="add-todo">增加代办事项</a> ｜ <a className="edit" id="123" onClick={this.props.onGoalEditClick}>编辑</a> | <a className="delete">删除</a>
+                    <a className="add-todo" onClick={ this.showAddTodoWrap }>增加代办事项</a> ｜ <a className="edit" id="123" onClick={this.props.onGoalEditClick}>编辑</a> | <a className="delete">删除</a>
                 </div>
                 <GoalInfo data={this.props.data} />
-                <TodoList data={this.props.data.todolist || []} onTodoEditClick={this.props.onTodoEditClick} />
+                <TodoList data={this.state.data || []} onTodoEditClick={this.props.onTodoEditClick} />
+                <AddTodoWrap ref="AddTodoWrap" goal_id={this.props.data.id} onEnter={this.addTodoEnter} />
             </li>
         );
     }

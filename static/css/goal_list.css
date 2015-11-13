@@ -136,7 +136,6 @@
     visibility: visible;
 }
 .add-todo-wrap .name-input {
-    display: none;
     width: 830px;
     height: 40px;
     line-height: 45px;
