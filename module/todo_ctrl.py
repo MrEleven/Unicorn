@@ -30,7 +30,7 @@ def update_todo(todo_id, goal_id=0, name=None, note=None):
     update_key_list = []
     update_value_list = []
     if goal_id:
-        update_key_list.append("id")
+        update_key_list.append("goal_id")
         update_value_list.append(goal_id)
     if name:
         update_key_list.append("name")
