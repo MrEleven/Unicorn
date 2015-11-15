@@ -39,9 +39,9 @@ class UpdateHandler(APIHandler):
         user_id = self.get_current_user()
         if not todo_ctrl.check_owner(user_id, int(todo_id)):
             raise Exception("user_id: %s want to update todo(id: %s) raise no permission Exception")
-        goal_id = self.get_argument("goal_id")
-        name = self.get_argument("name")
-        note = self.get_argument("note")
+        goal_id = self.get_argument("goal_id", 0)
+        name = self.get_argument("name", "")
+        note = self.get_argument("note", "")
         result = todo_ctrl.update_todo(todo_id, goal_id, name, note)
         return self.render_json(result)
 
