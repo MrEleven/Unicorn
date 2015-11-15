@@ -1,5 +1,9 @@
 # unicorn change log
 
+# 2015-11-15 1.0.2 MrEleven
+
+* 修复一个没发添加目标的bug
+
 # 2015-11-15 1.0.1 MrEleven
 
 * 阻止匿名用户访问目标页
