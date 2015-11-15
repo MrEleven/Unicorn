@@ -105,7 +105,6 @@
     overflow: hidden;
 }
 .todo-list-ul .todo-wrap .finish {
-    border: 1px solid black;
     height: 20px;
     width: 20px;
     display: inline-block;
@@ -298,4 +297,16 @@
 }
 #todo-edit-cancel-btn:hover {
     background: #dddddd;
+}
+.album-wrap .album:hover {
+    border: 2px solid black;
+    box-sizing: border-box;
+}
+.finished-icon {
+    background-image: url("http://www.easyicon.net/api/resizeApi.php?id=1147455&size=32");
+    background-size: cover;
+}
+.unfinish-icon {
+    background-image: url("http://image.lanrenzhoumo.com/leo/img/20151115163825_eae0cd301c604734407ff5f7fb6d5bce.png");
+    background-size: cover;
 }

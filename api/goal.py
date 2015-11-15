@@ -50,3 +50,17 @@ class UpdateHandler(APIHandler):
         description = self.get_argument("description")
         rst = goal_ctrl.update_goal(int(goal_id), name, image, description)
         return self.render_json(str(rst))
+
+
+class DeleteHandler(APIHandler):
+    """删除目标"""
+    @tornado.web.authenticated
+    def post(self):
+        goal_id = self.get_argument("goal_id")
+        if not goal_id:
+            raise Exception("goal/delete msg: goal_id cant be %s" % goal_id)
+        user_id = self.get_current_user()
+        if not goal_ctrl.check_owner(user_id, int(goal_id)):
+            raise Exception("user_id: %s want to delete goal(id: %s) raise no permission Exception")
+        rst = goal_ctrl.delete_goal(goal_id)
+        return self.render_json(rst)

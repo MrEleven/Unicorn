@@ -2,6 +2,7 @@ CREATE TABLE `goal` (
   `id` int(10) unsigned NOT NULL AUTO_INCREMENT,
   `name` nvarchar(48) NOT NULL DEFAULT '' COMMENT '主题',
   `user_id` int(10) unsigned NOT NULL DEFAULT '0' COMMENT 'user_id',
+  `status` int (10) unsigned NOT NULL DEFAULT '1' COMMENT '状态',
   `image` varchar(255) NOT NULL DEFAULT '' COMMENT 'image url',
   `create_time` datetime NOT NULL DEFAULT '1970-01-01 00:00:00',
   `description` nvarchar(255) NOT NULL DEFAULT '' COMMENT '描述',

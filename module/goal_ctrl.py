@@ -6,22 +6,23 @@
 
 from config import db
 from datetime import datetime
+import goal_status
 
 def add_goal(user_id, name, image, description):
     """增加目标"""
     create_time = datetime.now()
-    sql = "insert into goal (user_id, name, image, create_time, description) values (%s, %s, %s, %s, %s);"
-    return db.execute(sql, user_id, name, image, create_time, description)
+    sql = "insert into goal (user_id, name, image, create_time, status, description) values (%s, %s, %s, %s, %s);"
+    return db.execute(sql, user_id, name, image, create_time, goal_status.UNFINISH, description)
 
 def get_goal_list(user_id):
     """获取目标列表"""
-    sql = "select id, name, image, description from goal where user_id = %s;"
-    return db.query(sql, user_id)
+    sql = "select id, name, image, description from goal where user_id = %s and status != %s;"
+    return db.query(sql, user_id, goal_status.DELETE)
 
 def delete_goal(goal_id):
     """删除目标"""
-    sql = "delete from goal where id = %s;"
-    return db.execute(sql, goal_id)
+    sql = "update goal set status = %s where id = %s;"
+    return db.execute(sql, goal_status.DELETE, goal_id)
 
 def update_goal(goal_id, name="", image="", description=""):
     """更新目标"""

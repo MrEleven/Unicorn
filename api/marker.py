@@ -8,6 +8,7 @@ import tornado.web
 from api.apibase import APIHandler
 import module.marker_ctrl as marker_ctrl
 
+
 class ListHandler(APIHandler):
     """签到列表"""
     def get(self):

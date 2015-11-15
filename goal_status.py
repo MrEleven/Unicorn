@@ -1,9 +1,8 @@
 #!/usr/bin/env python2.7
 # -*- coding: utf-8 -*-
-# Date  : 2015-11-13
+# Date  : 2015-11-15
 # Author: Master Yumi
 # Email : yumi@meishixing.com
-
 
 # 未完成
 UNFINISH = 1
