@@ -16,7 +16,7 @@ var TodoEditModal = React.createClass({
     cancelClick: function(event) {
         this.setState({data: EMPTYTODO});
     },
-    addClick: function(event) {
+    editClick: function(event) {
         var _xsrf = $("#_xsrf input[name=_xsrf]").val();
         var todo_id = this.state.data.id;
         var goal_id = this.state.data.goal_id;
@@ -24,7 +24,7 @@ var TodoEditModal = React.createClass({
         var note = this.refs.note.value.trim();
         var todo_info = {"todo_id": todo_id, "goal_id": goal_id, "name": name, "note": note, "_xsrf": _xsrf};
         $.ajax({
-            url: '/a/todo/add',
+            url: '/a/todo/update',
             dataType: 'json',
             type: 'POST',
             data: todo_info,
@@ -53,7 +53,7 @@ var TodoEditModal = React.createClass({
                     <span>备注信息</span>
                     <div><textarea name="note" className="note-input" ref="note" onChange={this.handleChange} value={this.state.data.note} placeholder="没什么重要东西需要备注的就不要写了"></textarea></div>
                     <div className="ops">
-                        <button id="todo-edit-save-btn" onClick={this.addClick} >保存</button>
+                        <button id="todo-edit-save-btn" onClick={this.editClick} >保存</button>
                         <button id="todo-edit-cancel-btn" onClick={this.cancelClick}>取消</button>
                     </div>
                 </section>
