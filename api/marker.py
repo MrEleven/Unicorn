@@ -8,6 +8,7 @@ import tornado.web
 from api.apibase import APIHandler
 import module.marker_ctrl as marker_ctrl
 
+
 class ListHandler(APIHandler):
     """签到列表"""
     def get(self):
@@ -15,6 +16,7 @@ class ListHandler(APIHandler):
         page_size = self.get_argument("page_size", 30) # 先不做分页
         marker_list = marker_ctrl.get_marker_list(int(last_id), int(page_size))
         return self.render_json(marker_list)
+
 
 class AddHandler(APIHandler):
     """增加新签到"""

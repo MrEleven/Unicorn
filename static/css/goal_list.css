@@ -4,6 +4,7 @@
     width: 150px;
     position: fixed;
     top: 100px;
+    z-index: 2;
 }
 #goal-nav ul li {
     border-top: 1px solid black;
@@ -52,12 +53,15 @@
     position: relative;
 }
 .goal-wrap .ops {
-    display: none;
+    visibility: hidden;
     position: absolute;
     right: 10px;
     top: 10px;
     color: #000;
     font-weight: bolder;
+}
+.goal-wrap:hover .ops {
+    visibility: visible;
 }
 .goal-info {
     overflow: hidden;
@@ -101,7 +105,6 @@
     overflow: hidden;
 }
 .todo-list-ul .todo-wrap .finish {
-    border: 1px solid black;
     height: 20px;
     width: 20px;
     display: inline-block;
@@ -111,7 +114,7 @@
     margin-right: 5px;
 }
 .todo-wrap {
-    width: 150%;
+    position: relative;
 }
 .todo-wrap:hover {
     background: rgb(249, 249, 249);
@@ -120,14 +123,18 @@
 .todo-wrap .todo-name {
 
 }
-.todo-ops {
-    float: right;
+.todo-wrap .todo-ops {
+    position: absolute;
     display: inline-block;
     font-size: 12px;
     margin-right: 5px;
+    right: 0px;
+    visibility: hidden;
+}
+.todo-wrap:hover .todo-ops {
+    visibility: visible;
 }
 .add-todo-wrap .name-input {
-    display: none;
     width: 830px;
     height: 40px;
     line-height: 45px;
@@ -291,14 +298,15 @@
 #todo-edit-cancel-btn:hover {
     background: #dddddd;
 }
-
-
-/*#todo-edit-wrap {*/
-    /*border: 1px solid black;*/
-    /*width: 150px;*/
-    /*position: relative;*/
-    /*min-height: 200px;*/
-    /*background: white;*/
-    /*margin: 0 auto;*/
-    /*margin-top: 200px;*/
-/*}*/
+.album-wrap .album:hover {
+    border: 2px solid black;
+    box-sizing: border-box;
+}
+.finished-icon {
+    background-image: url("http://image.lanrenzhoumo.com/leo/img/20151115165242_67fdbe0046a932623abb03895fc094d7.png");
+    background-size: cover;
+}
+.unfinish-icon {
+    background-image: url("http://image.lanrenzhoumo.com/leo/img/20151115163825_eae0cd301c604734407ff5f7fb6d5bce.png");
+    background-size: cover;
+}

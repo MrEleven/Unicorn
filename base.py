@@ -24,9 +24,10 @@ class BaseHandler(tornado.web.RequestHandler):
             """将datetime类型转化成str"""
             if isinstance(model, list):
                 return [to_json(submodel) for submodel in model]
-            for key, value in model.iteritems():
-                if isinstance(value, datetime):
-                    model[key] = to_utf8(value)
+            if isinstance(model, dict):
+                for key, value in model.iteritems():
+                    if isinstance(value, datetime):
+                        model[key] = to_utf8(value)
             return model
         json_obj = to_json(json_obj)
         result = {"status": status, "msg": msg, "append_info": append_info, "result": json_obj}

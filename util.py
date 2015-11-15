@@ -26,3 +26,4 @@ def check_mobile(self):
     if user_agent.find("iphone") > 0:
         return True
     return False
+
