@@ -1,5 +1,9 @@
 # unicorn change log
 
+# 2015-11-15 1.0.0 MrEleven
+
+* 增加目标功能
+
 # 2015-11-07 0.2.9 MrEleven
 
 * 增加logo

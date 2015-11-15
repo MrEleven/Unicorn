@@ -23,5 +23,9 @@ if dir_name[0] == ".":
 config_module = import_module(dir_name + "." + module_name)
 
 db = torndb.Connection(**config_module.mysql_config)
-
+ID = config_module.ID
+KEY = config_module.KEY
+BUCKET = config_module.BUCKET
+BASE_URL = config_module.BASE_URL
+UNICORN_PATH = config_module.UNICORN_PATH
 

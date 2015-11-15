@@ -68,6 +68,11 @@ a:visited {
 	display: block;
 }
 .empty {
+	z-index: 0;
+	visibility: hidden;
+	position: absolute;
+	width: 0px;
+	height: 0px;
 	display: none;
 }
 .modal {

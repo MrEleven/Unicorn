@@ -38,6 +38,17 @@ $(function () {
         $(this).children(".ops").hide();
     });
     $(".goal-wrap .ops .edit").on("click", function() {
+        var $goal_warp = $(this).parents(".goal-wrap");
+        var goal_id = $goal_warp.attr("goal-id");
+        var image = $goal_warp.find(".goal-info .goal-icon-wrap .goal-icon").attr("src");
+        var name = $goal_warp.find(".goal-info .goal-name").html();
+        var desc = $goal_warp.find(".goal-info .goal-desc").html();
+
+        $("#goal-edit-wrap").attr("goal-id", goal_id);
+        $("#goal-edit-modal #goal-edit-wrap .album-wrap .album").attr("src", image);
+        $("#goal-edit-modal #goal-edit-wrap .name-input").val(name);
+        $("#goal-edit-modal #goal-edit-wrap .desc-input").val(desc);
+
         $("#goal-edit-modal").addClass("modal").removeClass("empty");
         $("#goal-edit-modal #goal-edit-wrap").css("margin-top", "-500px");
         $("#goal-edit-modal #goal-edit-wrap").animate({"margin-top": 10}, 500);
@@ -62,5 +73,57 @@ $(function () {
         if(event.keyCode==13) {
             alert("add success");
         }
-    })
+    });
+    $("#goal-add-save-btn").on("click", function() {
+        var $goal_edit_wrap = $(this).parents(".goal-edit-wrap");
+        var image = $goal_edit_wrap.find(".album-wrap .album").attr("src");
+        var name = $goal_edit_wrap.find(".name-input").val();
+        var description = $goal_edit_wrap.find(".desc-input").val();
+        var _xsrf = $("#_xsrf input[name=_xsrf]").val();
+        $.ajax({
+            url: "/goal/add",
+            data: {
+                "name": name,
+                "image": image,
+                "description": description,
+                "_xsrf": _xsrf,
+            },
+            async: false,
+            type: "POST",
+            dataType: "json",
+            success: function(result) {
+                alert("success");
+            },
+            error: function(result) {
+                alert("增加失败");
+            }
+        })
+    });
+    $("#goal-edit-save-btn").on("click", function() {
+        var $goal_edit_wrap = $(this).parents(".goal-edit-wrap");
+        var goal_id = $goal_edit_wrap.attr("goal-id");
+        var image = $goal_edit_wrap.find(".album-wrap .album").attr("src");
+        var name = $goal_edit_wrap.find(".name-input").val();
+        var description = $goal_edit_wrap.find(".desc-input").val();
+        var _xsrf = $("#_xsrf input[name=_xsrf]").val();
+        $.ajax({
+            url: "/goal/update",
+            data: {
+                "goal_id": goal_id,
+                "name": name,
+                "image": image,
+                "description": description,
+                "_xsrf": _xsrf,
+            },
+            async: false,
+            type: "POST",
+            dataType: "json",
+            success: function(result) {
+                alert("success");
+            },
+            error: function(result) {
+                alert("修改失败");
+            }
+        });
+    });
 })
