@@ -8,6 +8,7 @@
 	</div>
 	<form id="login_form" action="/user/login" method="post">
 		{% raw xsrf_form_html() %}
+		<input type="hidden" name="next_url" value="{{ result.get("next_url", "")}}" />
 		<ul>
 			<li><input id="input_phone" type="text" name="phone" value="{{ result.get("phone", "")}}" placeholder="手机号码" /></li>
 			<li><input id="input_password" type="password" name="password" value="{{result.get("password", "")}}" placeholder="密码" /></li>

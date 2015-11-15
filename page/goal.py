@@ -26,6 +26,7 @@ class AddHandler(PageHandler):
 
 class ListHandler(PageHandler):
     """获取目标列表"""
+    @tornado.web.authenticated
     def get(self):
         user_id = self.get_argument("user_id", 0)
         if not user_id:

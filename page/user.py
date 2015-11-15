@@ -13,19 +13,25 @@ import re
 class LoginHandler(PageHandler):
     """登陆"""
     def get(self):
+        next_url = self.get_argument("next", "")
+        if not next_url:
+            next_url = "/marker/list"
         if self.get_current_user():
-            return self.redirect("/marker/list")
-        self.render("login.html")
+            return self.redirect(next_url)
+        self.render("login.html", result={"next_url": next_url})
         
     def post(self):
         phone = self.get_argument("phone", "")
         password = self.get_argument("password", "")
+        next_url = self.get_argument("next_url", "")
+        if not next_url:
+            next_url = "/marker/list"
         if phone == "" or password == "":
             return self.redirect("/user/login")
         user_id = user_ctrl.checkout_login(phone, password)
         if user_id:
             self.set_user_id(str(user_id))
-            return self.redirect("/marker/list")
+            return self.redirect(next_url)
         else:
             msg = "手机号或密码错误"
             return self.render("login.html", result={"phone": phone, "msg": msg})
