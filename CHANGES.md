@@ -1,5 +1,9 @@
 # unicorn change log
 
+# 2015-11-18 1.0.4 MrEleven
+
+* 修复完成待办事项的时候没有记录完成时间的Bug
+
 # 2015-11-15 1.0.3 MrEleven
 
 * 修复一个编辑TODO变成增加TODO的bug
