@@ -50,9 +50,10 @@ def check_owner(user_id, todo_id):
     return db.query(sql, todo_id, user_id)
 
 def finish_todo(todo_id):
-    sql = "update todo set status = %s where id = %s;"
-    return db.execute(sql, todo_status.FINISHED, todo_id)
+    close_time = datetime.now()
+    sql = "update todo set status = %s, close_time = %s where id = %s;"
+    return db.execute(sql, todo_status.FINISHED, close_time, int(todo_id))
 
 def unfinish_todo(todo_id):
     sql = "update todo set status = %s where id = %s;"
-    return db.execute(sql, todo_status.UNFINISH, todo_id)
+    return db.execute(sql, todo_status.UNFINISH, int(todo_id))
