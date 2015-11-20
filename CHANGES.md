@@ -1,5 +1,9 @@
 # unicorn change log
 
+# 2015-11-21 1.0.5 MrEleven
+
+* 采用babel将goallist.js翻译成浏览器能识别的javascription
+
 # 2015-11-18 1.0.4 MrEleven
 
 * 修复完成待办事项的时候没有记录完成时间的Bug
