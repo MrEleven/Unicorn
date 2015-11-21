@@ -19,7 +19,7 @@
     color: white;
     font-weight: bolder;
 }
-#goal-nav ul li a:hover {
+#goal-nav ul li a:hover, #goal-nav ul li a:active {
     background: lightgoldenrodyellow;
     color: #555;
 }
@@ -33,7 +33,7 @@
     background: green;
     display: block;
 }
-#goal-nav #add-goal:hover {
+#goal-nav #add-goal:hover, #goal-nav #add-goal:active {
     background: lightgreen;
     text-decoration: none;
     color: #555;
@@ -60,7 +60,7 @@
     color: #000;
     font-weight: bolder;
 }
-.goal-wrap:hover .ops {
+.goal-wrap:hover .ops, .goal-wrap:active .ops {
     visibility: visible;
 }
 .goal-info {
@@ -116,7 +116,7 @@
 .todo-wrap {
     position: relative;
 }
-.todo-wrap:hover {
+.todo-wrap:hover, .todo-wrap:active {
     background: rgb(249, 249, 249);
     width: auto;
 }
@@ -131,7 +131,7 @@
     right: 0px;
     visibility: hidden;
 }
-.todo-wrap:hover .todo-ops {
+.todo-wrap:hover .todo-ops, .todo-wrap:active .todo-ops {
     visibility: visible;
 }
 .add-todo-wrap .name-input {
@@ -212,14 +212,14 @@
 #goal-edit-save-btn, #goal-add-save-btn {
     background: #669900;
 }
-#goal-edit-save-btn:hover, #goal-add-save-btn:hover {
+#goal-edit-save-btn:hover, #goal-add-save-btn:hover, #goal-edit-save-btn:active, #goal-add-save-btn:active {
     background: #32CD32;
 }
 #goal-edit-cancel-btn, #goal-add-cancel-btn {
     float: right;
     background: #cccccc;
 }
-#goal-edit-cancel-btn:hover, #goal-add-cancel-btn:hover {
+#goal-edit-cancel-btn:hover, #goal-add-cancel-btn:hover, #goal-edit-cancel-btn:active, #goal-add-cancel-btn:active {
     background: #dddddd;
 }
 
@@ -288,17 +288,17 @@
 #todo-edit-save-btn {
     background: #669900;
 }
-#todo-edit-save-btn:hover {
+#todo-edit-save-btn:hover, #todo-edit-save-btn:active {
     background: #32CD32;
 }
 #todo-edit-cancel-btn {
     float: right;
     background: #cccccc;
 }
-#todo-edit-cancel-btn:hover {
+#todo-edit-cancel-btn:hover, #todo-edit-cancel-btn:active {
     background: #dddddd;
 }
-.album-wrap .album:hover {
+.album-wrap .album:hover, .album-wrap .album:active {
     border: 2px solid black;
     box-sizing: border-box;
 }

@@ -8,10 +8,6 @@ from page.pagebase import PageHandler
 import tornado.web
 import module.goal_ctrl as goal_ctrl
 
-class GoalUIHandler(PageHandler):
-    """目标"""
-    def get(self):
-        return self.render("goal_ui.html", result={})
 
 class AddHandler(PageHandler):
     """增加目标"""

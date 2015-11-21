@@ -72,6 +72,7 @@ if __name__ == "__main__":
         xsrf_cookies=True,
         login_url="/user/login",
         debug=True,
+        gzip=True
     )
     http_server = tornado.httpserver.HTTPServer(app)
     http_server.listen(options.port)
