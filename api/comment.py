@@ -38,7 +38,8 @@ class AddHandler(APIHandler):
         comment_id = comment_ctrl.add_comment(user_id, marker_id, content, reply, reply_user)
         marker_ctrl.inc_comment_count(marker_id)
         marker_user_id = marker_ctrl.get_marker_user(marker_id)
-        message_ctrl.add_message(marker_id, comment_id, marker_user_id)
+        if int(marker_user_id) != user_id:
+            message_ctrl.add_message(marker_id, comment_id, marker_user_id)
         if reply:
             message_ctrl.add_message(marker_id, comment_id, reply_user)
         
