@@ -33,3 +33,13 @@ def min_comment_count(marker_id):
     """减少评论数量"""
     sql = "update marker set comment_count = comment_count - 1 where id = %s;"
     return db.execute(sql, marker_id)
+
+def get_marker_user(marker_id):
+    """获取签到的用户Id"""
+    if not marker_id:
+        return 0
+    sql = "select user_id from marker where id = %s;"
+    result = db.query(sql, marker_id)
+    if result:
+        return result[0]["user_id"]
+    return 0

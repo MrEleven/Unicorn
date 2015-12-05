@@ -23,7 +23,7 @@ def get_handlers():
     from page.marker import ListHandler
     handlers = [("/", ListHandler)]
     # API接口
-    api_list = ["marker", "comment", "goal", "todo", "image"]
+    api_list = ["marker", "comment", "goal", "todo", "image", "message"]
     for bussiness_name in api_list:
         bussiness_module = import_module("api." + bussiness_name)
         for attr in dir(bussiness_module):

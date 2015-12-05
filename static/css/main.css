@@ -59,7 +59,7 @@ a:visited {
 	font-size: 12px;
 	padding-right: 10px;
 }
-.nav .user-menu li {
+.nav .user-menu > li {
 	display: inline-block;
 	padding-left: 10px;
 	padding-right: 10px;
@@ -103,4 +103,87 @@ a:visited {
 	bottom: 0;
 	right: 0;
 	background: rgba(0, 0, 0, 0.3);
+}
+.drop-parent {
+	position: relative;
+}
+#nav-userinfo-wrap .avatar {
+	width: 40px;
+	height: 40px;
+	line-height: 50px;
+	vertical-align: middle;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+}
+.drop-parent ul {
+	position: absolute;
+	right: 0px;
+	border-width: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-box-shadow: 0px 0px 0px 1px rgb(237, 237, 237);
+	-moz-box-shadow: 0px 0px 0px 1px rgb(237, 237, 237);
+	box-shadow: 0px 0px 0px 1px rgb(237, 237, 237);
+	font-size: 14px;
+	padding-top: 14px;
+	padding-bottom: 14px;
+	width: 170px;
+	z-index: 10;
+	background: white;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	top: 45px;
+}
+.drop-parent ul {
+	display: none;
+	text-align: left;
+	text-indent: 10px;
+}
+.drop-parent:hover ul {
+	display: block;
+}
+.drop-parent ul li {
+	display: block;
+	color: black;
+	min-width: 140px;
+	height: 28px;
+	line-height: 28px;
+	color: rgb(74, 74, 74);
+}
+.drop-parent ul li:hover {
+	background-color: rgb(237, 237, 237);
+	cursor: pointer;
+}
+.drop-parent ul li > a{
+	display: block;
+}
+.drop-parent ul li a:hover{
+	text-decoration: none;
+}
+.dropdown-divider {
+	margin-top: 14px;
+	margin-bottom: 14px;
+	border-top: 1px solid rgb(237, 237, 237);
+	height: 0px !important;
+}
+#message-icon {
+	background-size: 30px 30px;
+	background-image: url("http://mreleven.oss-cn-hangzhou.aliyuncs.com/icon/message.png");
+	width: 30px;
+	height: 30px;
+	vertical-align: middle;
+	display: inline-block;
+	cursor: pointer;
+}
+#message-dropdown {
+	width: 400px;
+}
+#nav-message-wrap ul li {
+	-ms-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
 }

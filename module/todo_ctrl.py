@@ -14,7 +14,6 @@ def add_todo(user_id, goal_id, name="", note=""):
     sql = "insert into todo(user_id, goal_id, status, name, create_time, note) values (%s, %s, %s, %s, %s, %s);"
     return db.execute(sql, user_id, goal_id, todo_status.UNFINISH, name, create_time, note)
 
-
 def get_todo_list(goal_id):
     """获取某个目标得所有待办事项"""
     sql = "select id, name, goal_id, status, create_time, note from todo where goal_id = %s and status != %s order by status asc;"

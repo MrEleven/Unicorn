@@ -19,7 +19,22 @@
 			<span>{{ result.get("greeting", "") }}</span>
 		</li>
 		<li>
-			<a href="/user/logout">注销</a>
+			<div id="nav-message-wrap" class="drop-parent">
+				<div id="message-icon"></div>
+				<ul id="message-dropdown" class="nav-dropdown">
+				</ul>
+			</div>
+		</li>
+		<li>
+			<div id="nav-userinfo-wrap" class="drop-parent">
+				<div><a href="http://www.eleven.name"><img class="avatar" src="{{result.get('user_info', {}).get('avatar_url', '')}}" alt="avatar" /></a></div>
+				<ul>
+					<li><a href="##">个人中心</a></li>
+					<li><a href="##">设置</a></li>
+					<li class="dropdown-divider"></li>
+					<li><a href="/user/logout">注销</a></li>
+				</ul>
+			</div>
 		</li>
 		{% else %}
 		<li class="login">

@@ -110,7 +110,7 @@
 					return false;
 				};
 				var params = {"marker_id": marker_id, "content": content, "_xsrf": _xsrf};
-				$.post("/comment/add", params, function(data) {
+				$.post("/a/comment/add", params, function(data) {
 					if (data) {
 						alert(data);
 						return false;

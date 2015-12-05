@@ -14,10 +14,11 @@ class NavUIModule(tornado.web.UIModule):
     def render(self):
         user_id = self.current_user
         greeting = ""
+        user_info = {}
         if user_id:
             user_info = user_ctrl.get_user(user_id)
             greeting = self.gen_greeting(to_utf8(user_info["nickname"]))
-        return self.render_string("ui_module/nav.html", result={"user_id": user_id, "greeting": greeting})
+        return self.render_string("ui_module/nav.html", result={"user_id": user_id, "greeting": greeting, "user_info": user_info})
 
     def gen_greeting(self, nickname):
         """生成问候语"""
@@ -38,3 +39,6 @@ class NavUIModule(tornado.web.UIModule):
             message = "晚安"
         return message + "，" + nickname
 
+    def javascript_files(self):
+        """js文件加载"""
+        return "/static/js/message.js"
