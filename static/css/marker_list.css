@@ -207,3 +207,21 @@ ul {
 .load-more-wrap .load-more {
 	display: block;
 }
+.marker-comment-wrap {
+	position: relative;
+}
+.marker-comment-wrap .comment-ops {
+	visibility: hidden;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	padding: 10px;
+	font-size: 12px;
+	line-height: 20px;
+}
+.marker-comment-wrap:hover {
+	background: rgb(250, 250, 250);
+}
+.marker-comment-wrap:hover .comment-ops {
+	visibility: visible;
+}

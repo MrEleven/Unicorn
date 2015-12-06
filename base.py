@@ -26,9 +26,11 @@ class BaseHandler(tornado.web.RequestHandler):
                 return [to_json(submodel) for submodel in model]
             if isinstance(model, dict):
                 for key, value in model.iteritems():
-                    model[key] = to_utf8(value)
+                    model[key] = to_json(value)
             if isinstance(model, datetime):
                 return to_utf8(model)
+            if isinstance(model, (str, unicode)):
+                return to_utf8(model)    
             return model
         json_obj = to_json(json_obj)
         result = {"status": status, "msg": msg, "append_info": append_info, "result": json_obj}

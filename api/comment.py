@@ -33,12 +33,17 @@ class AddHandler(APIHandler):
         if not(content and marker_id):
             return self.write("系统异常")
         user_id = self.get_current_user()
-        reply = self.get_argument("reply", 0) or 0
+        if content.startswith("@"):
+            content = content.split(" ", 1)[-1]
+            reply = self.get_argument("reply", 0) or 0
+        else:
+            reply = 0
         reply_user = comment_ctrl.get_comment_user(reply)
         comment_id = comment_ctrl.add_comment(user_id, marker_id, content, reply, reply_user)
         marker_ctrl.inc_comment_count(marker_id)
         marker_user_id = marker_ctrl.get_marker_user(marker_id)
-        message_ctrl.add_message(marker_id, comment_id, marker_user_id)
-        if reply:
+        if int(marker_user_id) != user_id:
+            message_ctrl.add_message(marker_id, comment_id, marker_user_id)
+        if reply and reply_user != user_id:
             message_ctrl.add_message(marker_id, comment_id, reply_user)
         
