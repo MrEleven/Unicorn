@@ -1,5 +1,9 @@
 # unicorn change log
 
+# 2015-12-07 1.2.1 MrEleven
+
+* 修复个人也中加载更多签到的时候没有带user_id的bug
+
 # 2015-12-06 1.2.0 MrEleven
 
 * 增加简单的个人页
