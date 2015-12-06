@@ -1,6 +1,10 @@
 # unicorn change log
 
-@ 2015-12-06 1.1.0 MrEleven
+# 2015-12-06 1.2.0 MrEleven
+
+* 增加简单的个人页
+
+# 2015-12-06 1.1.0 MrEleven
 
 * 增加回复功能
 
