@@ -225,3 +225,9 @@ ul {
 .marker-comment-wrap:hover .comment-ops {
 	visibility: visible;
 }
+.comment-nickname {
+	color: orange;
+}
+.comment-nickname:visited {
+	color: orange;
+}

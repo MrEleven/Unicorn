@@ -6,6 +6,7 @@
 
 from page.pagebase import PageHandler
 import module.user_ctrl as user_ctrl
+import module.marker_ctrl as marker_ctrl
 import random
 import re
     
@@ -97,4 +98,16 @@ class LogoutHandler(PageHandler):
         self.clear_cookie("session_id")
         return self.redirect("/user/login")
 
+class UserHandler(PageHandler):
+    """用户页面"""
+    def get(self):
+        user_id = self.get_argument("user_id", 0)
+        if not user_id:
+            self.finish()
+        user_info = user_ctrl.get_user(user_id)
+        # 签到列表
+        marker_list = marker_ctrl.get_marker_list(last_id=0, page_size=30, user_id=user_id)
+        current_user_id = self.get_current_user()
+        current_user_info = user_ctrl.get_user(current_user_id)
+        return self.render("user.html", result={"user_info": user_info, "marker_list": marker_list, "current_user_id": current_user_id, "current_user_info": current_user_info})
 
