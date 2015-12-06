@@ -14,12 +14,12 @@ class ListHandler(PageHandler):
     def get(self):
         page_size = self.get_argument("page_size", 30) # 先不做分页
         marker_list = marker_ctrl.get_marker_list(last_id=0, page_size=int(page_size))
-        user_id = self.get_current_user()
-        user_info = user_ctrl.get_user(user_id)
+        current_user_id = self.get_current_user()
+        current_user_info = user_ctrl.get_user(current_user_id)
         self.render("marker_list.html", result={
             "marker_list": marker_list, 
-            "user_id": user_id, 
-            "user_info": user_info
+            "current_user_id": current_user_id, 
+            "current_user_info": current_user_info
         })
 
 class AddHandler(PageHandler):
