@@ -13,8 +13,9 @@ class ListHandler(APIHandler):
     """签到列表"""
     def get(self):
         last_id = self.get_argument("last_id", 0)
+        user_id = self.get_argument("user_id", 0)
         page_size = self.get_argument("page_size", 30) # 先不做分页
-        marker_list = marker_ctrl.get_marker_list(int(last_id), int(page_size))
+        marker_list = marker_ctrl.get_marker_list(int(last_id), int(page_size), int(user_id))
         return self.render_json(marker_list)
 
 

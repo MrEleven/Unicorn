@@ -109,5 +109,5 @@ class UserHandler(PageHandler):
         marker_list = marker_ctrl.get_marker_list(last_id=0, page_size=30, user_id=user_id)
         current_user_id = self.get_current_user()
         current_user_info = user_ctrl.get_user(current_user_id)
-        return self.render("user.html", result={"user_info": user_info, "marker_list": marker_list, "current_user_id": current_user_id, "current_user_info": current_user_info})
+        return self.render("user.html", result={"user_id": user_id, "user_info": user_info, "marker_list": marker_list, "current_user_id": current_user_id, "current_user_info": current_user_info})
 

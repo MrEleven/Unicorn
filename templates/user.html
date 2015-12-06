@@ -75,6 +75,7 @@
 </ul>
 <div class="load-more-wrap"><a class="load-more">查看更多</a></div>
 </div>
+<div class="hidden" id="global_user_id">{{ result.get("user_id") }}</div>
 <script type="text/javascript" src="/static/js/jquery.min.js"></script>
 <script type="text/javascript" src="/static/js/mustache.js"></script>
 <script type="text/javascript">
@@ -148,8 +149,8 @@
                 comment_list_container.html(html);
             });
         };
-        function load_marker_list(last_id) {
-            $.get("/a/marker/list?last_id=" + last_id, function(data) {
+        function load_marker_list(last_id, user_id) {
+            $.get("/a/marker/list?last_id=" + last_id + "&user_id=" + user_id, function(data) {
                 if (data["result"].length == 0) {
                     $(".load-more-wrap").hide();
                 }
@@ -159,7 +160,8 @@
         };
         $(".load-more").on("click", function() {
             var last_id = $(".markerlist-big-wrap li").last().attr("marker-id");
-            load_marker_list(last_id);
+            var user_id = $("#global_user_id").html();
+            load_marker_list(last_id, user_id);
         });
         $(document).on("click", ".marker-comment-wrap .comment-ops .comment-reply", function () {
             var comment_id = $(this).parents(".marker-comment-wrap").attr("comment-id");
