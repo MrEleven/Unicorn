@@ -3,6 +3,7 @@
 	<head lang="en">
 		<meta http-equiv=Content-Type content="text/html;charset=utf-8">
 		<meta name="format-detection" content="telephone=no" />
+		<link href="http://cdn.eleven.name/icon/eleven.ico" type="image/x-icon" rel="shortcut icon" />
 		<title>签到</title>
 		<link rel="stylesheet" type="text/css" href="/static/css/main.css">
 		<link rel="stylesheet" type="text/css" href="/static/css/marker_list.css">
@@ -39,6 +40,7 @@
 								</div>
 								<div class="comment-input">
 									{% raw xsrf_form_html() %}
+									<input type="hidden" class="reply-comment-id" />
 									<textarea></textarea>
 									<a class="comment-btn" marker-id={{ marker.get("id", 0) }}>评论</a>
 								</div>
@@ -103,12 +105,13 @@
 				var $comment_btn = $(this);
 				var marker_id = $(this).attr("marker-id");
 				var $textarea_content = $(this).parent(".comment-input").find("textarea");
+				var reply_comment_id = $(this).parent(".comment-input").find(".reply-comment-id").val();
 				var content = $textarea_content.val();
 				var _xsrf = $(this).parent(".comment-input").find("input[name=_xsrf]").val();
 				if (!marker_id || !content) {
 					return false;
 				};
-				var params = {"marker_id": marker_id, "content": content, "_xsrf": _xsrf};
+				var params = {"marker_id": marker_id, "content": content, "_xsrf": _xsrf, "reply": reply_comment_id};
 				$.post("/a/comment/add", params, function(data) {
 					if (data) {
 						alert(data);
@@ -142,17 +145,27 @@
 				var last_id = $(".markerlist-big-wrap li").last().attr("marker-id");
 				load_marker_list(last_id);
 			});
+			$(document).on("click", ".marker-comment-wrap .comment-ops .comment-reply", function () {
+				var comment_id = $(this).parents(".marker-comment-wrap").attr("comment-id");
+				var username = $(this).parents(".marker-comment-wrap").find(".comment-rwrap .content .username").html();
+				$(this).parents(".comment-list-wrap").find(".comment-input .reply-comment-id").val(comment_id);
+				$(this).parents(".comment-list-wrap").find(".comment-input textarea").val("@" + username + "  ").focus();
+			});
 		});
 		</script>
 		<script type="text/template" id="comment-list-template">
 			{{!#.}}
-			<li>
+			<li class="marker-comment-wrap" comment-id="{{!id}}">
+				<div class="comment-ops">
+					<a class="comment-reply">回复</a>
+				</div>
 				<div class="avatar-wrap">
 					<img class="avatar" src="{{!avatar_url}}@50w_50h_100Q.jpg" alt="avatar">
 				</div>
 				<div class="comment-rwrap">
 					<p class="content">
-					<span class="username">{{!nickname}}</span> : 
+					<span class="username">{{!nickname}}</span> :
+						{{!#reply_user_info}}@{{!reply_user_info.nickname}}{{!/reply_user_info}}
 					{{!content}}
 					</p>
 					<div class="time-ops-wrap">
@@ -188,6 +201,7 @@
 							</div>
 							<div class="comment-input">
 								{% raw xsrf_form_html() %}
+								<input type="hidden" class="reply-comment-id" />
 								<textarea></textarea>
 								<a class="comment-btn" marker-id={{!id}}>评论</a>
 							</div>

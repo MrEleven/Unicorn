@@ -1,5 +1,9 @@
 # unicorn change log
 
+@ 2015-12-06 1.1.0 MrEleven
+
+* 增加回复功能
+
 # 2015-11-26 1.0.6 MrEleven
 
 * 增加了一个很丑的消息列表功能
