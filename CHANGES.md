@@ -1,5 +1,9 @@
 # unicorn change log
 
+# 2015-12-20 1.2.2 MrEleven
+
+* 更改Ui
+
 # 2015-12-07 1.2.1 MrEleven
 
 * 修复个人也中加载更多签到的时候没有带user_id的bug
