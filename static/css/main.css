@@ -25,10 +25,18 @@ a:visited {
 }
 .nav {
 	height: 50px;
-	color: white;
 	background: black;
 	font-size: 20px;
 	line-height: 50px;
+	background: rgb(255, 255, 255);
+	border-bottom: 0px solid rgb(74, 74, 74);
+	color: rgb(74, 74, 74);
+	box-shadow: rgba(0, 0, 0, 0.0980392) 0 0 0 1px;
+	position: fixed;
+	top: 0px;
+	right: 0px;
+	left: 0px;
+	z-index: 1024;
 }
 .nav .nav-list {
 	font-size: 0px;
@@ -36,23 +44,23 @@ a:visited {
 }
 .nav .nav-list li {
 	display: inline-block;
-	font-size: 20px;
+	font-size: 14px;
 }
 .nav .nav-list li:hover {
-	background: #333;
-	color: #ccc;
+	/*background: #333;*/
+	/*color: #ccc;*/
 }
 .nav .nav-list .active {
-	background: #333;
-	color: #ccc;
+	/*background: #333;*/
+	/*color: #ccc;*/
 }
 .nav .nav-list li a {
 	display: block;
 	height: 50px;
 	padding-left: 20px;
 	padding-right: 20px;
-	color: white;
 	text-decoration: none;
+	line-height: 28px;
 }
 .nav .user-menu {
 	float: right;
@@ -187,4 +195,32 @@ a:visited {
 	text-overflow: ellipsis;
 	white-space: nowrap;
 	overflow: hidden;
+}
+.icon {
+	width: 28px;
+	height: 28px;
+	display: inline-block;
+	background-position: 50% 50%;
+	-webkit-background-size: contain;
+	background-size: contain;
+	vertical-align: middle;
+}
+.icon-marker {
+	background-image: url("http://image.lanrenzhoumo.com/leo/img/20151220171432_834c4c34fc3f5dfda869da54313c4504.png");
+}
+.icon-goal {
+	background-image: url("http://image.lanrenzhoumo.com/leo/img/20151220172346_66fa779e53a9ed5f016ea2fc9d3446f8.png");
+}
+.icon-activity {
+	background-image: url("http://www.iconpng.com/png/keyamoon/happy.png");
+}
+body {
+	padding-top: 50px;
+}
+.clearfix:after{
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
 }
