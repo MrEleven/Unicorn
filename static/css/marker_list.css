@@ -2,20 +2,23 @@
 	margin: 0px;
 	padding: 0px;
 }
+body {
+	/*background-image: url("http://image.lanrenzhoumo.com/leo/img/20151220161644_91363184563a335b7b2c1fc176e81e4a.jpg");*/
+	/*background-image: url("http://image.lanrenzhoumo.com/leo/img/20151220163612_4e99e4baeef7fc8d4cd029e5d739508a.jpg");*/
+}
 ul {
 	list-style-type: none;
 }
 .container {
 	width: 900px;
 	margin: 0 auto;
-	border: 1px solid black;
-	padding: 10px;
-	margin-bottom: 40px;
+}
+.add-marker-wrap {
 	margin-top: 10px;
 }
 .user_info {
 	vertical-align: middle;
-	width: 100px;
+	width: 70px;
 	min-height: 100px;
 	float: left;
 	text-align: center;
@@ -23,6 +26,12 @@ ul {
 }
 .markerlist-rwrap {
 	overflow: hidden;
+	background: rgba(255, 255, 255, 1);
+	/*margin-bottom: 10px;*/
+}
+.markerlist-big-wrap {
+	margin-top: 10px;
+	margin-bottom: 30px;
 }
 .user_info_mask {
 	min-height: 100px;
@@ -41,6 +50,7 @@ ul {
 .user_info img {
 	width: 50px;
 	height: 50px;
+	border-radius: 4px;
 }
 .user_info span {
 	font-size: 12px;
@@ -51,10 +61,13 @@ ul {
 }
 .mark_content .title {
 	background: #eee;
-	font-size: 18px;
+	font-size: 14px;
 	line-height: 30px;
 	text-indent: 10px;
-	font-family: "宋体";
+	font-weight: normal;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
 }
 .mark_content .content {
 	padding: 10px;
@@ -70,30 +83,20 @@ ul {
 #add_marker {
 	overflow: hidden;
 }
-#add_marker > div {
-	overflow: hidden;
-	line-height: 30px;
-	padding: 10px;
+#add_marker input, #add_marker textarea{
+	border: 1px solid rgba(0, 0, 0, 0.3);
 }
-#add_marker .label {
-	font-size: 12px;
-	float: left;
-	width: 50px;
-	text-align: right;
-	display: inline-block;
-}
-#add_marker label {
-	padding-right: 10px;
+#add_marker input:focus, #add_marker textarea:focus{
+	border: 1px solid rgba(0, 0, 0, 0.7);
 }
 #add_marker .title {
 	line-height: 30px;
 	border-radius: 3px;
 	padding-left: 10px;
-	border: 1px solid black;
 	padding-right: 10px;
 }
 #add_marker .content {
-	/*overflow: hidden;*/
+	margin-bottom: 5px;
 }
 #add_marker .content textarea {
 	border-radius: 3px;
@@ -106,8 +109,10 @@ ul {
 }
 #add_marker .title, #add_marker textarea {
 	display: inline-block;
-	width: 793px;
-	position: relative;
+	/*width: 793px;*/
+	/*position: relative;*/
+	width: 100%;
+	box-sizing: border-box;
 }
 #btn_add_marker {
 	border: 1px solid black;
@@ -115,8 +120,6 @@ ul {
 	padding: 5px 10px;
 	font-size: 14px;
 	float: right;
-	margin-right: 25px;
-	margin-bottom: 10px;
 	cursor: pointer;
 }
 .mark_content .content {

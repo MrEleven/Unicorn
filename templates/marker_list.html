@@ -24,9 +24,9 @@
 					</div>
 					<div class="markerlist-rwrap">
 						<div class="mark_content">
-							<h2 class="title">
+							<h1 class="title">
 								{{ marker.get("title", "") }}
-							</h2>
+							</h1>
 							<p class="content">{{ marker.get("marker", "") }}</p>
 						</div>
 						<div class="ops">
@@ -136,14 +136,25 @@
 				$.get("/a/marker/list?last_id=" + last_id, function(data) {
 					if (data["result"].length == 0) {
 						$(".load-more-wrap").hide();
+						isloadall = true;
 					}
 					var html = Mustache.render($("#marker-list-template").html(), data["result"]);
 					$(".markerlist-big-wrap").append(html);
 				});
 			};
-			$(".load-more").on("click", function() {
-				var last_id = $(".markerlist-big-wrap li").last().attr("marker-id");
-				load_marker_list(last_id);
+//			$(".load-more").on("click", function() {
+//				var last_id = $(".markerlist-big-wrap li").last().attr("marker-id");
+//				load_marker_list(last_id);
+//			});
+			var isloadall = false;
+			var range = 200; // 距离底部还有range的时候就开始加载
+			$(window).scroll(function () {
+				var srollPos = $(window).scrollTop();	/*文档超出窗口的高度*/
+				totalheight = parseFloat($(window).height()) + parseFloat(srollPos);
+				if(($(document).height()-range) <= totalheight && !isloadall ) {
+					var last_id = $(".markerlist-big-wrap li").last().attr("marker-id");
+					load_marker_list(last_id);
+				}
 			});
 			$(document).on("click", ".marker-comment-wrap .comment-ops .comment-reply", function () {
 				var comment_id = $(this).parents(".marker-comment-wrap").attr("comment-id");
@@ -186,8 +197,8 @@
 				</div>
 				<div class="markerlist-rwrap">
 					<div class="mark_content">
-						<h2 class="title">{{!title}}
-						</h2>
+						<h1 class="title">{{!title}}
+						</h1>
 						<p class="content">{{!marker}}</p>
 					</div>
 					<div class="ops">

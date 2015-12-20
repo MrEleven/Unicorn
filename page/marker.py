@@ -9,6 +9,10 @@ from page.pagebase import PageHandler
 import module.user_ctrl as user_ctrl
 import module.marker_ctrl as marker_ctrl
 
+class TestHandler(PageHandler):
+    def get(self):
+        return self.render("test.html")
+
 class ListHandler(PageHandler):
     """签到列表"""
     def get(self):
