@@ -4,4 +4,4 @@
 # Author: Master Yumi
 # Email : yumi@meishixing.com
 
-version = "1.2.2"
+version = "1.2.3"

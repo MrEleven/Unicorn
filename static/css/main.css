@@ -28,7 +28,7 @@ a:visited {
 	background: black;
 	font-size: 20px;
 	line-height: 50px;
-	background: rgb(255, 255, 255);
+	background: rgba(255, 255, 255, 0.95);
 	border-bottom: 0px solid rgb(74, 74, 74);
 	color: rgb(74, 74, 74);
 	box-shadow: rgba(0, 0, 0, 0.0980392) 0 0 0 1px;
@@ -213,6 +213,9 @@ a:visited {
 }
 .icon-activity {
 	background-image: url("http://www.iconpng.com/png/keyamoon/happy.png");
+}
+.icon-christmas {
+	background-image: url("http://image.lanrenzhoumo.com/leo/img/20151221160838_52b5bdea546602737f2c8f64bd4eba28.png");
 }
 body {
 	padding-top: 50px;

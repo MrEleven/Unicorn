@@ -4,7 +4,7 @@
 }
 body {
 	/*background-image: url("http://image.lanrenzhoumo.com/leo/img/20151220161644_91363184563a335b7b2c1fc176e81e4a.jpg");*/
-	/*background-image: url("http://image.lanrenzhoumo.com/leo/img/20151220163612_4e99e4baeef7fc8d4cd029e5d739508a.jpg");*/
+	background-image: url("http://www.easyicon.net/api/resizeApi.php?id=1129965&size=64");
 }
 ul {
 	list-style-type: none;
@@ -26,7 +26,7 @@ ul {
 }
 .markerlist-rwrap {
 	overflow: hidden;
-	background: rgba(255, 255, 255, 1);
+	background: rgba(255, 255, 255, 0.95);
 	/*margin-bottom: 10px;*/
 }
 .markerlist-big-wrap {
@@ -233,4 +233,16 @@ ul {
 }
 .comment-nickname:visited {
 	color: orange;
+}
+.christmas-cap {
+	position: absolute;
+	width: 80px !important;
+	height: 80px !important;
+	top: -30px;
+	left: -15px;
+}
+.christmas-tree-wrap {
+	position: fixed;
+	right: 0px;
+	width: 200px;
 }
