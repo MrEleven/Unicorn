@@ -17,6 +17,7 @@
 				{% for marker in result.get("marker_list", []) %}
 				<li marker-id="{{ marker.get("id", "0") }}">
 					<div class="user_info">
+						<img src="http://image.lanrenzhoumo.com/leo/img/20151221231143_0423c2a6244451060401d2ccf2e4d143.png" class="christmas-cap" />
 						<a href="/user/user?user_id={{marker.get("user_id")}}"><img src="{{ marker.get("avatar_url", "http://image.lanrenzhoumo.com/leo/img/20151011163317_07b20ebf75bf2e730f79621d5afd8afd.jpg") }}@50w_50h_100Q.jpg" alt="user_avatar" /></a>
 						<div>
 							<span>{{ marker.get("nickname", "")}}</span>
@@ -190,6 +191,7 @@
 			{{!#.}}
 			<li marker-id="{{!id}}">
 				<div class="user_info">
+					<img src="http://image.lanrenzhoumo.com/leo/img/20151221231143_0423c2a6244451060401d2ccf2e4d143.png" class="christmas-cap" />
 					<a href="/user/user?user_id={{!user_id}}"><img src="{{!avatar_url}}@50w_50h_100Q.jpg" alt="user_avatar" /></a>
 					<div>
 						<span>{{!nickname}}</span>
