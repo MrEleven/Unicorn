@@ -84,4 +84,18 @@ class UnfinishHandler(APIHandler):
         result = todo_ctrl.unfinish_todo(todo_id)
         return self.render_json(result)
         
-            
+class RecentHandler(APIHandler):
+    """获取最近完成的TODO列表"""
+    def get(self):
+        user_id = self.get_argument("user_id", 0)
+        if not user_id:
+            raise Exception("todo/recent msg: user_id cant be %s" % user_id)
+        last_time = self.get_argument("last_time", "")
+        result = todo_ctrl.recent_finish_todo(user_id, last_time)
+        return self.render_json(result)
+
+class postcard(APIHandler):
+    """TODO完成广播"""
+    def get(self):
+        result = todo_ctrl.postcard()
+        return self.render_json(result)
