@@ -5,8 +5,8 @@
 # Email : julycw@gmail.com
 
 from page.pagebase import PageHandler
-import module.user_ctrl as user_ctrl
-import module.marker_ctrl as marker_ctrl
+import service.user_service as user_service
+import service.marker_service as marker_service
 import service.todo_service as todo_service
 import random
 import re
@@ -30,7 +30,7 @@ class LoginHandler(PageHandler):
             next_url = "/marker/list"
         if phone == "" or password == "":
             return self.redirect("/user/login")
-        user_id = user_ctrl.checkout_login(phone, password)
+        user_id = user_service.checkout_login(phone, password)
         if user_id:
             self.set_user_id(str(user_id))
             return self.redirect(next_url)
@@ -54,7 +54,7 @@ class RegistHandler(PageHandler):
             result={"phone": phone, "email": email, "nickname": nickname, "msg": msg}
             return self.render("regist.html", result=result)
         avatar_url = self.gen_avatar_url()
-        user_id, msg = user_ctrl.add_user(phone, email, nickname, avatar_url, password)
+        user_id, msg = user_service.add_user(phone, email, nickname, avatar_url, password)
         if not user_id:
             result={"phone": phone, "email": email, "nickname": nickname, "msg": msg}
             return self.render("regist.html", result=result)
@@ -105,11 +105,11 @@ class UserHandler(PageHandler):
         user_id = self.get_argument("user_id", 0)
         if not user_id:
             self.finish()
-        user_info = user_ctrl.get_user(user_id)
+        user_info = user_service.get_user(user_id)
         # 签到列表
-        marker_list = marker_ctrl.get_marker_list(last_id=0, page_size=30, user_id=user_id)
+        marker_list = marker_service.get_marker_list(last_id=0, page_size=30, user_id=user_id)
         current_user_id = self.get_current_user()
-        current_user_info = user_ctrl.get_user(current_user_id)
+        current_user_info = user_service.get_user(current_user_id)
         return self.render("user.html", result={"user_id": user_id, "user_info": user_info, "marker_list": marker_list, "current_user_id": current_user_id, "current_user_info": current_user_info})
 
 class RecentHandler(PageHandler):
@@ -118,7 +118,7 @@ class RecentHandler(PageHandler):
         user_id = self.get_argument("user_id", 0)
         if not user_id:
             self.finish()
-        user_info = user_ctrl.get_user(user_id)
+        user_info = user_service.get_user(user_id)
         timeline_info = todo_service.recent_finish_todo(user_id)
         return self.render("recent.html", result={"user_id": user_id, "user_info": user_info, "timeline_info": timeline_info})
         

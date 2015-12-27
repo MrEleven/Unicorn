@@ -4,9 +4,6 @@
 # Author: Master Yumi
 # Email : yumi@meishixing.com
 
-from config import db
-from datetime import datetime
-import todo_status
 import module.todo_ctrl as todo_ctrl
 
 def add_todo(user_id, goal_id, name="", note=""):

@@ -19,8 +19,8 @@
     </div>
     <div class="user-page-menu-wrap">
         <ul class="user-page-menu clearfix">
-            <li><a>签到</a></li>
-            <li><a>在干啥</a></li>
+            <li><a href="/user/user?user_id={{ result.get("user_id", 0) }}">签到</a></li>
+            <li><a href="/user/recent?user_id={{ result.get("user_id", 0) }}">在干啥</a></li>
         </ul>
     </div>
     <div class="user-info-rwrap">

@@ -6,7 +6,7 @@
 
 import tornado.web
 from api.apibase import APIHandler
-import module.marker_ctrl as marker_ctrl
+import service.marker_service as marker_service
 
 
 class ListHandler(APIHandler):
@@ -15,7 +15,7 @@ class ListHandler(APIHandler):
         last_id = self.get_argument("last_id", 0)
         user_id = self.get_argument("user_id", 0)
         page_size = self.get_argument("page_size", 30) # 先不做分页
-        marker_list = marker_ctrl.get_marker_list(int(last_id), int(page_size), int(user_id))
+        marker_list = marker_service.get_marker_list(int(last_id), int(page_size), int(user_id))
         return self.render_json(marker_list)
 
 
@@ -32,5 +32,5 @@ class AddHandler(APIHandler):
         if not (title and marker):
             return self.render_string("标题和内容不能为空")
         user_id = self.get_current_user()
-        marker_ctrl.add_marker(title, marker, user_id)
+        marker_service.add_marker(title, marker, user_id)
         return self.redirect("/marker/list")

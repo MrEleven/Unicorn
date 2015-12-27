@@ -4,47 +4,27 @@
 # Author: Master Yumi
 # Email : yumi@meishixing.com
 
-from config import db
-from datetime import datetime
+import module.marker_ctrl as marker_ctrl
 
 def check_user_marked(user_id, start_time):
     """检查用户是否已经签到过"""
-    sql = "select create_time from marker where user_id = %s and create_time > %s;"
-    return db.query(sql, user_id, start_time)
+    return marker_ctrl.check_user_marked(user_id, start_time)
 
 def get_marker_list(last_id=0, page_size=10, user_id=0):
-    if not last_id:
-        last_id = 99999999
-    sql = "select marker.id, title, nickname, avatar_url, marker, create_time, user_id, comment_count from marker, user where user.id = marker.user_id and marker.id < %s"
-    if user_id:
-        sql = sql + " and user.id = %s " + " order by marker.id desc limit %s;"
-        return db.query(sql, last_id, user_id, page_size)
-    else:
-        sql = sql + " order by marker.id desc limit %s;"
-        return db.query(sql, last_id, page_size)
+    return marker_ctrl.get_marker_list(last_id, page_size, user_id)
 
 def add_marker(title, marker, user_id):
     """增加新的签到"""
-    create_time = datetime.now()
-    sql = "insert into marker (title, marker, user_id, create_time) values (%s, %s, %s, %s);"
-    return db.execute(sql, title, marker, user_id, create_time)
+    return marker_ctrl.add_marker(title, marker, user_id)
 
 def inc_comment_count(marker_id):
     """增加评论信息"""
-    sql = "update marker set comment_count = comment_count + 1 where id = %s;"
-    return db.execute(sql, marker_id)
+    return marker_ctrl.inc_comment_count(marker_id)
 
 def min_comment_count(marker_id):
     """减少评论数量"""
-    sql = "update marker set comment_count = comment_count - 1 where id = %s;"
-    return db.execute(sql, marker_id)
+    return marker_ctrl.min_comment_count(marker_id)
 
 def get_marker_user(marker_id):
     """获取签到的用户Id"""
-    if not marker_id:
-        return 0
-    sql = "select user_id from marker where id = %s;"
-    result = db.query(sql, marker_id)
-    if result:
-        return result[0]["user_id"]
-    return 0
+    return marker_ctrl.get_marker_user(marker_id)
