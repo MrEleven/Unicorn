@@ -25,9 +25,9 @@ def gen_background(ismobile=False):
         "http://image.lanrenzhoumo.com/leo/img/20151106125030_38e1553fc77a75f7a5fba3ca57588690.jpg",
         "http://image.lanrenzhoumo.com/leo/img/20151106125404_ac5d95d3e4c2874b132190e710c70d6a.jpg"
     ]
-    if ismobile:
-        return ""
-    return "http://image.lanrenzhoumo.com/leo/img/20151223225125_3e87ea432f1cc057416fb4341b5d720e.jpg"
+    # if ismobile:
+    #     return ""
+    # return "http://image.lanrenzhoumo.com/leo/img/20151223225125_3e87ea432f1cc057416fb4341b5d720e.jpg"
     if ismobile:
         background_list = mobile_bg_list
     index = random.randint(0, len(background_list) - 1)
