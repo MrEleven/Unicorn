@@ -61,7 +61,7 @@ def recent_finish_todo(user_id, last_finish_time):
     """最近完成的todo列表"""
     if not last_finish_time:
         last_finish_time = "9999-11-11 11:11:11"
-    sql = "select id, name, goal_id, status, create_time, note from todo where user_id = %s and status = %s and close_time < %s order by close_time desc;"
+    sql = "select id, name, goal_id, status, create_time, note, close_time from todo where user_id = %s and status = %s and close_time < %s order by close_time desc;"
     return db.query(sql, user_id, todo_status.FINISHED, last_finish_time)
 
 def postcard():
