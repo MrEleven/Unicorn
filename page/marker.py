@@ -6,8 +6,8 @@
 
 import tornado.web
 from page.pagebase import PageHandler
-import module.user_ctrl as user_ctrl
-import module.marker_ctrl as marker_ctrl
+import service.user_service as user_service
+import service.marker_service as marker_service
 
 class TestHandler(PageHandler):
     def get(self):
@@ -17,9 +17,9 @@ class ListHandler(PageHandler):
     """签到列表"""
     def get(self):
         page_size = self.get_argument("page_size", 30) # 先不做分页
-        marker_list = marker_ctrl.get_marker_list(last_id=0, page_size=int(page_size))
+        marker_list = marker_service.get_marker_list(last_id=0, page_size=int(page_size))
         current_user_id = self.get_current_user()
-        current_user_info = user_ctrl.get_user(current_user_id)
+        current_user_info = user_service.get_user(current_user_id)
         self.render("marker_list.html", result={
             "marker_list": marker_list, 
             "current_user_id": current_user_id, 
@@ -39,5 +39,5 @@ class AddHandler(PageHandler):
         if not (title and marker):
             return self.render_string("标题和内容不能为空")
         user_id = self.get_current_user()
-        marker_ctrl.add_marker(title, marker, user_id)
+        marker_service.add_marker(title, marker, user_id)
         return self.redirect("/marker/list")

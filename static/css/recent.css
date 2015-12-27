@@ -1,0 +1,51 @@
+.timeline-wrap {
+    /*border: 1px solid black;*/
+    margin: 0 auto;
+    width: 1000px;
+    clear: both;
+}
+.timeline {
+    /*border: 1px solid black;*/
+    position: relative;
+    min-height: 200px;
+    font-size: 16px;
+}
+.timeline > li {
+    min-height: 100px;
+}
+.time-cycle {
+    background: white;
+    border-radius: 50%;
+    width: 80px;
+    height: 80px;
+    line-height: 80px;
+    float: left;
+    vertical-align: middle;
+    box-sizing: border-box;
+    text-align: center;
+    box-shadow: 0 0 0 10px rgb(0, 0, 0);
+    margin-bottom: 15px;
+    margin-top: 10px;
+    margin-left: 60px;
+    margin-right: 20px;
+}
+.timeline:before {
+    content: " ";
+    background: black;
+    position: absolute;
+    top: 0px;
+    bottom: 0px;
+    width: 10px;
+    left: 95px;
+    z-index: -1;
+}
+.timeline-todo-list-wrap {
+    overflow: auto;
+    padding: 10px;
+    padding-left: 20px;
+    border-top: 1px solid black;
+}
+.timeline-todo-list-wrap li {
+    font-size: 18px;
+    line-height: 30px;
+}
