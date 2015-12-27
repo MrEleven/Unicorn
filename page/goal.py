@@ -6,7 +6,7 @@
 
 from page.pagebase import PageHandler
 import tornado.web
-import module.goal_ctrl as goal_ctrl
+import service.goal_service as goal_service
 
 
 class AddHandler(PageHandler):
@@ -17,7 +17,7 @@ class AddHandler(PageHandler):
         name = self.get_argument("name", "")
         image = self.get_argument("image", "")
         description = self.get_argument("description", "")
-        goal_id = goal_ctrl.add_goal(user_id, name, image, description)
+        goal_id = goal_service.add_goal(user_id, name, image, description)
         return self.write(str(goal_id))
 
 class ListHandler(PageHandler):
@@ -31,7 +31,7 @@ class ListHandler(PageHandler):
             goal_list = []
         else:
             user_id = int(user_id)
-            goal_list = goal_ctrl.get_goal_list(user_id)
+            goal_list = goal_service.get_goal_list(user_id)
         return self.render("goal_list.html", result={"goal_list": goal_list})
 
 class UpdateHandler(PageHandler):
@@ -42,10 +42,10 @@ class UpdateHandler(PageHandler):
         if not goal_id:
             raise Exception("goal/update msg: goal_id cant be %s" % goal_id)
         user_id = self.get_current_user()
-        if not goal_ctrl.check_owner(user_id, int(goal_id)):
+        if not goal_service.check_owner(user_id, int(goal_id)):
             raise Exception("user_id: %s want to update goal(id: %s) raise no permission Exception")
         name = self.get_argument("name")
         image = self.get_argument("image")
         description = self.get_argument("description")
-        rst = goal_ctrl.update_goal(int(goal_id), name, image, description)
+        rst = goal_service.update_goal(int(goal_id), name, image, description)
         return self.write(str(rst))

@@ -4,9 +4,8 @@
 # Author: Master Yumi
 # Email : yumi@meishixing.com
 
-import tornado.web
 from api.apibase import APIHandler
-import module.image_ctrl as image_ctrl
+import service.image_service as image_service
 
 
 class UploadHandler(APIHandler):
@@ -16,6 +15,6 @@ class UploadHandler(APIHandler):
         file = self.request.files.get("file", [])
         if not file:
             return self.render_json("")
-        image_url = image_ctrl.upload_pic(file)
+        image_url = image_service.upload_pic(file)
         return self.render_json(image_url)
         

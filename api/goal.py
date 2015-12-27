@@ -6,7 +6,7 @@
 
 from api.apibase import APIHandler
 import tornado.web
-import module.goal_ctrl as goal_ctrl
+import service.goal_service as goal_service
 
 
 class AddHandler(APIHandler):
@@ -17,7 +17,7 @@ class AddHandler(APIHandler):
         name = self.get_argument("name", "")
         image = self.get_argument("image", "")
         description = self.get_argument("description", "")
-        goal_id = goal_ctrl.add_goal(user_id, name, image, description)
+        goal_id = goal_service.add_goal(user_id, name, image, description)
         return self.render_json(goal_id)
 
 
@@ -31,7 +31,7 @@ class ListHandler(APIHandler):
             goal_list = []
         else:
             user_id = int(user_id)
-            goal_list = goal_ctrl.get_goal_list(user_id)
+            goal_list = goal_service.get_goal_list(user_id)
         return self.render_json(goal_list)
 
 
@@ -43,12 +43,12 @@ class UpdateHandler(APIHandler):
         if not goal_id:
             raise Exception("goal/update msg: goal_id cant be %s" % goal_id)
         user_id = self.get_current_user()
-        if not goal_ctrl.check_owner(user_id, int(goal_id)):
+        if not goal_service.check_owner(user_id, int(goal_id)):
             raise Exception("user_id: %s want to update goal(id: %s) raise no permission Exception")
         name = self.get_argument("name")
         image = self.get_argument("image")
         description = self.get_argument("description")
-        rst = goal_ctrl.update_goal(int(goal_id), name, image, description)
+        rst = goal_service.update_goal(int(goal_id), name, image, description)
         return self.render_json(str(rst))
 
 
@@ -60,7 +60,7 @@ class DeleteHandler(APIHandler):
         if not goal_id:
             raise Exception("goal/delete msg: goal_id cant be %s" % goal_id)
         user_id = self.get_current_user()
-        if not goal_ctrl.check_owner(user_id, int(goal_id)):
+        if not goal_service.check_owner(user_id, int(goal_id)):
             raise Exception("user_id: %s want to delete goal(id: %s) raise no permission Exception")
-        rst = goal_ctrl.delete_goal(goal_id)
+        rst = goal_service.delete_goal(goal_id)
         return self.render_json(rst)

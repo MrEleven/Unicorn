@@ -1,5 +1,9 @@
 # unicorn change log
 
+# 2015-12-27 1.3.0 MrEleven
+
+* 增加最近在干什么的页面
+
 # 2015-12-23 1.2.3 MrEleven
 
 * 来个圣诞节主题吧
