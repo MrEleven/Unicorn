@@ -63,7 +63,7 @@ class RegistHandler(PageHandler):
     def _validate_params(self, phone, email, nickname, password):
         """验证参数的有效性"""
         # check phone
-        pattern = re.compile("^[1][358][0-9]{9}$", re.IGNORECASE)
+        pattern = re.compile("^[1][1234567890][0-9]{9}$", re.IGNORECASE)
         if not pattern.match(phone):
             return False, "手机号填写错误"
         # check email

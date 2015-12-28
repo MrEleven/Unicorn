@@ -1,5 +1,9 @@
 # unicorn change log
 
+# 2015-12-28 1.3.1 MrEleven
+
+* 注册修改手机验证规则
+
 # 2015-12-27 1.3.0 MrEleven
 
 * 增加最近在干什么的页面
