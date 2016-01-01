@@ -134,7 +134,11 @@
 .todo-wrap:hover .todo-ops, .todo-wrap:active .todo-ops {
     visibility: visible;
 }
-.add-todo-wrap .name-input {
+.add-todo-input-wrap {
+    position: relative;
+    background: white;
+}
+.add-todo-input-wrap .name-input {
     width: 830px;
     height: 40px;
     line-height: 45px;
@@ -142,7 +146,7 @@
     padding-left: 10px;
     padding-right: 10px;
 }
-.add-todo-wrap .name-input:focus {
+.add-todo-input-wrap .name-input:focus {
     border: 1px solid #F76333;
     background: #FFEDE7;
 }
@@ -309,4 +313,15 @@
 .unfinish-icon {
     background-image: url("http://image.lanrenzhoumo.com/leo/img/20151115163825_eae0cd301c604734407ff5f7fb6d5bce.png");
     background-size: cover;
+}
+.add-todo-wrap {
+    position: relative;
+    min-height: 45px;
+}
+.add-todo-button-wrap {
+    position: absolute;
+    line-height: 45px;
+    font-size: 14px;
+    color: #999;
+    text-indent: 30px;
 }
