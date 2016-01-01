@@ -2,14 +2,14 @@
  * Created by eleven on 15-11-1.
  */
 ReactDOM.render(
-    React.createElement("h1", null, "Hello, world!"),
+    <h1>Hello, world!</h1>,
     document.getElementById("main")
 );
 
 var EMPTYGOAL = {"id": 0, "name": "", "description": "", "image": "", "create_time": "", "status": 1};
 var EMPTYTODO = {"id": 0, "goal_id": 0, "name": "", "note": "", "create_time": "", "status": 1};
 
-var TodoEditModal = React.createClass({displayName: "TodoEditModal",
+var TodoEditModal = React.createClass({
     getInitialState: function() {
         return {data : EMPTYTODO};
     },
@@ -46,24 +46,24 @@ var TodoEditModal = React.createClass({displayName: "TodoEditModal",
     },
     render: function() {
         return (
-            React.createElement("div", {id: "todo-edit-modal", className: this.state.data.id ? "modal": "empty"}, 
-                React.createElement("section", {id: "todo-edit-wrap", className: "todo-edit-wrap"}, 
-                    React.createElement("span", null, "名称"), 
-                    React.createElement("div", null, React.createElement("input", {className: "name-input", ref: "name", type: "text", name: "name", onChange: this.handleChange, value: this.state.data.name})), 
-                    React.createElement("span", null, "备注信息"), 
-                    React.createElement("div", null, React.createElement("textarea", {name: "note", className: "note-input", ref: "note", onChange: this.handleChange, value: this.state.data.note, placeholder: "没什么重要东西需要备注的就不要写了"})), 
-                    React.createElement("div", {className: "ops"}, 
-                        React.createElement("button", {id: "todo-edit-save-btn", onClick: this.editClick}, "保存"), 
-                        React.createElement("button", {id: "todo-edit-cancel-btn", onClick: this.cancelClick}, "取消")
-                    )
-                )
-            )
+            <div id="todo-edit-modal" className={this.state.data.id ? "modal": "empty"}>
+                <section id="todo-edit-wrap" className="todo-edit-wrap">
+                    <span>名称</span>
+                    <div><input className="name-input" ref="name" type="text" name="name" onChange={this.handleChange} value={this.state.data.name} /></div>
+                    <span>备注信息</span>
+                    <div><textarea name="note" className="note-input" ref="note" onChange={this.handleChange} value={this.state.data.note} placeholder="没什么重要东西需要备注的就不要写了"></textarea></div>
+                    <div className="ops">
+                        <button id="todo-edit-save-btn" onClick={this.editClick} >保存</button>
+                        <button id="todo-edit-cancel-btn" onClick={this.cancelClick}>取消</button>
+                    </div>
+                </section>
+            </div>
         );
     }
 });
 
 
-var GoalEditModal = React.createClass({displayName: "GoalEditModal",
+var GoalEditModal = React.createClass({
     getInitialState: function() {
         return {data: EMPTYGOAL};
     },
@@ -101,30 +101,30 @@ var GoalEditModal = React.createClass({displayName: "GoalEditModal",
     },
     render: function() {
         return (
-            React.createElement("div", {id: "goal-edit-modal", className: this.state.data.id? "modal": "empty"}, 
-                React.createElement("section", {id: "goal-edit-wrap", className: "goal-edit-wrap", "goal-id": "0"}, 
-                    React.createElement("span", null, "图片"), 
-                    React.createElement("div", {className: "album-wrap"}, 
-                        React.createElement("img", {className: "album", id: "goal-edit-wrap-album", ref: "album", src: this.state.data.image, alt: "avatar image"})
-                    ), 
-                    React.createElement("span", null, "目标名称"), 
-                    React.createElement("div", null, 
-                        React.createElement("input", {className: "name-input", ref: "name", type: "text", name: "name", onChange: this.handleChange, value: this.state.data.name})
-                    ), 
-                    React.createElement("span", null, "描述"), 
-                    React.createElement("div", null, React.createElement("textarea", {name: "desc", className: "desc-input", ref: "description", onChange: this.handleChange, value: this.state.data.description})), 
-                    React.createElement("div", {className: "ops"}, 
-                        React.createElement("button", {id: "goal-edit-save-btn", onClick:  this.editClick}, "保存"), 
-                        React.createElement("button", {id: "goal-edit-cancel-btn", onClick: this.props.hideCallback}, "取消")
-                    )
-                )
-            )
+            <div id="goal-edit-modal" className={this.state.data.id? "modal": "empty"}>
+                <section id="goal-edit-wrap" className="goal-edit-wrap" goal-id="0">
+                    <span>图片</span>
+                    <div className="album-wrap">
+                        <img className="album" id="goal-edit-wrap-album" ref="album" src={this.state.data.image} alt="avatar image" />
+                    </div>
+                    <span>目标名称</span>
+                    <div>
+                        <input className="name-input" ref="name" type="text" name="name" onChange={this.handleChange} value={this.state.data.name} />
+                    </div>
+                    <span>描述</span>
+                    <div><textarea name="desc" className="desc-input" ref="description" onChange={this.handleChange} value={this.state.data.description}></textarea></div>
+                    <div className="ops">
+                        <button id="goal-edit-save-btn" onClick={ this.editClick }>保存</button>
+                        <button id="goal-edit-cancel-btn" onClick={this.props.hideCallback}>取消</button>
+                    </div>
+                </section>
+            </div>
         );
     }
 });
 
 
-var GoalAddModal = React.createClass({displayName: "GoalAddModal",
+var GoalAddModal = React.createClass({
     getInitialState: function() {
         return {visiablity: false};
     },
@@ -161,29 +161,29 @@ var GoalAddModal = React.createClass({displayName: "GoalAddModal",
     },
     render: function() {
         return (
-            React.createElement("div", {id: "goal-add-modal", className: this.state.visiablity? "modal": "empty"}, 
-                React.createElement("section", {id: "goal-add-wrap", className: "goal-edit-wrap"}, 
-                    React.createElement("span", null, "图片"), 
-                    React.createElement("div", {className: "album-wrap"}, 
-                        React.createElement("img", {className: "album", ref: "album", id: "add-goal-modal-album", src: "http://image.lanrenzhoumo.com/leo/img/20151011162452_2f06eaa77fef3774de0e4f736bcc310b.jpg", alt: "avatar image"})
-                    ), 
-                    React.createElement("span", null, "目标名称"), 
-                    React.createElement("div", null, 
-                        React.createElement("input", {className: "name-input", type: "text", name: "name", ref: "name"})
-                    ), 
-                    React.createElement("span", null, "描述"), 
-                    React.createElement("div", null, React.createElement("textarea", {name: "desc", className: "desc-input", ref: "desc"})), 
-                    React.createElement("div", {className: "ops"}, 
-                        React.createElement("button", {id: "goal-add-save-btn", onClick:  this.addClick}, "添加"), 
-                        React.createElement("button", {id: "goal-add-cancel-btn", onClick:  this.cancelClick}, "取消")
-                    )
-                )
-            )
+            <div id="goal-add-modal" className={this.state.visiablity? "modal": "empty"}>
+                <section id="goal-add-wrap" className="goal-edit-wrap">
+                    <span>图片</span>
+                    <div className="album-wrap">
+                        <img className="album" ref="album" id="add-goal-modal-album" src="http://image.lanrenzhoumo.com/leo/img/20151011162452_2f06eaa77fef3774de0e4f736bcc310b.jpg" alt="avatar image" />
+                    </div>
+                    <span>目标名称</span>
+                    <div>
+                        <input className="name-input" type="text" name="name" ref="name" />
+                    </div>
+                    <span>描述</span>
+                    <div><textarea name="desc" className="desc-input" ref="desc"></textarea></div>
+                    <div className="ops">
+                        <button id="goal-add-save-btn" onClick={ this.addClick }>添加</button>
+                        <button id="goal-add-cancel-btn" onClick={ this.cancelClick }>取消</button>
+                    </div>
+                </section>
+            </div>
         );
     }
 });
 
-var AddTodoWrap = React.createClass({displayName: "AddTodoWrap",
+var AddTodoWrap = React.createClass({
     getInitialState: function() {
         return {visiablity: false};
     },
@@ -210,14 +210,14 @@ var AddTodoWrap = React.createClass({displayName: "AddTodoWrap",
     },
     render: function() {
         return (
-            React.createElement("div", {className: this.state.visiablity ? "add-todo-input-wrap": "empty"}, 
-                React.createElement("input", {type: "text", ref: (ref) => this.nameInput = ref, onBlur:  this.hiddenWrap, onKeyDown:  this.enter, className: "name-input", placeholder: "按Enter键盘完成添加"})
-            )
+            <div className={this.state.visiablity ? "add-todo-input-wrap": "empty"}>
+                <input type="text" ref={(ref) => this.nameInput = ref} onBlur={ this.hiddenWrap } onKeyDown={ this.enter } className="name-input" placeholder="按Enter键盘完成添加" />
+            </div>
         )
     }
 });
 
-var Todo = React.createClass({displayName: "Todo",
+var Todo = React.createClass({
     editClick: function(event) {
         this.props.onTodoEditClick(this.props.data);
     },
@@ -255,49 +255,49 @@ var Todo = React.createClass({displayName: "Todo",
     },
     render: function() {
         return (
-            React.createElement("li", {className: "todo-wrap"}, 
-                React.createElement("div", {className: "finish " + (this.props.data.status == 1? "unfinish-icon" : "finished-icon"), onClick: this.finishClick}), 
-                React.createElement("span", {className: "todo-name"}, this.props.data.name), 
-                React.createElement("div", {className: "todo-ops"}, React.createElement("a", {className: "edit", onClick: this.editClick}, "编辑"), " | ", React.createElement("a", {className: "delete", onClick: this.deleteClick}, "删除"))
-            )
+            <li className="todo-wrap">
+                <div className={"finish " + (this.props.data.status == 1? "unfinish-icon" : "finished-icon") } onClick={this.finishClick}></div>
+                <span className="todo-name">{this.props.data.name}</span>
+                <div className="todo-ops"><a className="edit" onClick={this.editClick }>编辑</a> | <a className="delete" onClick={this.deleteClick}>删除</a></div>
+            </li>
         );
     }
 });
 
 
-var TodoList = React.createClass({displayName: "TodoList",
+var TodoList = React.createClass({
     render: function() {
         var onTodoEditClick = this.props.onTodoEditClick;
         var todo_list = this.props.data.map(function(todo) {
-            return React.createElement(Todo, {key: todo.id, data: todo, loadTodoList: this.props.loadTodoList, onTodoEditClick: onTodoEditClick})
+            return <Todo key={todo.id} data={todo} loadTodoList={this.props.loadTodoList} onTodoEditClick={onTodoEditClick} />
         }.bind(this));
         return (
-            React.createElement("ul", {className: "todo-list-ul"}, 
-                todo_list
-            )
+            <ul className="todo-list-ul">
+                {todo_list}
+            </ul>
         );
     }
 });
 
 
-var GoalInfo = React.createClass({displayName: "GoalInfo",
+var GoalInfo = React.createClass({
     render: function() {
         return (
-            React.createElement("div", {className: "goal-info"}, 
-                React.createElement("div", {className: "goal-icon-wrap"}, 
-                    React.createElement("img", {className: "goal-icon", src: this.props.data.image, alt: "goal-icon"})
-                ), 
-                React.createElement("div", {className: "goal-info-rwrap"}, 
-                    React.createElement("div", {className: "goal-name"}, this.props.data.name), 
-                    React.createElement("p", {className: "goal-desc"}, this.props.data.description)
-                )
-            )
+            <div className="goal-info">
+                <div className="goal-icon-wrap">
+                    <img className="goal-icon" src={this.props.data.image} alt="goal-icon" />
+                </div>
+                <div className="goal-info-rwrap">
+                    <div className="goal-name">{this.props.data.name}</div>
+                    <p className="goal-desc">{this.props.data.description}</p>
+                </div>
+            </div>
         );
     }
 });
 
 
-var GoalWrap = React.createClass({displayName: "GoalWrap",
+var GoalWrap = React.createClass({
     getInitialState: function() {
         return {data: []};
     },
@@ -354,57 +354,57 @@ var GoalWrap = React.createClass({displayName: "GoalWrap",
     },
     render: function() {
         return (
-            React.createElement("li", {id: "goal-" + this.props.data.id, className: "goal-wrap", "goal-id": this.props.data.id}, 
-                React.createElement("div", {className: "ops"}, 
-                    React.createElement("a", {className: "add-todo", onClick:  this.showAddTodoWrap}, "增加代办事项"), " ｜ ", React.createElement("a", {className: "edit", id: "123", onClick: this.editClick}, "编辑"), " | ", React.createElement("a", {className: "delete", onClick: this.deleteClick}, "删除")
-                ), 
-                React.createElement(GoalInfo, {data: this.props.data}), 
-                React.createElement(TodoList, {data: this.state.data || [], loadTodoList: this.loadTodoList, onTodoEditClick: this.props.onTodoEditClick}), 
-                React.createElement("div", {className: "add-todo-wrap"}, 
-                    React.createElement("div", {className: "add-todo-button-wrap", onClick:  this.showAddTodoWrap}, "点击增加待办事项"), 
-                    React.createElement(AddTodoWrap, {ref: "AddTodoWrap", goal_id: this.props.data.id, onEnter: this.addTodoEnter})
-                )
-            )
+            <li id={"goal-" + this.props.data.id} className="goal-wrap" goal-id={this.props.data.id}>
+                <div className="ops">
+                    <a className="add-todo" onClick={ this.showAddTodoWrap }>增加代办事项</a> ｜ <a className="edit" id="123" onClick={this.editClick}>编辑</a> | <a className="delete" onClick={this.deleteClick}>删除</a>
+                </div>
+                <GoalInfo data={this.props.data} />
+                <TodoList data={this.state.data || []} loadTodoList={this.loadTodoList} onTodoEditClick={this.props.onTodoEditClick} />
+                <div className="add-todo-wrap">
+                    <div className="add-todo-button-wrap" onClick={ this.showAddTodoWrap }>点击增加待办事项</div>
+                    <AddTodoWrap ref="AddTodoWrap" goal_id={this.props.data.id} onEnter={this.addTodoEnter} />
+                </div>
+            </li>
         );
     }
 });
 
 
-var GoalList = React.createClass({displayName: "GoalList",
+var GoalList = React.createClass({
     render: function() {
         var goal_list = this.props.data.map(function (goal) {
             return (
-                React.createElement(GoalWrap, {key: goal.id, loadGoalListFromServer: this.props.loadGoalListFromServer, data: goal, onGoalEditClick:  this.props.onGoalEditClick, onTodoEditClick:  this.props.onTodoEditClick})
+                <GoalWrap key={goal.id} loadGoalListFromServer={this.props.loadGoalListFromServer} data={goal} onGoalEditClick={ this.props.onGoalEditClick} onTodoEditClick={ this.props.onTodoEditClick} />
             )
         }.bind(this));
         return (
-            React.createElement("section", {id: "goal-list-wrap"}, 
-                React.createElement("ul", {id: "goal-list-ul"}, 
-                    goal_list
-                )
-            )
+            <section id="goal-list-wrap">
+                <ul id="goal-list-ul">
+                    {goal_list}
+                </ul>
+            </section>
         );
     }
 });
 
-var GoalListNav = React.createClass({displayName: "GoalListNav",
+var GoalListNav = React.createClass({
     render: function() {
         var goal_list = this.props.data.map(function (goal) {
             return (
-                React.createElement("li", {key: goal.id}, React.createElement("a", {"data-goal-id": goal.id}, goal.name))
+                <li key={goal.id}><a data-goal-id={goal.id}>{goal.name}</a></li>
             );
         }.bind(this));
-        return (React.createElement("nav", {id: "goal-nav"}, 
-            React.createElement("ul", null, 
-                 goal_list 
-            ), 
-            React.createElement("div", null, React.createElement("a", {id: "add-goal", onClick: this.props.onAddGoalClick}, "增加目标"))
-        ))
+        return (<nav id="goal-nav">
+            <ul>
+                { goal_list }
+            </ul>
+            <div><a id="add-goal" onClick={this.props.onAddGoalClick}>增加目标</a></div>
+        </nav>)
     }
 });
 
 
-var GoalListWrap = React.createClass({displayName: "GoalListWrap",
+var GoalListWrap = React.createClass({
     getInitialState: function() {
         return {data: []};
     },
@@ -438,13 +438,13 @@ var GoalListWrap = React.createClass({displayName: "GoalListWrap",
         this.loadGoalListFromServer();
     },
     render : function() {
-        return (React.createElement("div", null, 
-            React.createElement(GoalListNav, {data: this.state.data, onAddGoalClick: this.showAddGoalModal}), 
-            React.createElement(GoalList, {data: this.state.data, loadGoalListFromServer: this.loadGoalListFromServer, onGoalEditClick: this.showGoalEditModal, onTodoEditClick: this.showTodoEditModal}), 
-            React.createElement(GoalAddModal, {ref: "goalAddModal", addCallback:  this.loadGoalListFromServer}), 
-            React.createElement(GoalEditModal, {ref: "goalEditModal", hideCallback:  this.hiddenGoalEditModal, editCallback:  this.loadGoalListFromServer}), 
-            React.createElement(TodoEditModal, {ref: "todoEditModal", editCallback: this.loadGoalListFromServer})
-        ));
+        return (<div>
+            <GoalListNav data={this.state.data} onAddGoalClick={this.showAddGoalModal} />
+            <GoalList data={this.state.data} loadGoalListFromServer={this.loadGoalListFromServer} onGoalEditClick={this.showGoalEditModal} onTodoEditClick={this.showTodoEditModal} />
+            <GoalAddModal ref="goalAddModal" addCallback={ this.loadGoalListFromServer } />
+            <GoalEditModal ref="goalEditModal" hideCallback={ this.hiddenGoalEditModal } editCallback={ this.loadGoalListFromServer } />
+            <TodoEditModal ref="todoEditModal" editCallback={this.loadGoalListFromServer} />
+        </div>);
     }
 });
 
@@ -472,7 +472,7 @@ $(function () {
     });
     var goal_list = [];
     ReactDOM.render(
-        React.createElement(GoalListWrap, {data: goal_list}),
+        <GoalListWrap data={goal_list} />,
         document.getElementById("main")
     );
 
