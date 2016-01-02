@@ -9,5 +9,7 @@ from base import BaseHandler
 class PageHandler(BaseHandler):
     """网页的基类型"""
     def render(self, template_name, result={}):
+        if self.is_mobile():
+            template_name = "mobile/" + template_name
         super(BaseHandler, self).render(template_name, result=result)
         

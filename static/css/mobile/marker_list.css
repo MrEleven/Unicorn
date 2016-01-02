@@ -1,0 +1,253 @@
+* {
+	margin: 0px;
+	padding: 0px;
+}
+ul {
+	list-style-type: none;
+}
+.container {
+	width: 100%;
+	margin: 0 auto;
+	overflow: hidden;
+	box-sizing: border-box;
+}
+.add-marker-wrap {
+	margin-top: 10px;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+.user_info {
+	vertical-align: middle;
+	position: relative;
+}
+.markerlist-rwrap {
+	overflow: hidden;
+	background: rgba(255, 255, 255, 0.95);
+	/*margin-bottom: 10px;*/
+}
+.markerlist-big-wrap {
+	margin-top: 10px;
+	margin-bottom: 30px;
+	box-sizing: border-box;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+.markerlist-big-wrap > li {
+	/*border: 1px solid rgba(0, 0, 0, 0.8);*/
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	box-sizing: border-box;
+	padding-top: 10px;
+	margin-bottom: 10px;
+	box-shadow: rgba(0, 0, 0, 0.1980392) 0 0 0 1px;
+}
+.user_info_mask {
+	min-height: 100px;
+	width: 100px;
+	position: absolute;
+	color: rgba(0, 0, 0, 0);
+	background-color: rgba(255,255,255,0);
+	font-size: 10px;
+	line-height:100px;
+}
+.user_info_mask:hover{
+	background-color: rgba(255,255,255,0.9);
+	color: rgba(0, 0, 0, 1);
+	cursor: pointer;
+}
+.user_info img {
+	width: 30px;
+	height: 30px;
+	border-radius: 4px;
+	vertical-align: middle;
+	margin-left: 10px;
+}
+.user_info .nickname {
+	font-size: 12px;
+	line-height: 30px;
+	vertical-align: middle;
+}
+.mark_content {
+	overflow: hidden;
+}
+.title {
+	background: #eee;
+	font-size: 14px;
+	line-height: 30px;
+	text-indent: 10px;
+	font-weight: normal;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	display: none;
+}
+.mark_content .content {
+	padding: 10px;
+	font-size: 13px;
+	line-height: 20px;
+}
+.create_time {
+	float: right;
+	font-size: 12px;
+	margin-right: 10px;
+	color: rgb(170, 170, 170);
+}
+#add_marker {
+	overflow: hidden;
+}
+#add_marker input, #add_marker textarea{
+	border: 1px solid rgba(0, 0, 0, 0.3);
+}
+#add_marker input:focus, #add_marker textarea:focus{
+	border: 1px solid rgba(0, 0, 0, 0.7);
+}
+#add_marker .title {
+	line-height: 30px;
+	border-radius: 3px;
+	padding-left: 10px;
+	padding-right: 10px;
+}
+#add_marker .content {
+	margin-bottom: 5px;
+}
+#add_marker .content textarea {
+	border-radius: 3px;
+	line-height: 20px;
+	font-size: 13px;
+	padding-top: 10px;
+	padding-left: 10px;
+	padding-right: 10px;
+	min-height: 100px;
+}
+#add_marker .title, #add_marker textarea {
+	display: inline-block;
+	/*width: 793px;*/
+	/*position: relative;*/
+	width: 100%;
+	box-sizing: border-box;
+}
+#btn_add_marker {
+	border: 1px solid black;
+	background: transparent;
+	padding: 5px 10px;
+	font-size: 14px;
+	float: right;
+	cursor: pointer;
+}
+.mark_content .content {
+	white-space: pre-wrap;
+}
+.ops {
+	padding: 0 10px 0 10px;
+	height: 20px;
+	line-height: 20px;
+	margin-bottom: 10px;
+}
+.ops span {
+	font-size: 12px;
+	color: rgb(170, 170, 170);
+}
+.ops .comment-href {
+	color: black;
+}
+.comment-list-wrap {
+	display: none;
+}
+.comment-list-wrap .avatar {
+	width: 30px;
+	height: 30px;
+}
+.comment-input-wrap {
+	padding: 10px;
+}
+.avatar-wrap {
+	display: none;
+	float: left;
+	margin-right: 10px;
+}
+.comment-input {
+
+}
+.comment-textarea-wrap {
+	overflow: hidden;
+}
+.comment-input textarea {
+	line-height: 12px;
+	font-size: 12px;
+	overflow: hidden;
+	border: 1px solid orange;
+	vertical-align: middle;
+	padding: 5px 2px 0px 6px;
+	width: 100%;
+	box-sizing: border-box;
+}
+.comment-btn, .comment-btn:hover, .comment-btn:visited {
+	height: 30px;
+	width: 60px;
+	line-height: 30px;
+	display: inline-block;
+	background: orange;
+	color: white;
+	font-size: 12px;
+	text-align: center;
+	cursor: pointer;
+	text-decoration: none;
+	float: right;
+}
+.ul-comment-list li {
+	overflow: hidden;
+	padding: 10px;
+}
+.ul-comment-list .time-ops-wrap .create_time {
+	float: none;
+}
+.comment-rwrap {
+	font-size: 12px;
+	overflow: hidden;
+}
+.comment-rwrap .content {
+	line-height: 20px;
+}
+.comment-list-wrap .anonym-notice strong {
+	color: orange;
+}
+.anonym-notice {
+	color: #ccc;
+	font-size: 12px;
+	padding: 10px;
+}
+.load-more-wrap {
+	border: 1px solid black;
+	height: 40px;
+	background: #cccccc;
+	line-height: 40px;
+	text-align: center;
+}
+.load-more-wrap .load-more {
+	display: block;
+}
+.marker-comment-wrap {
+	position: relative;
+}
+.marker-comment-wrap .comment-ops {
+	visibility: hidden;
+	position: absolute;
+	right: 0px;
+	top: 0px;
+	padding: 10px;
+	font-size: 12px;
+	line-height: 20px;
+}
+.marker-comment-wrap:hover {
+	background: rgb(250, 250, 250);
+}
+.marker-comment-wrap:hover .comment-ops {
+	visibility: visible;
+}
+.comment-nickname {
+	color: orange;
+}
+.comment-nickname:visited {
+	color: orange;
+}

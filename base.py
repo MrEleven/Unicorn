@@ -6,7 +6,7 @@
 
 import tornado.web
 from datetime import datetime
-from util import to_utf8
+from util import to_utf8, check_mobile
 
 class BaseHandler(tornado.web.RequestHandler):
     """页面的基类型"""
@@ -35,3 +35,6 @@ class BaseHandler(tornado.web.RequestHandler):
         json_obj = to_json(json_obj)
         result = {"status": status, "msg": msg, "append_info": append_info, "result": json_obj}
         return self.write(result)
+
+    def is_mobile(self):
+        return check_mobile(self)

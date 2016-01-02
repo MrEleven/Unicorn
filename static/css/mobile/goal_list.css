@@ -1,0 +1,327 @@
+#goal-nav {
+    border-bottom: 1px solid black;
+    border-right: 1px solid black;
+    width: 150px;
+    position: fixed;
+    top: 100px;
+    z-index: 2;
+}
+#goal-nav ul li {
+    border-top: 1px solid black;
+    text-align: center;
+    min-height: 40px;
+    line-height: 40px;
+}
+#goal-nav ul li a {
+    display: block;
+    text-decoration: none;
+    background: orange;
+    color: white;
+    font-weight: bolder;
+}
+#goal-nav ul li a:hover, #goal-nav ul li a:active {
+    background: lightgoldenrodyellow;
+    color: #555;
+}
+#goal-nav #add-goal {
+    height: 40px;
+    line-height: 40px;
+    text-align: center;
+    border-top: 1px solid black;
+    font-weight: bolder;
+    color: white;
+    background: green;
+    display: block;
+}
+#goal-nav #add-goal:hover, #goal-nav #add-goal:active {
+    background: lightgreen;
+    text-decoration: none;
+    color: #555;
+}
+#goal-list-wrap {
+    width: 900px;
+    margin: 0 auto;
+    min-height: 300px;
+    margin-top: 20px;
+    padding: 10px;
+}
+.goal-wrap {
+    border: 1px solid black;
+    padding: 20px;
+    border-radius: 10px;
+    margin-bottom: 30px;
+    position: relative;
+}
+.goal-wrap .ops {
+    visibility: hidden;
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    color: #000;
+    font-weight: bolder;
+}
+.goal-wrap:hover .ops, .goal-wrap:active .ops {
+    visibility: visible;
+}
+.goal-info {
+    overflow: hidden;
+}
+.goal-icon-wrap {
+    float: left;
+    padding: 10px;
+}
+.goal-icon {
+    width: 100px;
+    height: 100px;
+}
+.goal-info-rwrap {
+    overflow: hidden;
+    padding-top: 30px;
+    padding-left: 20px;
+}
+.goal-info .goal-name {
+    color: orange;
+    font-size: 20px;
+    font-weight: bolder;
+    text-shadow: 0px 0px 10px #cccccc;
+}
+.goal-desc {
+    margin-top: 10px;
+    font-size: 14px;
+    line-height: 20px;
+    color: #555;
+    text-shadow: 0px 0px 2px #cccccc;
+}
+.todo-list-ul {
+    border: 1px solid #cccccc;
+    margin-top: 10px;
+    overflow: hidden;
+    min-height: 180px;
+}
+.todo-list-ul li {
+    /*border-top: 1px solid #cccccc;*/
+    min-height: 45px;
+    line-height: 45px;
+    overflow: hidden;
+}
+.todo-list-ul .todo-wrap .finish {
+    height: 20px;
+    width: 20px;
+    display: inline-block;
+    vertical-align: middle;
+    cursor: pointer;
+    margin-left: 10px;
+    margin-right: 5px;
+}
+.todo-wrap {
+    position: relative;
+}
+.todo-wrap:hover, .todo-wrap:active {
+    background: rgb(249, 249, 249);
+    width: auto;
+}
+.todo-wrap .todo-name {
+
+}
+.todo-wrap .todo-ops {
+    position: absolute;
+    display: inline-block;
+    font-size: 12px;
+    margin-right: 5px;
+    right: 0px;
+    visibility: hidden;
+}
+.todo-wrap:hover .todo-ops, .todo-wrap:active .todo-ops {
+    visibility: visible;
+}
+.add-todo-input-wrap {
+    position: relative;
+    background: white;
+}
+.add-todo-input-wrap .name-input {
+    width: 830px;
+    height: 40px;
+    line-height: 45px;
+    font-size: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+}
+.add-todo-input-wrap .name-input:focus {
+    border: 1px solid #F76333;
+    background: #FFEDE7;
+}
+
+
+
+
+
+.goal-edit-wrap {
+    width: 362px;
+    min-height: 300px;
+    background: white;
+    margin: 10px auto 0px auto;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    box-shadow: 0px 0px 10px #000;
+    padding: 10px;
+}
+.goal-edit-wrap > div {
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+.goal-edit-wrap > span {
+    font-size: 15px;
+}
+.goal-edit-wrap .name-input {
+    width: 350px;
+    height: 30px;
+    font-size: 15px;
+    padding: 0px 5px;
+}
+.goal-edit-wrap .desc-input {
+    resize: none;
+    width: 350px;
+    min-height: 200px;
+    border: 1px solid #cccccc;
+    padding: 5px;
+}
+.album-wrap .album {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.album-file-input {
+    display: none;
+}
+.goal-edit-wrap button {
+    border: 0px;
+    height: 30px;
+    width: 100px;
+    color: white;
+    font-weight: bolder;
+    line-height: 30px;
+    font-size: 14px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+#goal-edit-save-btn, #goal-add-save-btn {
+    background: #669900;
+}
+#goal-edit-save-btn:hover, #goal-add-save-btn:hover, #goal-edit-save-btn:active, #goal-add-save-btn:active {
+    background: #32CD32;
+}
+#goal-edit-cancel-btn, #goal-add-cancel-btn {
+    float: right;
+    background: #cccccc;
+}
+#goal-edit-cancel-btn:hover, #goal-add-cancel-btn:hover, #goal-edit-cancel-btn:active, #goal-add-cancel-btn:active {
+    background: #dddddd;
+}
+
+
+
+
+
+.todo-edit-wrap {
+    width: 362px;
+    min-height: 300px;
+    background: white;
+    margin: 10px auto 0px auto;
+    -webkit-border-radius: 3px;
+    -moz-border-radius: 3px;
+    border-radius: 3px;
+    box-shadow: 0px 0px 10px #000;
+    padding: 10px;
+}
+.todo-edit-wrap > div {
+    margin-bottom: 10px;
+    margin-top: 5px;
+}
+.todo-edit-wrap > span {
+    font-size: 15px;
+}
+.todo-edit-wrap .name-input {
+    width: 350px;
+    height: 30px;
+    font-size: 15px;
+    padding: 0px 5px;
+}
+.todo-edit-wrap .note-input {
+    resize: none;
+    width: 350px;
+    min-height: 200px;
+    border: 1px solid #cccccc;
+    padding: 5px;
+}
+.album-wrap .album {
+    -webkit-border-radius: 4px;
+    -moz-border-radius: 4px;
+    border-radius: 4px;
+    width: 60px;
+    height: 60px;
+    margin-bottom: 10px;
+    margin-top: 10px;
+    margin-left: 10px;
+    cursor: pointer;
+}
+.album-file-input {
+    display: none;
+}
+.todo-edit-wrap button {
+    border: 0px;
+    height: 30px;
+    width: 100px;
+    color: white;
+    font-weight: bolder;
+    line-height: 30px;
+    font-size: 14px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    border-radius: 2px;
+    cursor: pointer;
+}
+#todo-edit-save-btn {
+    background: #669900;
+}
+#todo-edit-save-btn:hover, #todo-edit-save-btn:active {
+    background: #32CD32;
+}
+#todo-edit-cancel-btn {
+    float: right;
+    background: #cccccc;
+}
+#todo-edit-cancel-btn:hover, #todo-edit-cancel-btn:active {
+    background: #dddddd;
+}
+.album-wrap .album:hover, .album-wrap .album:active {
+    border: 2px solid black;
+    box-sizing: border-box;
+}
+.finished-icon {
+    background-image: url("http://image.lanrenzhoumo.com/leo/img/20151115165242_67fdbe0046a932623abb03895fc094d7.png");
+    background-size: cover;
+}
+.unfinish-icon {
+    background-image: url("http://image.lanrenzhoumo.com/leo/img/20151115163825_eae0cd301c604734407ff5f7fb6d5bce.png");
+    background-size: cover;
+}
+.add-todo-wrap {
+    position: relative;
+    min-height: 45px;
+}
+.add-todo-button-wrap {
+    position: absolute;
+    line-height: 45px;
+    font-size: 14px;
+    color: #999;
+    text-indent: 30px;
+}

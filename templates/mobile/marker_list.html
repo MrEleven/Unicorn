@@ -2,12 +2,12 @@
 <html>
 	<head lang="en">
 		<meta http-equiv=Content-Type content="text/html;charset=utf-8">
-		<meta name="format-detection" content="telephone=no" />
 		<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+		<meta name="format-detection" content="telephone=no" />
 		<link href="http://cdn.eleven.name/icon/eleven.ico" type="image/x-icon" rel="shortcut icon" />
 		<title>签到</title>
-		<link rel="stylesheet" type="text/css" href="/static/css/main.css">
-		<link rel="stylesheet" type="text/css" href="/static/css/marker_list.css">
+		<link rel="stylesheet" type="text/css" href="/static/css/mobile/main.css">
+		<link rel="stylesheet" type="text/css" href="/static/css/mobile/marker_list.css">
 	</head>
 	<body>
 		{% module nav() %}
@@ -18,16 +18,12 @@
 				{% for marker in result.get("marker_list", []) %}
 				<li marker-id="{{ marker.get("id", "0") }}">
 					<div class="user_info">
-						<a href="/user/user?user_id={{marker.get("user_id")}}"><img src="{{ marker.get("avatar_url", "http://image.lanrenzhoumo.com/leo/img/20151011163317_07b20ebf75bf2e730f79621d5afd8afd.jpg") }}@50w_50h_100Q.jpg" alt="user_avatar" /></a>
-						<div>
-							<span>{{ marker.get("nickname", "")}}</span>
-						</div>
+						<img src="{{ marker.get("avatar_url", "http://image.lanrenzhoumo.com/leo/img/20151011163317_07b20ebf75bf2e730f79621d5afd8afd.jpg") }}@50w_50h_100Q.jpg" alt="user_avatar" />
+						<a class="nickname" href="/user/user?user_id={{marker.get("user_id")}}">{{ marker.get("nickname", "")}}</a>
 					</div>
 					<div class="markerlist-rwrap">
 						<div class="mark_content">
-							<h1 class="title">
-								{{ marker.get("title", "") }}
-							</h1>
+
 							<p class="content">{{ marker.get("marker", "") }}</p>
 						</div>
 						<div class="ops">
@@ -36,14 +32,12 @@
 						<div class="comment-list-wrap">
 							{% if result.get("current_user_id", 0) %}
 							<div class="comment-input-wrap">
-								<div class="avatar-wrap">
-									<img class="avatar" src="{{ result.get("current_user_info", {}).get("avatar_url", "") }}@50w_50h_100Q.jpg" alt="avatar" />
-								</div>
 								<div class="comment-input">
 									{% raw xsrf_form_html() %}
 									<input type="hidden" class="reply-comment-id" />
-									<textarea></textarea>
 									<a class="comment-btn" marker-id={{ marker.get("id", 0) }}>评论</a>
+									<div class="comment-textarea-wrap"><textarea></textarea></div>
+
 								</div>
 							</div>
 							{% else %}
@@ -185,10 +179,8 @@
 			{{!#.}}
 			<li marker-id="{{!id}}">
 				<div class="user_info">
-					<a href="/user/user?user_id={{!user_id}}"><img src="{{!avatar_url}}@50w_50h_100Q.jpg" alt="user_avatar" /></a>
-					<div>
-						<span>{{!nickname}}</span>
-					</div>
+					<img src="{{!avatar_url}}@50w_50h_100Q.jpg" alt="user_avatar" />
+                    <a class="nickname" href="/user/user?user_id={{!user_id}}">{{!nickname}}</a>
 				</div>
 				<div class="markerlist-rwrap">
 					<div class="mark_content">
@@ -208,8 +200,9 @@
 							<div class="comment-input">
 								{% raw xsrf_form_html() %}
 								<input type="hidden" class="reply-comment-id" />
-								<textarea></textarea>
-								<a class="comment-btn" marker-id={{!id}}>评论</a>
+                                <a class="comment-btn" marker-id={{!id}}>评论</a>
+                                <div class="comment-textarea-wrap"><textarea></textarea></div>
+
 							</div>
 						</div>
 						{% else %}
