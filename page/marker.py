@@ -34,8 +34,6 @@ class AddHandler(PageHandler):
 
     @tornado.web.authenticated
     def post(self):
-        import ipdb
-        ipdb.set_trace()
         marker = self.get_argument("marker", "")
         if not marker:
             return self.render_string("内容不能为空")
