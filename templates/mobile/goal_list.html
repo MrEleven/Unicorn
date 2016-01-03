@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta http-equiv=Content-Type content="text/html;charset=utf-8">
+    <meta name="format-detection" content="telephone=no" />
+    <link href="http://cdn.eleven.name/icon/eleven.ico" type="image/x-icon" rel="shortcut icon" />
+    <title>目标列表</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+    <link rel="stylesheet" type="text/css" href="/static/css/goal_list.css">
+    <script src="/static/js/jquery.min.js"></script>
+    <script src="/static/js/react.min.js"></script>
+    <script src="/static/js/react-dom.js"></script>
+    <!--<script src="/static/js/browser.min.js"></script>-->
+    <script src="/static/js/plupload.full.min.js"></script>
+</head>
+<body>
+    {% module nav() %}
+    <div id="main"></div>
+    <div id="_xsrf" class="empty">{% raw xsrf_form_html() %}</div>
+    <script type="text/javascript" src="/static/js/goallist.js"></script>
+</body>
+</html>

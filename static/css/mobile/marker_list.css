@@ -6,30 +6,39 @@ ul {
 	list-style-type: none;
 }
 .container {
-	width: 900px;
+	width: 100%;
 	margin: 0 auto;
+	overflow: hidden;
+	box-sizing: border-box;
 }
 .add-marker-wrap {
 	margin-top: 10px;
+	padding-left: 5px;
+	padding-right: 5px;
 }
 .user_info {
 	vertical-align: middle;
-	width: 70px;
-	float: left;
-	text-align: center;
 	position: relative;
 }
 .markerlist-rwrap {
 	overflow: hidden;
-	background: #fafafa;
-	border-radius: 4px;
-	border: 1px solid #cccccc;
-	margin-top: 10px;
-	/*margin-bottom: 10px;*/
 }
 .markerlist-big-wrap {
 	margin-top: 10px;
 	margin-bottom: 30px;
+	box-sizing: border-box;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+.markerlist-big-wrap > li {
+	/*border: 1px solid rgba(0, 0, 0, 0.8);*/
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	box-sizing: border-box;
+	padding-top: 10px;
+	margin-bottom: 10px;
+	box-shadow: rgba(0, 0, 0, 0.1980392) 0 0 0 1px;
 }
 .user_info_mask {
 	min-height: 100px;
@@ -46,18 +55,21 @@ ul {
 	cursor: pointer;
 }
 .user_info img {
-	width: 50px;
-	height: 50px;
+	width: 30px;
+	height: 30px;
 	border-radius: 4px;
+	vertical-align: middle;
+	margin-left: 10px;
 }
-.user_info span {
+.user_info .nickname {
 	font-size: 12px;
-	line-height: 20px;
+	line-height: 30px;
+	vertical-align: middle;
 }
 .mark_content {
 	overflow: hidden;
 }
-.mark_content .title {
+.title {
 	background: #eee;
 	font-size: 14px;
 	line-height: 30px;
@@ -148,11 +160,15 @@ ul {
 	padding: 10px;
 }
 .avatar-wrap {
+	display: none;
 	float: left;
 	margin-right: 10px;
 }
 .comment-input {
 
+}
+.comment-textarea-wrap {
+	overflow: hidden;
 }
 .comment-input textarea {
 	line-height: 12px;
@@ -161,21 +177,21 @@ ul {
 	border: 1px solid orange;
 	vertical-align: middle;
 	padding: 5px 2px 0px 6px;
-	width: 650px;
+	width: 100%;
+	box-sizing: border-box;
 }
 .comment-btn, .comment-btn:hover, .comment-btn:visited {
 	height: 30px;
 	width: 60px;
 	line-height: 30px;
-	background: white;
 	display: inline-block;
-	vertical-align:	top;
 	background: orange;
 	color: white;
 	font-size: 12px;
 	text-align: center;
 	cursor: pointer;
 	text-decoration: none;
+	float: right;
 }
 .ul-comment-list li {
 	overflow: hidden;
@@ -232,16 +248,4 @@ ul {
 }
 .comment-nickname:visited {
 	color: orange;
-}
-.christmas-cap {
-	position: absolute;
-	width: 80px !important;
-	height: 80px !important;
-	top: -30px;
-	left: -15px;
-}
-.christmas-tree-wrap {
-	position: fixed;
-	right: 0px;
-	width: 200px;
 }

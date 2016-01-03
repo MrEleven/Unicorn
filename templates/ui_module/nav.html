@@ -6,13 +6,10 @@
 		<li>
 			<a href="/goal/list"><i class="icon icon-goal"></i><span>目标</span></a>
 		</li>
-		<!--<li>-->
-			<!--<a href="javascript:void(0);" onclick="alert('本来想做个活动的，但是工作太忙了，没有时间。。T^T。\n希望明年圣诞节我的  <b>终极圣诞夜party</b>  能搞起来。')"><i class="icon icon-christmas"></i><span>圣诞节</span></a>-->
-		<!--</li>-->
 	</ul>
 	<ul class="user-menu">
 		{% if result.get("user_id", 0) %}
-		<li>
+		<li class="greeting">
 			<span>{{ result.get("greeting", "") }}</span>
 		</li>
 		<li>

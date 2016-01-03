@@ -1,5 +1,9 @@
 # unicorn change log
 
+# 2016-01-03 1.3.3 MrEleven
+
+* 去掉了签到的标题
+
 # 2016-01-01 1.3.2 MrEleven
 
 * 修改增加代办事项的交互

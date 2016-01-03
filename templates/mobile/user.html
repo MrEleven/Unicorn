@@ -1,0 +1,240 @@
+<!Doctype html>
+<html>
+<head lang="en">
+    <meta http-equiv=Content-Type content="text/html;charset=utf-8">
+    <meta name="format-detection" content="telephone=no" />
+    <link href="http://cdn.eleven.name/icon/eleven.ico" type="image/x-icon" rel="shortcut icon" />
+    <title>{{ result.get("user_info", {}).get("nickname", "") }}</title>
+    <link rel="stylesheet" type="text/css" href="/static/css/main.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/user.css" />
+    <link rel="stylesheet" type="text/css" href="/static/css/marker_list.css" />
+</head>
+<body>
+{% module nav() %}
+    {% set user_info = result.get("user_info", {}) %}
+<div id="cover-wrap" style="background-image: url('http://image.lanrenzhoumo.com/leo/img/20151206182835_85ad688074663df74a4c5ff0a7d4ab55.jpg');"></div>
+<section id="user-info-wrap">
+    <div class="avatar-wrap">
+        <img class="avatar" src="{{ user_info.get('avatar_url') }}" alt="user-avatar">
+    </div>
+    <div class="user-page-menu-wrap">
+        <ul class="user-page-menu clearfix">
+            <li><a href="/user/user?user_id={{ result.get("user_id", 0) }}">签到</a></li>
+            <li><a href="/user/recent?user_id={{ result.get("user_id", 0) }}">在干啥</a></li>
+        </ul>
+    </div>
+    <div class="user-info-rwrap">
+        <div class="nickname">{{ user_info.get("nickname", "")}}</div>
+        <!--<p class="motto">为了兰博基尼拼了</p>-->
+    </div>
+</section>
+<div class="container">
+    <ul class="markerlist-big-wrap">
+        {% for marker in result.get("marker_list", []) %}
+        <li marker-id="{{ marker.get("id", "0") }}">
+        <div class="user_info">
+            <a href="/user/user?user_id={{ marker.get('user_id') }}"><img src="{{ marker.get("avatar_url", "http://image.lanrenzhoumo.com/leo/img/20151011163317_07b20ebf75bf2e730f79621d5afd8afd.jpg") }}@50w_50h_100Q.jpg" alt="user_avatar" /></a>
+            <div>
+                <span>{{ marker.get("nickname", "")}}</span>
+            </div>
+        </div>
+        <div class="markerlist-rwrap">
+            <div class="mark_content">
+                <h2 class="title">
+                    {{ marker.get("title", "") }}
+                </h2>
+                <p class="content">{{ marker.get("marker", "") }}</p>
+            </div>
+            <div class="ops">
+                <span><a class="comment-href">评论(<strong>{{ marker.get("comment_count", 0) }}</strong>)</a></span><span class="create_time">{{ marker.get("create_time", "") }}</span>
+            </div>
+            <div class="comment-list-wrap">
+                {% if result.get("current_user_id", 0) %}
+                <div class="comment-input-wrap">
+                    <div class="avatar-wrap">
+                        <img class="avatar" src="{{ result.get("current_user_info", {}).get("avatar_url", "") }}@50w_50h_100Q.jpg" alt="avatar" />
+                    </div>
+                    <div class="comment-input">
+                        {% raw xsrf_form_html() %}
+                        <input type="hidden" class="reply-comment-id" />
+                        <textarea></textarea>
+                        <a class="comment-btn" marker-id={{ marker.get("id", 0) }}>评论</a>
+                    </div>
+                </div>
+                {% else %}
+                <div class="anonym-notice">
+                    您还没有登录，<a href="/user/login"><strong>登录</strong></a>后才能评论。
+                </div>
+                {% end %}
+                <ul class="ul-comment-list" marker-id={{ marker.get("id", 0) }}>
+                </ul>
+            </div>
+        </div>
+    </li>
+    {% end %}
+</ul>
+<div class="load-more-wrap"><a class="load-more">查看更多</a></div>
+</div>
+<div class="hidden" id="global_user_id">{{ result.get("user_id") }}</div>
+<script type="text/javascript" src="/static/js/jquery.min.js"></script>
+<script type="text/javascript" src="/static/js/mustache.js"></script>
+<script type="text/javascript">
+    $(function(){
+        $("#add_marker").submit(function(e) {
+            var title = $("#add_marker .title").val();
+            var content = $("#add_marker textarea").val();
+            if (!(title && content)) {
+                e.preventDefault();
+                var shark = function(){
+                    var that = this;
+                    var dif = '5px';
+                    var duration = 50;
+                    that.animate({left:dif},duration,function(){
+                        that.animate({left:'-'+dif},duration,function(){
+                            that.animate({left:'0px'},duration);
+                        });
+                    });
+                }
+                var $empty;
+                if (!title) {
+                    $empty = $("#add_marker .title");
+                }else{
+                    $empty = $("#add_marker textarea");
+                }
+                shark.apply($empty.focus());
+                return;
+            };
+        });
+        $(document).on("click", ".ops .comment-href", function () {
+            var $comment_list_wrap = $(this).parents(".markerlist-rwrap").find(".comment-list-wrap");
+            if ($comment_list_wrap.css("display") == "none") {
+                $comment_list_wrap.css("display", "block");
+                var $comment_list = $comment_list_wrap.find(".ul-comment-list");
+                if (!$comment_list.html().trim()) {
+                    load_comment_list($comment_list)
+                };
+            }
+            else {
+                $comment_list_wrap.css("display", "none");
+            }
+        });
+        $(document).on("click", ".comment-input .comment-btn", function() {
+            var $comment_btn = $(this);
+            var marker_id = $(this).attr("marker-id");
+            var $textarea_content = $(this).parent(".comment-input").find("textarea");
+            var reply_comment_id = $(this).parent(".comment-input").find(".reply-comment-id").val();
+            var content = $textarea_content.val();
+            var _xsrf = $(this).parent(".comment-input").find("input[name=_xsrf]").val();
+            if (!marker_id || !content) {
+                return false;
+            };
+            var params = {"marker_id": marker_id, "content": content, "_xsrf": _xsrf, "reply": reply_comment_id};
+            $.post("/a/comment/add", params, function(data) {
+                if (data) {
+                    alert(data);
+                    return false;
+                }
+                $textarea_content.val("");
+                var comment_count = $comment_btn.parents(".markerlist-rwrap").find(".ops .comment-href strong");
+                comment_count.html(parseInt(comment_count.html()) + 1);
+                var $comment_list = $comment_btn.parents(".markerlist-rwrap").find(".ul-comment-list");
+                load_comment_list($comment_list);
+            });
+        });
+        function load_comment_list(comment_list_container) {
+            var marker_id = comment_list_container.attr("marker-id");
+            var url = "/a/comment/list?marker_id=" + marker_id;
+            $.get(url, function(data) {
+                var html = Mustache.render($("#comment-list-template").html(), data["result"]);
+                comment_list_container.html(html);
+            });
+        };
+        function load_marker_list(last_id, user_id) {
+            $.get("/a/marker/list?last_id=" + last_id + "&user_id=" + user_id, function(data) {
+                if (data["result"].length == 0) {
+                    $(".load-more-wrap").hide();
+                }
+                var html = Mustache.render($("#marker-list-template").html(), data["result"]);
+                $(".markerlist-big-wrap").append(html);
+            });
+        };
+        $(".load-more").on("click", function() {
+            var last_id = $(".markerlist-big-wrap li").last().attr("marker-id");
+            var user_id = $("#global_user_id").html();
+            load_marker_list(last_id, user_id);
+        });
+        $(document).on("click", ".marker-comment-wrap .comment-ops .comment-reply", function () {
+            var comment_id = $(this).parents(".marker-comment-wrap").attr("comment-id");
+            var username = $(this).parents(".marker-comment-wrap").find(".comment-rwrap .content .username").html();
+            $(this).parents(".comment-list-wrap").find(".comment-input .reply-comment-id").val(comment_id);
+            $(this).parents(".comment-list-wrap").find(".comment-input textarea").val("@" + username + "  ").focus();
+        });
+    });
+</script>
+<script type="text/template" id="comment-list-template">
+    {{!#.}}
+    <li class="marker-comment-wrap" comment-id="{{!id}}">
+        <div class="comment-ops">
+            <a class="comment-reply">回复</a>
+        </div>
+        <div class="avatar-wrap">
+            <a href="/user/user?user_id={{!user_id}}"><img class="avatar" src="{{!avatar_url}}@50w_50h_100Q.jpg" alt="avatar"></a>
+        </div>
+        <div class="comment-rwrap">
+            <p class="content">
+                <span class="username">{{!nickname}}</span> :
+                {{!#reply_user_info}}<a class="comment-nickname" href="/user/user?user_id={{!reply_user_info.id}}">@{{!reply_user_info.nickname}}</a>{{!/reply_user_info}}
+                {{!content}}
+            </p>
+            <div class="time-ops-wrap">
+                <span class="create_time">{{!create_time}}</span>
+            </div>
+        </div>
+    </li>
+    {{!/.}}
+</script>
+<script type="text/template" id="marker-list-template">
+    {{!#.}}
+    <li marker-id="{{!id}}">
+        <div class="user_info">
+            <a href="/user/user?user_id={{!user_id}}"><img src="{{!avatar_url}}@50w_50h_100Q.jpg" alt="user_avatar" /></a>
+            <div>
+                <span>{{!nickname}}</span>
+            </div>
+        </div>
+        <div class="markerlist-rwrap">
+            <div class="mark_content">
+                <h2 class="title">{{!title}}
+                </h2>
+                <p class="content">{{!marker}}</p>
+            </div>
+            <div class="ops">
+                <span><a class="comment-href">评论(<strong>{{!comment_count}}</strong>)</a></span><span class="create_time">{{!create_time}}</span>
+            </div>
+            <div class="comment-list-wrap">
+                {% if result.get("current_user_id", 0) %}
+                <div class="comment-input-wrap">
+                    <div class="avatar-wrap">
+                        <img class="avatar" src="{{ result.get("current_user_info", {}).get("avatar_url", "") }}@50w_50h_100Q.jpg" alt="avatar" />
+                    </div>
+                    <div class="comment-input">
+                        {% raw xsrf_form_html() %}
+                        <input type="hidden" class="reply-comment-id" />
+                        <textarea></textarea>
+                        <a class="comment-btn" marker-id={{!id}}>评论</a>
+                    </div>
+                </div>
+                {% else %}
+                <div class="anonym-notice">
+                    您还没有登录，<a href="/user/login"><strong>登录</strong></a>后才能评论。
+                </div>
+                {% end %}
+                <ul class="ul-comment-list" marker-id={{!id}}>
+                </ul>
+            </div>
+        </div>
+    </li>
+    {{!/.}}
+</script>
+</body>
+</html>

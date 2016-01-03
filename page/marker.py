@@ -34,10 +34,11 @@ class AddHandler(PageHandler):
 
     @tornado.web.authenticated
     def post(self):
-        title = self.get_argument("title", "")
+        import ipdb
+        ipdb.set_trace()
         marker = self.get_argument("marker", "")
-        if not (title and marker):
-            return self.render_string("标题和内容不能为空")
+        if not marker:
+            return self.render_string("内容不能为空")
         user_id = self.get_current_user()
-        marker_service.add_marker(title, marker, user_id)
+        marker_service.add_marker("", marker, user_id)
         return self.redirect("/marker/list")
