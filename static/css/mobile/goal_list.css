@@ -30,11 +30,9 @@
 #goal-list-wrap {
     margin: 0 auto;
     min-height: 300px;
-    margin-top: 20px;
 }
 .goal-wrap {
     border-bottom: 1px solid #cccccc;
-    margin-bottom: 30px;
     position: relative;
 }
 .goal-wrap .ops {
@@ -77,6 +75,7 @@
 .todo-list-ul {
     border-top: 1px solid #cccccc;
     overflow: hidden;
+    background: rgba(0, 0, 0, 0.03);
 }
 .todo-list-ul li {
     /*border-top: 1px solid #cccccc;*/
@@ -278,6 +277,7 @@
 .add-todo-wrap {
     position: relative;
     min-height: 45px;
+    background: rgba(0, 0, 0, 0.03);
 }
 .add-todo-button-wrap {
     position: absolute;
@@ -285,4 +285,5 @@
     font-size: 14px;
     color: #999;
     text-indent: 30px;
+    width: 100%;
 }
