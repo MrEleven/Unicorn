@@ -22,8 +22,6 @@ ul {
 }
 .markerlist-rwrap {
 	overflow: hidden;
-	background: rgba(255, 255, 255, 0.95);
-	/*margin-bottom: 10px;*/
 }
 .markerlist-big-wrap {
 	margin-top: 10px;

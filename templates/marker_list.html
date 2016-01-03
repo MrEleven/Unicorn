@@ -16,7 +16,7 @@
 		<div class="container">
 			<ul class="markerlist-big-wrap">
 				{% for marker in result.get("marker_list", []) %}
-				<li marker-id="{{ marker.get("id", "0") }}">
+				<li class="clearfix" marker-id="{{ marker.get("id", "0") }}">
 					<div class="user_info">
 						<a href="/user/user?user_id={{marker.get("user_id")}}"><img src="{{ marker.get("avatar_url", "http://image.lanrenzhoumo.com/leo/img/20151011163317_07b20ebf75bf2e730f79621d5afd8afd.jpg") }}@50w_50h_100Q.jpg" alt="user_avatar" /></a>
 						<div>
@@ -25,9 +25,6 @@
 					</div>
 					<div class="markerlist-rwrap">
 						<div class="mark_content">
-							<h1 class="title">
-								{{ marker.get("title", "") }}
-							</h1>
 							<p class="content">{{ marker.get("marker", "") }}</p>
 						</div>
 						<div class="ops">
@@ -64,9 +61,8 @@
 		<script type="text/javascript">
 		$(function(){
 			$("#add_marker").submit(function(e) {
-				var title = $("#add_marker .title").val();
 				var content = $("#add_marker textarea").val();
-				if (!(title && content)) {
+				if (!content) {
 					e.preventDefault();
 					var shark = function(){
 						var that = this;
@@ -78,13 +74,7 @@
 							});
 						});
 					}
-					var $empty;
-					if (!title) {
-						$empty = $("#add_marker .title");
-					}else{
-						$empty = $("#add_marker textarea");
-					}
-					shark.apply($empty.focus());
+					shark.apply($("#add_marker textarea"));
 					return;
 				};
 			});
@@ -192,8 +182,6 @@
 				</div>
 				<div class="markerlist-rwrap">
 					<div class="mark_content">
-						<h1 class="title">{{!title}}
-						</h1>
 						<p class="content">{{!marker}}</p>
 					</div>
 					<div class="ops">

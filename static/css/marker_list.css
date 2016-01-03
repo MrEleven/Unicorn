@@ -15,14 +15,16 @@ ul {
 .user_info {
 	vertical-align: middle;
 	width: 70px;
-	min-height: 100px;
 	float: left;
 	text-align: center;
 	position: relative;
 }
 .markerlist-rwrap {
 	overflow: hidden;
-	background: rgba(255, 255, 255, 0.95);
+	background: #fafafa;
+	border-radius: 4px;
+	border: 1px solid #cccccc;
+	margin-top: 10px;
 	/*margin-bottom: 10px;*/
 }
 .markerlist-big-wrap {
@@ -64,6 +66,7 @@ ul {
 	-webkit-border-radius: 4px;
 	-moz-border-radius: 4px;
 	border-radius: 4px;
+	display: none;
 }
 .mark_content .content {
 	padding: 10px;
