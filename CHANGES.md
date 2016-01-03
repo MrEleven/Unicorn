@@ -1,5 +1,9 @@
 # unicorn change log
 
+# 2016-01-03 1.3.4 MrEleven
+
+* 删除了goallist页面hover的css
+
 # 2016-01-03 1.3.3 MrEleven
 
 * 去掉了签到的标题

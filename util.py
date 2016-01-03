@@ -21,9 +21,15 @@ def to_utf8(text):
 
 def check_mobile(self):
     user_agent = self.request.headers.get("User-Agent", "").lower()
-    if user_agent.find("android") > 0:
-        return True
-    if user_agent.find("iphone") > 0:
-        return True
+    mobile_agent = ['iphone', 'android', 'phone', 'mobile', 'wap', 'netfront', 'java', 'opera mobi', 'opera mini',
+      'ucweb', 'windows ce', 'symbian', 'series', 'webos', 'sony', 'blackberry', 'dopod', 'nokia', 'samsung',   
+      'palmsource', 'xda', 'pieplus', 'meizu', 'midp', 'cldc', 'motorola', 'foma', 'docomo', 'up.browser',   
+      'up.link', 'blazer', 'helio', 'hosin', 'huawei', 'novarra', 'coolpad', 'webos', 'techfaith', 'palmsource',   
+      'alcatel', 'amoi', 'ktouch', 'nexian', 'ericsson', 'philips', 'sagem', 'wellcom', 'bunjalloo', 'maui', 'smartphone',   
+      'iemobile', 'spice', 'bird', 'zte-', 'longcos', 'pantech', 'gionee', 'portalmmm', 'jig browser', 'hiptop',   
+      'benq', 'haier', '^lct', '320x320', '240x320', '176x220']
+    for agent in mobile_agent:
+        if user_agent.find(agent) > 0:
+            return True
     return False
 
