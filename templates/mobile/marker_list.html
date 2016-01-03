@@ -58,9 +58,8 @@
 		<script type="text/javascript">
 		$(function(){
 			$("#add_marker").submit(function(e) {
-				var title = $("#add_marker .title").val();
 				var content = $("#add_marker textarea").val();
-				if (!(title && content)) {
+				if (!content) {
 					e.preventDefault();
 					var shark = function(){
 						var that = this;
@@ -72,13 +71,7 @@
 							});
 						});
 					}
-					var $empty;
-					if (!title) {
-						$empty = $("#add_marker .title");
-					}else{
-						$empty = $("#add_marker textarea");
-					}
-					shark.apply($empty.focus());
+					shark.apply($("#add_marker textarea"));
 					return;
 				};
 			});
@@ -184,8 +177,6 @@
 				</div>
 				<div class="markerlist-rwrap">
 					<div class="mark_content">
-						<h1 class="title">{{!title}}
-						</h1>
 						<p class="content">{{!marker}}</p>
 					</div>
 					<div class="ops">
