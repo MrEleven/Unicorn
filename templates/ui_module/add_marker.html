@@ -8,9 +8,6 @@
 		<form id="add_marker" method="POST" action="/marker/add">
 			{% raw xsrf_form_html() %}
 			<div class="content">
-				<input class="title" type="text" name="title" placeholder="how is your feeling today?" />
-			</div>
-			<div class="content">
 				<textarea name="marker" placeholder="你今天想做什么事情呢？写出来让大家一起监督你。"></textarea>
 			</div>
 			<div class="content clearfix">

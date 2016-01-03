@@ -1,0 +1,231 @@
+* {
+	margin: 0px;
+	padding: 0px;
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+}
+ul {
+	list-style-type: none;
+}
+input,button,select,textarea {
+	outline:none;
+}
+a {
+	text-decoration: none;
+	color: inherit;
+	cursor: pointer;
+}
+a:hover {
+	text-decoration: underline;
+	color: inherit;
+	cursor: pointer;
+}
+a:visited {
+	color: inherit;
+	cursor: pointer;
+}
+.nav {
+	height: 40px;
+	background: black;
+	font-size: 20px;
+	line-height: 40px;
+	background: rgba(255, 255, 255, 0.95);
+	border-bottom: 0px solid rgb(74, 74, 74);
+	color: rgb(74, 74, 74);
+	box-shadow: rgba(0, 0, 0, 0.0980392) 0 0 0 1px;
+	position: fixed;
+	top: 0px;
+	right: 0px;
+	left: 0px;
+	z-index: 1024;
+}
+.nav .nav-list {
+	font-size: 0px;
+	display: inline-block;
+	float: left;
+}
+.nav .nav-list li {
+	display: inline-block;
+	font-size: 14px;
+}
+.nav .nav-list li:hover {
+	/*background: #333;*/
+	/*color: #ccc;*/
+}
+.nav .nav-list .active {
+	/*background: #333;*/
+	/*color: #ccc;*/
+}
+.nav .nav-list li a {
+	display: block;
+	height: 40px;
+	/*padding-left: 10px;*/
+	padding-right: 5px;
+	text-decoration: none;
+	line-height: 40px;
+}
+.nav .user-menu {
+	float: right;
+	display: inline-block;
+	font-size: 12px;
+	padding-right: 5px;
+}
+.nav .user-menu .greeting {
+	display: none;
+}
+.nav .user-menu > li {
+	display: inline-block;
+	padding-left: 5px;
+	padding-right: 5px;
+}
+.anchor {
+	display: block;
+}
+.empty {
+	z-index: 0;
+	visibility: hidden;
+	position: absolute;
+	width: 0px;
+	height: 0px;
+	display: none;
+}
+.modal {
+	position: fixed;
+	top: 0;
+	left: 0;
+	right: 0;
+	bottom: 0;
+	background: rgba(0, 0, 0, 0.7);
+	z-index: 1024;
+}
+.fullscreen-bg {
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	-webkit-background-size: cover;
+	background-size: cover;
+	background-position: 50% 50%;
+}
+.fullscreen-bg:before {
+	content: '';
+	display: block;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background: rgba(0, 0, 0, 0.3);
+}
+.drop-parent {
+	position: relative;
+}
+#nav-userinfo-wrap .avatar {
+	width: 30px;
+	height: 30px;
+	line-height: 40px;
+	vertical-align: middle;
+	-webkit-border-radius: 50%;
+	-moz-border-radius: 50%;
+	border-radius: 50%;
+}
+.drop-parent ul {
+	position: absolute;
+	right: 0px;
+	border-width: 0;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	-webkit-box-shadow: 0px 0px 0px 1px rgb(237, 237, 237);
+	-moz-box-shadow: 0px 0px 0px 1px rgb(237, 237, 237);
+	box-shadow: 0px 0px 0px 1px rgb(237, 237, 237);
+	font-size: 14px;
+	padding-top: 14px;
+	padding-bottom: 14px;
+	width: 170px;
+	z-index: 10;
+	background: white;
+	-webkit-border-radius: 4px;
+	-moz-border-radius: 4px;
+	border-radius: 4px;
+	top: 45px;
+}
+.drop-parent ul {
+	display: none;
+	text-align: left;
+	text-indent: 10px;
+}
+.drop-parent:hover ul {
+	display: block;
+}
+.drop-parent ul li {
+	display: block;
+	color: black;
+	min-width: 140px;
+	height: 28px;
+	line-height: 28px;
+	color: rgb(74, 74, 74);
+}
+.drop-parent ul li:hover {
+	background-color: rgb(237, 237, 237);
+	cursor: pointer;
+}
+.drop-parent ul li > a{
+	display: block;
+}
+.drop-parent ul li a:hover{
+	text-decoration: none;
+}
+.dropdown-divider {
+	margin-top: 14px;
+	margin-bottom: 14px;
+	border-top: 1px solid rgb(237, 237, 237);
+	height: 0px !important;
+}
+#message-icon {
+	background-size: 30px 30px;
+	background-image: url("http://mreleven.oss-cn-hangzhou.aliyuncs.com/icon/message.png");
+	width: 30px;
+	height: 30px;
+	vertical-align: middle;
+	display: inline-block;
+	cursor: pointer;
+}
+#message-dropdown {
+	width: 200px;
+}
+#nav-message-wrap ul li {
+	-ms-text-overflow: ellipsis;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	overflow: hidden;
+	font-size: 6px;
+}
+.icon {
+	width: 28px;
+	height: 28px;
+	display: inline-block;
+	background-position: 50% 50%;
+	-webkit-background-size: contain;
+	background-size: contain;
+	vertical-align: middle;
+}
+.icon-marker {
+	background-image: url("http://image.lanrenzhoumo.com/leo/img/20151220171432_834c4c34fc3f5dfda869da54313c4504.png");
+}
+.icon-goal {
+	background-image: url("http://image.lanrenzhoumo.com/leo/img/20151220172346_66fa779e53a9ed5f016ea2fc9d3446f8.png");
+}
+.icon-activity {
+	background-image: url("http://www.iconpng.com/png/keyamoon/happy.png");
+}
+body {
+	padding-top: 50px;
+}
+.clearfix:after{
+	content: ".";
+	display: block;
+	height: 0;
+	clear: both;
+	visibility: hidden;
+}

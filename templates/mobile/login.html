@@ -1,0 +1,37 @@
+{% extends 'login_regist_base.html' %}
+{% block title %}欢迎来到Eleven{% end %}
+{% block body %}
+	{% module fullscreen_bg() %}
+	<div id="login-form-wrap">
+	<div id="login-logo-wrap">
+		<img class="logo" src="http://image.lanrenzhoumo.com/leo/img/20151107001300_7a42dbb39b40d47cd877a0f4ad80bc96.png" alt="logo.png" />
+	</div>
+	<form id="login_form" action="/user/login" method="post">
+		{% raw xsrf_form_html() %}
+		<input type="hidden" name="next_url" value="{{ result.get("next_url", "")}}" />
+		<ul>
+			<li><input id="input_phone" type="text" name="phone" value="{{ result.get("phone", "")}}" placeholder="手机号码" /></li>
+			<li><input id="input_password" type="password" name="password" value="{{result.get("password", "")}}" placeholder="密码" /></li>
+			{% if result.get("msg", "")%}
+			<li id="input_msg">{{result.get("msg", "")}}</li>
+			{% end %}
+			<li><input id="login-btn" type="submit" value="登录"></li>
+			<li id="regist_wrap"><a id="nologin_vistor" href="/marker/list">随便看看</a> <a id="regist_link" href="/user/regist">注册</a></li>
+		</ul>
+	</form>
+	</div>
+{% end %}
+{% block javascript %}
+	<script type="text/javascript">
+		$("#login_form").submit(function(e) {
+			var phone = $("#input_phone").val();
+			var password = $("#input_password").val();
+			if (!phone || !password) {
+				e.preventDefault();
+				return false;
+			};
+			var password_md5 = window.md5(password);
+			$("#input_password").val(password_md5);
+		});
+	</script>
+{% end %}

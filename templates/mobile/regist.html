@@ -1,0 +1,62 @@
+{% extends 'login_regist_base.html' %}
+{% block title %}欢迎来到Eleven{% end %}
+{% block body %}
+	{% module fullscreen_bg() %}
+	<div id="regist-form-wrap">
+		<div id="login-logo-wrap">
+			<img class="logo" src="http://image.lanrenzhoumo.com/leo/img/20151107001300_7a42dbb39b40d47cd877a0f4ad80bc96.png" alt="logo.png" />
+		</div>
+		<form id="regist_form" action="/user/regist" method="post">
+			{% raw xsrf_form_html() %}
+			<ul>
+				<li>
+					<input id="input_phone" type="text" name="phone" value="{{ result.get("phone", "")}}" placeholder="手机号码" />
+				</li>
+				<li>
+					<input id="input_email" type="text" name="email" value="{{ result.get("email", "")}}" placeholder="Email" />
+				</li>
+				<li>
+					<input id="input_nickname" type="text" name="nickname" value="{{ result.get("nickname", "")}}" placeholder="昵称" />
+				</li>
+				<li>
+					<input id="input_password" type="password" name="password" value="{{ result.get("password", "")}}" placeholder="密码" />
+				</li>
+				<li>
+					<input id="input_confirm_password" type="password" name="confirm_password" value="" placeholder="确认密码" />
+				</li>
+				{% if result.get("msg", "")%}
+				<li id="input_msg">
+					{{result.get("msg", "")}}
+				</li>
+				{% end %}
+				<li>
+					<input id="regist-btn" type="submit" value="注册">
+				</li>
+			</ul>
+		</form>
+	</div>
+{% end %}
+{% block javascript %}
+	<script type="text/javascript">
+		$("#regist_form").submit(function(e) {
+			var phone = $("#input_phone").val();
+			var password = $("#input_password").val();
+			var nickname = $("#input_nickname").val();
+			var email = $("#input_email").val();
+			var password_confirm = $("#input_confirm_password").val();
+			if (password_confirm != password) {
+				e.preventDefault();
+				alert("验证密码和密码不一致，请重新输入");
+				$("#input_confirm_password").val("");
+				$("#input_password").val("");
+				return false;
+			};
+			if (!phone || !password || !nickname || !email) {
+				e.preventDefault();
+				return false;
+			};
+			var password_md5 = window.md5(password);
+			$("#input_password").val(password_md5);
+		});
+	</script>
+{% end %}
