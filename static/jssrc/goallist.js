@@ -439,11 +439,11 @@ var GoalListWrap = React.createClass({
     },
     render : function() {
         return (<div>
-            <GoalListNav data={this.state.data} onAddGoalClick={this.showAddGoalModal} />
             <GoalList data={this.state.data} loadGoalListFromServer={this.loadGoalListFromServer} onGoalEditClick={this.showGoalEditModal} onTodoEditClick={this.showTodoEditModal} />
             <GoalAddModal ref="goalAddModal" addCallback={ this.loadGoalListFromServer } />
             <GoalEditModal ref="goalEditModal" hideCallback={ this.hiddenGoalEditModal } editCallback={ this.loadGoalListFromServer } />
             <TodoEditModal ref="todoEditModal" editCallback={this.loadGoalListFromServer} />
+            <GoalListNav data={this.state.data} onAddGoalClick={this.showAddGoalModal} />
         </div>);
     }
 });

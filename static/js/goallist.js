@@ -627,11 +627,11 @@ var GoalListWrap = React.createClass({
         return React.createElement(
             "div",
             null,
-            React.createElement(GoalListNav, { data: this.state.data, onAddGoalClick: this.showAddGoalModal }),
             React.createElement(GoalList, { data: this.state.data, loadGoalListFromServer: this.loadGoalListFromServer, onGoalEditClick: this.showGoalEditModal, onTodoEditClick: this.showTodoEditModal }),
             React.createElement(GoalAddModal, { ref: "goalAddModal", addCallback: this.loadGoalListFromServer }),
             React.createElement(GoalEditModal, { ref: "goalEditModal", hideCallback: this.hiddenGoalEditModal, editCallback: this.loadGoalListFromServer }),
-            React.createElement(TodoEditModal, { ref: "todoEditModal", editCallback: this.loadGoalListFromServer })
+            React.createElement(TodoEditModal, { ref: "todoEditModal", editCallback: this.loadGoalListFromServer }),
+            React.createElement(GoalListNav, { data: this.state.data, onAddGoalClick: this.showAddGoalModal })
         );
     }
 });
