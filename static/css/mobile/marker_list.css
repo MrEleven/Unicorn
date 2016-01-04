@@ -229,7 +229,6 @@ ul {
 	position: relative;
 }
 .marker-comment-wrap .comment-ops {
-	visibility: hidden;
 	position: absolute;
 	right: 0px;
 	top: 0px;
@@ -240,12 +239,12 @@ ul {
 .marker-comment-wrap:hover {
 	background: rgb(250, 250, 250);
 }
-.marker-comment-wrap:hover .comment-ops {
-	visibility: visible;
-}
 .comment-nickname {
 	color: orange;
 }
 .comment-nickname:visited {
 	color: orange;
+}
+.unlogin .comment-reply {
+	visibility: hidden;
 }

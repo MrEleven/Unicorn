@@ -149,7 +149,7 @@
 		<script type="text/template" id="comment-list-template">
 			{{!#.}}
 			<li class="marker-comment-wrap" comment-id="{{!id}}">
-				<div class="comment-ops">
+				<div class="comment-ops {% if not result.get("current_user_id", 0) %} unlogin {% end %}">
 					<a class="comment-reply">回复</a>
 				</div>
 				<div class="avatar-wrap">
