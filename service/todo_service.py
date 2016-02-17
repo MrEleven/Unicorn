@@ -47,6 +47,6 @@ def recent_finish_todo(user_id, last_finish_time=""):
     return result
 
     
-def postcard():
+def broadcast():
     """获取前10条当广播"""
-    return todo_ctrl.postcard()
+    return todo_ctrl.broadcast()

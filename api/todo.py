@@ -97,8 +97,8 @@ class RecentHandler(APIHandler):
         result = self._sort_by_date(tododata)
         return self.render_json(result)
 
-class PostcardHandler(APIHandler):
+class BroadcastHandler(APIHandler):
     """TODO完成广播"""
     def get(self):
-        result = todo_service.postcard()
+        result = todo_service.broadcast()
         return self.render_json(result)
