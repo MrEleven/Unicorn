@@ -64,7 +64,7 @@ def recent_finish_todo(user_id, last_finish_time):
     sql = "select id, name, goal_id, status, create_time, note, close_time from todo where user_id = %s and status = %s and close_time < %s order by close_time desc;"
     return db.query(sql, user_id, todo_status.FINISHED, last_finish_time)
 
-def postcard():
+def broadcast():
     """获取前10条当广播"""
     sql = "select todo.id, name, goal_id, status, create_time, user_id, nickname from todo, user where user.id = todo.user_id and todo.status = %s order by close_time desc limit 20;"
     return db.query(sql, todo_status.FINISHED)

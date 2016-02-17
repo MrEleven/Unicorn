@@ -229,3 +229,6 @@ body {
 	clear: both;
 	visibility: hidden;
 }
+.nav .broadcast {
+	display: none;
+}
