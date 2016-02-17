@@ -1,0 +1,5 @@
+<div class="broadcast">
+    {% for todo in result.get("todo_list", [])[:1] %}
+    <p><a href="/user/user?user_id={{todo.get('user_id', 0)}}"><i>{{todo.get("nickname", "")}}</i></a>&nbsp;&nbsp;最近完成了&nbsp;<em>“{{todo.get("name", "")}}”</em></p>
+    {% end %}
+</div>

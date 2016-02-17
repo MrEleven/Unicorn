@@ -27,10 +27,6 @@
     display: block;
     width: 100%;
 }
-#goal-list-wrap {
-    margin: 0 auto;
-    min-height: 300px;
-}
 .goal-wrap {
     border-bottom: 1px solid #cccccc;
     position: relative;

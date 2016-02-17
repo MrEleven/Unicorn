@@ -48,7 +48,7 @@ def get_handlers():
 def get_ui_modules():
     """获取UI模块"""
     ui_modules = {}
-    ui_list = ["nav", "add_marker", "fullscreen_bg"]
+    ui_list = ["nav", "add_marker", "fullscreen_bg", "broadcast"]
     for ui_module_name in ui_list:
         ui_module = import_module("ui_module." + ui_module_name)
         for attr in dir(ui_module):
