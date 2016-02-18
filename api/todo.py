@@ -7,6 +7,7 @@
 from api.apibase import APIHandler
 import tornado.web
 import service.todo_service as todo_service
+import todo_status
 
 class AddHandler(APIHandler):
     """增加TODO"""
@@ -27,6 +28,7 @@ class ListHandler(APIHandler):
         if not goal_id:
             return self.render_json([])
         todo_list = todo_service.get_todo_list(goal_id)
+        todo_list = [todo for todo in todo_list if todo.status == todo_status.UNFINISH]
         return self.render_json(todo_list)
 
 class UpdateHandler(APIHandler):
