@@ -1,5 +1,9 @@
 # unicorn change log
 
+# 2016-02-18 1.3.7 MrEleven
+
+* 目标页隐藏所有已完成的待办事项
+
 # 2016-02-17 1.3.6 MrEleven
 
 * 支持广播
