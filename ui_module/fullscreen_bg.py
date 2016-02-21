@@ -7,6 +7,7 @@
 import tornado.web
 from util import check_mobile
 import random
+import service.bg_service as bg_service
 
 def gen_background(ismobile=False):
     """随机生成背景图片"""
@@ -36,5 +37,8 @@ def gen_background(ismobile=False):
 class FullScreenBGUIModule(tornado.web.UIModule):
     """背景图片"""
     def render(self):
-        background = gen_background(check_mobile(self))
+        image_type = 1
+        if check_mobile(self):
+            image_type = 2
+        background = bg_service.get_random_bg(image_type)
         return self.render_string("ui_module/fullscreen_bg.html", result={"background": background})
