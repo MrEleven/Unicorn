@@ -33,7 +33,7 @@ def get_handlers():
                     url = "/a/" + bussiness_name + "/" +  attr.replace("Handler", "").lower()
                     handlers.append((url, handler_cls))
     # 网页接口
-    page_list = ["marker", "user", "comment", "goal"]
+    page_list = ["marker", "user", "comment", "goal", "eleven"]
     for bussiness_name in page_list:
         bussiness_module = import_module("page." + bussiness_name)
         for attr in dir(bussiness_module):

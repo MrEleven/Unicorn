@@ -10,7 +10,7 @@
 # Distributed under terms of the MIT license.
 
 
-import time
+import time, Image
 from datetime import datetime
 from random import randint
 from oss.oss_api import *
@@ -19,18 +19,22 @@ from config import ID, KEY, BUCKET, BASE_URL, UNICORN_PATH
 
 oss = OssAPI("oss.aliyuncs.com", ID, KEY)
 
-def upload_pic(image):
+def upload_pic(image, dir_name=None):
     """上传图片到阿里云
     localname: 本地图片名称
     file_name: 上传后的地址
     """
-    def gen_image_name():
+    def gen_image_name(dir_name):
         """生成图片文件名"""
         back_fix = ".jpg"
         today = datetime.now().strftime("%Y/%m/%d/%H%M%S")
         random_str = str(randint(100000, 999999))
-        return UNICORN_PATH +  today + random_str + back_fix
-    file_name = gen_image_name()
+        if dir_name != None and dir_name.strip() != "":
+            dir_name = dir_name + "/"
+        else:
+            dir_name = ""
+        return UNICORN_PATH + dir_name + today + random_str + back_fix
+    file_name = gen_image_name(dir_name)
     content_type = image[0]["content_type"]
     image = image[0]["body"]
     content = image
@@ -47,3 +51,10 @@ def _upload_pic(pic, file_name, content_type):
     if res.status != 200:
         return ''
     return file_name
+
+def get_image_size(image):
+    """获取图片尺寸"""
+    body = image[0]["body"]
+    im = Image.open(StringIO(body))
+    return im.size
+    

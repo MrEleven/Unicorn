@@ -1,0 +1,49 @@
+<!Doctype html>
+<html>
+    <head lang="en">
+        <meta http-equiv=Content-Type content="text/html;charset=utf-8">
+        <meta name="format-detection" content="telephone=no" />
+        <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0">
+        <link href="http://cdn.eleven.name/icon/eleven.ico" type="image/x-icon" rel="shortcut icon" />
+        <title>签到</title>
+        <link rel="stylesheet" type="text/css" href="/static/css/main.css">
+        <style>
+            .bg-list{
+
+            }
+            .bg-wrap {
+                width: 200px;
+                float: left;
+            }
+            .bg-detail {
+                width: 100%;
+            }
+        </style>
+    </head>
+    <body>
+    {% module nav() %}
+    <section class="upload-bg">
+        <form action="/eleven/bg" enctype="multipart/form-data" method="post">
+            {% raw xsrf_form_html() %}
+            <input type="file" name="image" />
+            <input type="submit" value="上传" />
+        </form>
+    </section>
+    <section class="bg-list clearfix">
+        <h1>PC背景</h1>
+        <ul>
+            {% for bg in result.get("pc_bg_list", []) %}
+            <li class="bg-wrap"><img class="bg-detail" src="{{ bg.get("url", "") }}" /></li>
+            {% end %}
+        </ul>
+    </section>
+    <section class="bg-list clearfix">
+        <h1>移动端背景</h1>
+        <ul>
+            {% for bg in result.get("mobile_bg_list", []) %}
+            <li class="bg-wrap"><img class="bg-detail" src="{{ bg.get("url", "") }}" /></li>
+            {% end %}
+        </ul>
+    </section>
+    </body>
+</html>
