@@ -1,5 +1,9 @@
 # unicorn change log
 
+# 2015-03-19 1.5.0 MrEleven
+
+* 增加关于Eleven.name的说明页面
+
 # 2015-03-03 1.4.1 MrEleven
 
 * 更改随机背景的获取方式
