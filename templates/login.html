@@ -1,69 +1,90 @@
 {% extends 'login_regist_base.html' %}
-{% block title %}欢迎来到Eleven{% end %}
+{% block title %}Eleven先生-成为你想成为的那个人{% end %}
 {% block body %}
-<div class="show_case">
-	<div class="case login_case">
+<div class="l-case-list">
+	<div class="case signup-case">
 		{% module fullscreen_bg() %}
-		<div id="login-form-wrap">
-			<div id="login-logo-wrap">
+		<div id="l-signup-wrap">
+			<h1 id="header-logo">
 				<img class="logo" src="http://image.lanrenzhoumo.com/leo/img/20151107001300_7a42dbb39b40d47cd877a0f4ad80bc96.png" alt="logo.png" />
+			</h1>
+			<h2 class="l-subheader">
+				成为你想成为的那个人
+			</h2>
+			<div class="f-signup {%if result.get('msg', '')%} f-signup-haserror {% end %}" data-category="">
+                <form method="post"  class="l-step-list clearfix">
+                    <ul class="step step-0 active">
+                        <input class="i-phone" name="phone" placeholder="手机号码(你的唯一通行证)" />
+                    </ul>
+                    <!-- 已经注册过进入登录步骤 -->
+                    <ul class="step login-step step-1" data-btn-tips="进入Eleven世界">
+                        <input class="i-password" name="password" type="password" placeholder="请输入密码进行登录" />
+                    </ul>
+                    <!--&lt;!&ndash; 验证码 &ndash;&gt;-->
+                    <!--<ul class="step regist-step step-1" data-btn-tips="验证">-->
+                        <!--<input class="i-code" type="text" placeholder="请输入手机验证码" />-->
+                    <!--</ul>-->
+                    <!-- 注册 -->
+                    <ul class="step regist-step step-1" data-btn-tips="进入Eleven世界">
+                        <input id="i-nickname" class="i-nickname" name="nickname" placeholder="给自己取个有意思的用户名" />
+                        <input class="i-password" name="password" type="password" placeholder="设置密码" />
+                    </ul>
+                    <div id="_xsrf" class="empty">{% raw xsrf_form_html() %}</div>
+                </form>
+                <div class="f-error-tips">
+                    <p class="error-msg">{{result.get("msg", "")}}</p>
+                </div>
+                <button class="signup-btn">
+                    开启梦想之路
+                </button>
 			</div>
-			<form id="login_form" action="/user/login" method="post">
-				{% raw xsrf_form_html() %}
-				<input type="hidden" name="next_url" value="{{ result.get("next_url", "")}}" />
-				<ul>
-					<li><input id="input_phone" type="text" name="phone" value="{{ result.get("phone", "")}}" placeholder="手机号码" /></li>
-					<li><input id="input_password" type="password" name="password" value="{{result.get("password", "")}}" placeholder="密码" /></li>
-					{% if result.get("msg", "")%}
-					<li id="input_msg">{{result.get("msg", "")}}</li>
-					{% end %}
-					<li><input id="login-btn" type="submit" value="登录"></li>
-					<li id="regist_wrap"><a id="nologin_vistor" href="/marker/list">随便看看</a> <a id="regist_link" href="/user/regist">注册</a></li>
-				</ul>
-			</form>
 		</div>
-		<a href="javascript:case_down();"><div id="about-eleven">Eleven.name&nbsp;是什么</div></a>
+        <div class="m-beian">
+            <p>Copyright©2016 浙ICP备15024895号-2</p>
+        </div>
+        <div id="about-eleven">"Eleven先生"是谁?</div>
 	</div>
-	<div class="case marker_case">
-		<ul class="mark-example-wrap">
-			<li class="mark-wrap xiaoyinyu">
+
+	<div class="case marker-case">
+		<ul class="l-mark-list">
+			<li class="m-mark-info">
 				<div class="lwrap">
 					<img class="avatar" src="http://cdn.eleven.name/unicorn_test/2016/03/19/190607316964.jpg" />
 					<span class="username">小银鱼</span>
 				</div>
 				<div class="rwrap">
-					<div class="mark_content">
+					<div class="mark-content">
 						<p class="content">今天学习Java的基础知识，看了《Java核心技术 卷I》第三章。
 							然后看了两个Http协议的视频。感觉收获还是挺大的。
 							下午看了电影《蝙蝠侠大战超人》，哇，蝙蝠侠好帅，不愧是我的偶像。</p>
 					</div>
 					<div class="ops">
-						<span><a class="comment-href">评论(<strong>0</strong>)</a></span><span class="create_time">1分钟前</span>
+						<span><a class="comment-href">评论(<strong>0</strong>)</a></span><span class="create-time">1分钟前</span>
 					</div>
 				</div>
 			</li>
-			<li class="mark-wrap xiaoyou">
+			<li class="m-mark-info">
 				<div class="lwrap">
 					<img class="avatar" src="http://cdn.eleven.name/unicorn_test/2016/03/19/193543494724.jpg" />
 					<span class="username">小柚</span>
 				</div>
 				<div class="rwrap">
-					<div class="mark_content">
+					<div class="mark-content">
 						<p class="content">今天要找鼹鼠的土豆聊天，要完成茶余饭后的活动。
 						今天争取早点做完事情，早点下班回家，晚上学习怎么做🍰</p>
 					</div>
 					<div class="ops">
-						<span><a class="comment-href">评论(<strong>4</strong>)</a></span><span class="create_time">2小时前</span>
+						<span><a class="comment-href">评论(<strong>4</strong>)</a></span><span class="create-time">2小时前</span>
 					</div>
 				</div>
 			</li>
-			<li class="mark-wrap apple">
+			<li class="m-mark-info">
 				<div class="lwrap">
 					<img class="avatar" src="http://cdn.eleven.name/unicorn_test/2016/03/19/184023285353.jpg" />
 					<span class="username">滚蛋的苹果</span>
 				</div>
 				<div class="rwrap">
-					<div class="mark_content">
+					<div class="mark-content">
 						<p class="content">从现在开始
 							谁也不能阻止我好好工作
 							谁也不能阻止我好好学英语
@@ -72,22 +93,22 @@
 							谁也不能阻止我爱生活</p>
 					</div>
 					<div class="ops">
-						<span><a class="comment-href">评论(<strong>4</strong>)</a></span><span class="create_time">上午 9:23</span>
+						<span><a class="comment-href">评论(<strong>4</strong>)</a></span><span class="create-time">上午 9:23</span>
 					</div>
 				</div>
 			</li>
-			<li class="mark-wrap smart">
+			<li class="m-mark-info">
 				<div class="lwrap">
 					<img class="avatar" src="http://cdn.eleven.name/unicorn_test/2016/03/19/191345277623.jpg" />
 					<span class="username">Smart</span>
 				</div>
 				<div class="rwrap">
-					<div class="mark_content">
+					<div class="mark-content">
 						<p class="content">今天要完成60个俯卧撑，60个仰卧起坐。
 						下午的时候研究新一期的09视频，为周末挑战大叔做准备。</p>
 					</div>
 					<div class="ops">
-						<span><a class="comment-href">评论(<strong>1</strong>)</a></span><span class="create_time">昨天 23:53</span>
+						<span><a class="comment-href">评论(<strong>1</strong>)</a></span><span class="create-time">昨天 23:53</span>
 					</div>
 				</div>
 			</li>
@@ -98,13 +119,13 @@
 				每天早上给当天制定一些目标，晚上睡前总结一下哪些完成了，哪些没有完成，原因是什么？收获了什么？学到了什么？长期坚持，一定会有不少成长。</p>
 		</div>
 	</div>
-	<div class="case goal_case">
+	<div class="case goal-case">
 		<div class="dashboard-content">
 			<h1>细化目标，逐个完成。</h1>
 			<p>
 				将一个大目标细分成一些小事，这样能理清你完成这个目标上需要做的事情，让目标更具体，并能即使看到你离完成目标的距离，评估目标付出的成本。</p>
 		</div>
-		<ul class="goal-example-wrap">
+		<ul class="l-goal-list">
 			<div class="goal-info">
 				<div class="goal-icon-wrap">
 					<img class="goal-icon" src="http://cdn.eleven.name/unicorn/2015/11/15/173100114091.jpg" alt="goal-icon">
@@ -157,48 +178,5 @@
 </div>
 {% end %}
 {% block javascript %}
-	<script type="text/javascript">
-		$("#login_form").submit(function(e) {
-			var phone = $("#input_phone").val();
-			var password = $("#input_password").val();
-			if (!phone || !password) {
-				e.preventDefault();
-				return false;
-			};
-			var password_md5 = window.md5(password);
-			$("#input_password").val(password_md5);
-		});
-	</script>
-	<script type="text/javascript">
-		var current_case = 0;
-		var case_count = 3;
-		var case_up = function() {
-			if (current_case > 0) {
-				$($(".case").get(current_case)).removeClass("case-active");
-				current_case = current_case - 1;
-				$($(".case").get(current_case)).removeClass("old").addClass("case-active");
-			};
-		};
-		var case_down = function () {
-			if (current_case < case_count - 1) {
-				$($(".case").get(current_case)).addClass("old").removeClass("case-active");
-				current_case = current_case + 1;
-				$($(".case").get(current_case)).addClass("case-active");
-			};
-		};
-		$(document).keydown(function (event) {
-			if (event.ctrlKey && event.keyCode == 13) {
-				alert('Ctrl+Enter');
-			};
-			switch (event.keyCode) {
-				case 38:
-					case_up();
-					break;
-				case 40:
-					// alert('方向键向下');
-					case_down();
-					break;
-			};
-		});
-	</script>
+    <script type="text/javascript" src="/static/js/login.js"></script>
 {% end %}

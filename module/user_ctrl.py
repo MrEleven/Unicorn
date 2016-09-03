@@ -13,9 +13,10 @@ def add_user(phone, email, nickname, avatar_url, password):
     sql = "select id from user where phone = %s;"
     if db.query(sql, phone):
         return 0, "该手机号已经存在"
-    sql = "select id from user where email = %s;"
-    if db.query(sql, email):
-        return 0, "该Email已经被注册"
+    if email:
+        sql = "select id from user where email = %s;"
+        if db.query(sql, email):
+            return 0, "该Email已经被注册"
     regist_time = datetime.now()
     sql = "insert into user (phone, email, nickname, avatar_url, password, regist_time) values (%s, %s, %s, %s, %s, %s);"
     return db.execute(sql, phone, email, nickname, avatar_url, password, regist_time), "注册成功"
@@ -31,3 +32,15 @@ def get_user(user_id):
     sql = "select * from user where id = %s;"
     user = db.get(sql, user_id)
     return user
+
+def is_phone_exist(phone):
+    """检查手机号是否已经注册"""
+    sql = "select id from user where phone = %s;"
+    user_id = db.get(sql, phone)
+    return user_id["id"] if user_id else 0
+
+def is_name_exist(nickname):
+    """检查用户名是否已经存在"""
+    sql = "select id from user where nickname = %s;"
+    user_id = db.get(sql, nickname)
+    return user_id["id"] if user_id else 0

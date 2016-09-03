@@ -38,25 +38,25 @@
 {% end %}
 {% block javascript %}
 	<script type="text/javascript">
-		$("#regist_form").submit(function(e) {
-			var phone = $("#input_phone").val();
-			var password = $("#input_password").val();
-			var nickname = $("#input_nickname").val();
-			var email = $("#input_email").val();
-			var password_confirm = $("#input_confirm_password").val();
-			if (password_confirm != password) {
-				e.preventDefault();
-				alert("验证密码和密码不一致，请重新输入");
-				$("#input_confirm_password").val("");
-				$("#input_password").val("");
-				return false;
-			};
-			if (!phone || !password || !nickname || !email) {
-				e.preventDefault();
-				return false;
-			};
-			var password_md5 = window.md5(password);
-			$("#input_password").val(password_md5);
-		});
+//		$("#regist_form").submit(function(e) {
+//			var phone = $("#input_phone").val();
+//			var password = $("#input_password").val();
+//			var nickname = $("#input_nickname").val();
+//			var email = $("#input_email").val();
+//			var password_confirm = $("#input_confirm_password").val();
+//			if (password_confirm != password) {
+//				e.preventDefault();
+//				alert("验证密码和密码不一致，请重新输入");
+//				$("#input_confirm_password").val("");
+//				$("#input_password").val("");
+//				return false;
+//			};
+//			if (!phone || !password || !nickname || !email) {
+//				e.preventDefault();
+//				return false;
+//			};
+//			var password_md5 = window.md5(password);
+//			$("#input_password").val(password_md5);
+//		});
 	</script>
 {% end %}

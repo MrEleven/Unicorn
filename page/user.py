@@ -9,7 +9,7 @@ import service.user_service as user_service
 import service.marker_service as marker_service
 import service.todo_service as todo_service
 import random
-import re
+import re, hashlib
     
 
 class LoginHandler(PageHandler):
@@ -30,6 +30,8 @@ class LoginHandler(PageHandler):
             next_url = "/marker/list"
         if phone == "" or password == "":
             return self.redirect("/user/login")
+        if len(password) < 32:
+            password = hashlib.md5(password).hexdigest()
         user_id = user_service.checkout_login(phone, password)
         if user_id:
             self.set_user_id(str(user_id))
@@ -53,12 +55,15 @@ class RegistHandler(PageHandler):
         if not validate_result:
             result={"phone": phone, "email": email, "nickname": nickname, "msg": msg}
             return self.render("regist.html", result=result)
+        if len(password) < 32:
+            password = hashlib.md5(password).hexdigest()
         avatar_url = self.gen_avatar_url()
         user_id, msg = user_service.add_user(phone, email, nickname, avatar_url, password)
         if not user_id:
             result={"phone": phone, "email": email, "nickname": nickname, "msg": msg}
-            return self.render("regist.html", result=result)
-        return self.redirect("/user/login")
+            return self.render("login.html", result=result)
+        self.set_user_id(str(user_id))
+        return self.redirect("/marker/list")
 
     def _validate_params(self, phone, email, nickname, password):
         """验证参数的有效性"""
@@ -68,7 +73,7 @@ class RegistHandler(PageHandler):
             return False, "手机号填写错误"
         # check email
         pattern = re.compile(r"\b[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,4}\b", re.IGNORECASE)
-        if not pattern.match(email):
+        if email and not pattern.match(email):
             return False, "Email格式错误"
         # check password
         if len(password) < 6:

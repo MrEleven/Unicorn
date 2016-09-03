@@ -17,3 +17,15 @@ def checkout_login(phone, password):
 def get_user(user_id):
     """根据id获取用户"""
     return user_ctrl.get_user(user_id)
+
+def is_phone_exist(phone):
+    """pass"""
+    if not phone:
+        return 0
+    return user_ctrl.is_phone_exist(phone)
+
+def is_name_exist(nickname):
+    """用户名是否存在"""
+    if not nickname:
+        return 0
+    return user_ctrl.is_name_exist(nickname)
