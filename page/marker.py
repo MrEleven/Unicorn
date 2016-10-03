@@ -15,6 +15,7 @@ class TestHandler(PageHandler):
 
 class ListHandler(PageHandler):
     """签到列表"""
+    @tornado.web.authenticated
     def get(self):
         page_size = self.get_argument("page_size", 30) # 先不做分页
         marker_list = marker_service.get_marker_list(last_id=0, page_size=int(page_size))
