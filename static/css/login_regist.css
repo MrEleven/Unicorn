@@ -199,16 +199,17 @@
 }
 .m-beian {
     position: absolute;
-    bottom: 50px;
+    bottom: 0;
     height: 20px;
     color: white;
     font-size: 12px;
     right: 0;
     width: 230px;
+    transition: bottom 0.3s ease-out 1s;
 }
 #about-eleven {
     position: absolute;
-    bottom: 0px;
+    bottom: -50px;
     height: 50px;
     right: 0px;
     left: 0px;
@@ -217,6 +218,11 @@
     line-height: 50px;
     color: white;
     cursor: pointer;
+    -webkit-transition: bottom 0.3s ease-out 1s;
+    -moz-transition: bottom 0.3s ease-out 1s;
+    -ms-transition: bottom 0.3s ease-out 1s;
+    -o-transition: bottom 0.3s ease-out 1s;
+    transition: bottom 0.3s ease-out 1s;
 }
 
 .l-mark-list {
@@ -411,4 +417,11 @@
     min-height: 45px;
     line-height: 45px;
     overflow: hidden;
+}
+.ready #about-eleven {
+    bottom: 0;
+}
+.ready .m-beian {
+    bottom: 50px;
+    transition: bottom 0.3s ease-out 1s;
 }

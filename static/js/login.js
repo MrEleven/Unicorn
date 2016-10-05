@@ -2,6 +2,7 @@
  * Created by eleven on 16-9-2.
  */
 $(function() {
+    $(".l-case-list").addClass("ready");
     var validate_nickname = function() {
         var nickname = $(".i-nickname").val();
         if (nickname.trim().length == 0) {
