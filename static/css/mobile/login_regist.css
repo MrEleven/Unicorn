@@ -1,10 +1,12 @@
-#login-form-wrap {
+#l-signup-wrap {
     position: absolute;
     top: 50%;
     left: 50%;
     width: 300px;
     margin-left: -150px;
     margin-top: -250px;
+    text-align: center;
+    color: white;
 }
 #login_form > ul > li {
     height: 40px;
@@ -23,7 +25,7 @@
 #login-btn {
     display: block;
     border: 0;
-    background: #669900;
+    background: rgb(82, 158, 204);
     width: 100%;
     height: 40px;
     line-height: 40px;
@@ -51,10 +53,10 @@
 .logo {
     width: 200px;
 }
-#login-logo-wrap {
+#header-logo {
     text-align: center;
-    padding-bottom: 15px;
-    padding-top: 15px;
+    padding-bottom: 5px;
+    padding-top: 5px;
 }
 #regist-form-wrap {
     position: absolute;
@@ -78,4 +80,78 @@
     line-height: 40px;
     font-size: 20px;
     color: white;
+}
+#l-subheader {
+    padding-bottom: 10px;
+}
+#l-subheader h2 {
+    font-size: 16px;
+    text-align: center;
+    color: white;
+}
+.f-signup {
+    margin-top: 20px;
+    color: white;
+    overflow: hidden;
+}
+.f-error-tips p {
+    padding: 14px;
+}
+.f-signup input {
+    clear: both;
+    line-height: 40px;
+    display: block;
+    width: 300px;
+    font-size: 16px;
+    border: 0;
+    padding: 11px 13px 11px 10px;
+    line-height: 22.4px;
+    box-sizing: border-box;
+    border-radius: 2px;
+    -webkit-font-smoothing: antialiased;
+}
+.f-signup button {
+    display: block;
+    width: 100%;
+    height: 45px;
+    background: rgb(82, 158, 204);
+    border-radius: 2px;
+    border: 1px solid rgb(82, 158, 204);
+    margin-top: 12px;
+    color: white;
+    font-size: 16px;
+    cursor: pointer;
+}
+.l-step-list {
+    width: 3000px;
+    position: relative;
+    left: 0px;
+    transition: 0.5s;
+}
+.l-step-list > .step {
+    visibility: hidden;
+    opacity: 0;
+    max-height: 1px;
+    float: left;
+    margin-right: 200px;
+    transition: 0.5s;
+}
+.l-step-list > .active {
+    visibility: visible;
+    max-height: 300px;
+    opacity: 1;
+}
+.f-error-tips {
+    background-color: rgba(0, 0, 0, 0.4);
+    max-height: 0px;
+    transition: 0.5s;
+    overflow: hidden;
+    margin-text-outline: 0px;
+}
+.f-signup-haserror .f-error-tips {
+    margin-top: 12px;
+    max-height: 300px;
+}
+#i-nickname {
+    border-bottom: 1px solid #cccccc;
 }

@@ -43,6 +43,18 @@ $(function() {
         return true;
     }
 
+    var validate_empty_password = function() {
+        var password = $(".i-password").val();
+        if (password.length == 0) {
+            $(".f-signup").addClass("f-signup-haserror");
+            $(".error-msg").html("密码不能为空");
+            return false;
+        }
+        $(".f-signup").removeClass("f-signup-haserror");
+        $(".error-msg").html("");
+        return true;
+    }
+
     // 注册登录相关
     var current_setp = 0;
     var left = 0;
@@ -75,6 +87,12 @@ $(function() {
             });
         }
         if (current_setp == 1) {
+            if ($(".f-signup").attr("data-category") == "login") {
+                if (!validate_empty_password()) {
+                    return false;
+                }
+            }
+
             // 如果是注册，需要验证用户名是否被占用
             if ($(".f-signup").attr("data-category") == "regist") {
                 if (!validate_password()) {

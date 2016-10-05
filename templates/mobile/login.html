@@ -1,37 +1,46 @@
 {% extends 'login_regist_base.html' %}
 {% block title %}Eleven先生-一个基于梦想的社交平台{% end %}
 {% block body %}
-	{% module fullscreen_bg() %}
-	<div id="login-form-wrap">
-	<div id="login-logo-wrap">
-		<img class="logo" src="http://image.lanrenzhoumo.com/leo/img/20151107001300_7a42dbb39b40d47cd877a0f4ad80bc96.png" alt="logo.png" />
-	</div>
-	<form id="login_form" action="/user/login" method="post">
-		{% raw xsrf_form_html() %}
-		<input type="hidden" name="next_url" value="{{ result.get("next_url", "")}}" />
-		<ul>
-			<li><input id="input_phone" type="text" name="phone" value="{{ result.get("phone", "")}}" placeholder="手机号码" /></li>
-			<li><input id="input_password" type="password" name="password" value="{{result.get("password", "")}}" placeholder="密码" /></li>
-			{% if result.get("msg", "")%}
-			<li id="input_msg">{{result.get("msg", "")}}</li>
-			{% end %}
-			<li><input id="login-btn" type="submit" value="登录"></li>
-			<li id="regist_wrap"><a id="regist_link" href="/user/regist">注册</a></li>
-		</ul>
-	</form>
+	<!-- {% module fullscreen_bg() %} -->
+	<div class="fullscreen-bg" style="background-image: url('http://cdn.eleven.name/unicorn/bg/2016/10/05/123841688507.jpg')"></div>
+	<div id="l-signup-wrap">
+        <div id="header-logo">
+            <img class="logo" src="http://image.lanrenzhoumo.com/leo/img/20151107001300_7a42dbb39b40d47cd877a0f4ad80bc96.png" alt="logo.png" />
+        </div>
+        <div id="l-subheader">
+            <h2>一个基于梦想的社交平台</h2>
+        </div>
+
+        <div class="f-signup {%if result.get('msg', '')%} f-signup-haserror {% end %}" data-category="">
+            <form method="post"  class="l-step-list clearfix">
+                <ul class="step step-0 active">
+                    <input class="i-phone" name="phone" placeholder="手机号码(你的唯一通行证)" />
+                </ul>
+                <!-- 已经注册过进入登录步骤 -->
+                <ul class="step login-step step-1" data-btn-tips="进入Eleven世界">
+                    <input class="i-password" name="password" type="password" placeholder="请输入密码进行登录" />
+                </ul>
+                <!--&lt;!&ndash; 验证码 &ndash;&gt;-->
+                <!--<ul class="step regist-step step-1" data-btn-tips="验证">-->
+                <!--<input class="i-code" type="text" placeholder="请输入手机验证码" />-->
+                <!--</ul>-->
+                <!-- 注册 -->
+                <ul class="step regist-step step-1" data-btn-tips="进入Eleven世界">
+                    <input id="i-nickname" class="i-nickname" name="nickname" placeholder="给自己取个有意思的用户名" />
+                    <input class="i-password" name="password" type="password" placeholder="设置密码" />
+                </ul>
+                <div id="_xsrf" class="empty">{% raw xsrf_form_html() %}</div>
+            </form>
+            <div class="f-error-tips">
+                <p class="error-msg">{{result.get("msg", "")}}</p>
+            </div>
+
+            <button class="signup-btn">
+                开启梦想之路
+            </button>
+        </div>
 	</div>
 {% end %}
 {% block javascript %}
-	<script type="text/javascript">
-		$("#login_form").submit(function(e) {
-			var phone = $("#input_phone").val();
-			var password = $("#input_password").val();
-			if (!phone || !password) {
-				e.preventDefault();
-				return false;
-			};
-			var password_md5 = window.md5(password);
-			$("#input_password").val(password_md5);
-		});
-	</script>
+<script type="text/javascript" src="/static/js/login.js"></script>
 {% end %}
