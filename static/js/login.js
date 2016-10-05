@@ -179,3 +179,12 @@ $(function() {
     });
 });
 
+console.log("For what it’s worth: it’s never too late or, in my case, too early to be whoever you want\n" +
+    "to be. There’s no time limit, stop whenever you want. You can change or stay the same, \n" +
+    "there are no rules to this thing. We can make the best or the worst of it. I hope you \n" +
+    "make the best of it. And I hope you see things that startle you. I hope you feel things\n" +
+    "you never felt before. I hope you meet people with a different point of view. I hope you\n" +
+    "live a life you’re proud of. If you find that you’re not, I hope you have the strength to\n" +
+    "start all over again.\n" +
+    " — 	F. Scott Fitzgerald (The Curious Case of Benjamin Button)")
+
