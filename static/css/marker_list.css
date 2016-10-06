@@ -154,7 +154,11 @@ ul {
 	float: left;
 	margin-right: 10px;
 }
-.user_info .avatar, .comment-list-wrap .avatar-wrap .avatar {
+.comment-list-wrap .avatar-wrap .avatar {
+	width: 30px;
+	height: 30px;
+}
+.user_info .avatar {
 	width: 50px;
 	height: 50px;
 }
