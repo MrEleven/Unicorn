@@ -8,63 +8,70 @@
 		<title>发愤忘食,乐以忘忧</title>
 		<link rel="stylesheet" type="text/css" href="/static/css/main.css">
 		<link rel="stylesheet" type="text/css" href="/static/css/marker_list.css">
-		<script>
-var _hmt = _hmt || [];
-(function() {
-  var hm = document.createElement("script");
-  hm.src = "//hm.baidu.com/hm.js?3f4bb6e4dfa9c23f8b0a41472dc633af";
-  var s = document.getElementsByTagName("script")[0]; 
-  s.parentNode.insertBefore(hm, s);
-})();
-</script>
 	</head>
 	<body>
 		{% module nav() %}
-		{% module add_marker() %}
+        <div class="main">
+            <div class="m-me-info">
+                <div class="avatar">
+                    <img src="http://image.lanrenzhoumo.com/leo/img/20151206111739_e7e9c4b4ca6a9e496a0866e0dfe7851b.jpg" alt="头像" />
+                </div>
+                <div class="username">
+                    玉米同学
+                </div>
+            </div>
+            <div class="index-page-info">
+                {% module add_marker() %}
 
-		<div class="container">
-			<ul class="markerlist-big-wrap">
-				{% for marker in result.get("marker_list", []) %}
-				<li class="clearfix" marker-id="{{ marker.get("id", "0") }}">
-					<div class="user_info">
-						<a href="/user/user?user_id={{marker.get("user_id")}}"><img src="{{ marker.get("avatar_url", "http://image.lanrenzhoumo.com/leo/img/20151011163317_07b20ebf75bf2e730f79621d5afd8afd.jpg") }}@50w_50h_100Q.jpg" alt="user_avatar" /></a>
-						<div>
-							<span>{{ marker.get("nickname", "")}}</span>
-						</div>
-					</div>
-					<div class="markerlist-rwrap">
-						<div class="mark_content">
-							<p class="content">{{ marker.get("marker", "") }}</p>
-						</div>
-						<div class="ops">
-							<span><a class="comment-href">评论(<strong>{{ marker.get("comment_count", 0) }}</strong>)</a></span><span class="create_time">{{ marker.get("create_time", "") }}</span>
-						</div>
-						<div class="comment-list-wrap">
-							{% if result.get("current_user_id", 0) %}
-							<div class="comment-input-wrap">
-								<div class="avatar-wrap">
-									<img class="avatar" src="{{ result.get("current_user_info", {}).get("avatar_url", "") }}@50w_50h_100Q.jpg" alt="avatar" />
-								</div>
-								<div class="comment-input">
-									{% raw xsrf_form_html() %}
-									<input type="hidden" class="reply-comment-id" />
-									<textarea></textarea>
-									<a class="comment-btn" marker-id={{ marker.get("id", 0) }}>评论</a>
-								</div>
-							</div>
-							{% else %}
-							<div class="anonym-notice">
-								您还没有登录，<a href="/user/login"><strong>登录</strong></a>后才能评论。
-							</div>
-							{% end %}
-							<ul class="ul-comment-list" marker-id={{ marker.get("id", 0) }}>
-							</ul>
-						</div>
-					</div>
-				</li>
-				{% end %}
-			</ul>
-		</div>
+                <div class="container mine-module">
+                    <h1 class="f-title">
+                        <img class="title-icon" src="http://mreleven.oss-cn-hangzhou.aliyuncs.com/icon/main-reword.png" />
+                            今天已经制定计划的小伙伴
+                    </h1>
+                    <ul class="markerlist-big-wrap">
+                        {% for marker in result.get("marker_list", []) %}
+                        <li class="clearfix" marker-id="{{ marker.get("id", "0") }}">
+                            <div class="user_info">
+                                <a href="/user/user?user_id={{marker.get("user_id")}}"><img src="{{ marker.get("avatar_url", "http://image.lanrenzhoumo.com/leo/img/20151011163317_07b20ebf75bf2e730f79621d5afd8afd.jpg") }}@50w_50h_100Q.jpg" alt="user_avatar" /></a>
+                                <div>
+                                    <span>{{ marker.get("nickname", "")}}</span>
+                                </div>
+                            </div>
+                            <div class="markerlist-rwrap">
+                                <div class="mark_content">
+                                    <p class="content">{{ marker.get("marker", "") }}</p>
+                                </div>
+                                <div class="ops">
+                                    <span><a class="comment-href">评论(<strong>{{ marker.get("comment_count", 0) }}</strong>)</a></span><span class="create_time">{{ marker.get("create_time", "") }}</span>
+                                </div>
+                                <div class="comment-list-wrap">
+                                    {% if result.get("current_user_id", 0) %}
+                                    <div class="comment-input-wrap">
+                                        <div class="avatar-wrap">
+                                            <img class="avatar" src="{{ result.get("current_user_info", {}).get("avatar_url", "") }}@50w_50h_100Q.jpg" alt="avatar" />
+                                        </div>
+                                        <div class="comment-input">
+                                            {% raw xsrf_form_html() %}
+                                            <input type="hidden" class="reply-comment-id" />
+                                            <textarea></textarea>
+                                            <a class="comment-btn" marker-id={{ marker.get("id", 0) }}>评论</a>
+                                        </div>
+                                    </div>
+                                    {% else %}
+                                    <div class="anonym-notice">
+                                        您还没有登录，<a href="/user/login"><strong>登录</strong></a>后才能评论。
+                                    </div>
+                                    {% end %}
+                                    <ul class="ul-comment-list" marker-id={{ marker.get("id", 0) }}>
+                                    </ul>
+                                </div>
+                            </div>
+                        </li>
+                        {% end %}
+                    </ul>
+                </div>
+            </div>
+        </div>
 		<script type="text/javascript" src="/static/js/jquery.min.js"></script>
 		<script type="text/javascript" src="/static/js/mustache.js"></script>
 		<script type="text/javascript">

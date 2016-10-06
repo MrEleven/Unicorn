@@ -6,11 +6,11 @@ ul {
 	list-style-type: none;
 }
 .container {
-	width: 900px;
+	width: 720px;
 	margin: 0 auto;
 }
 .add-marker-wrap {
-	margin-top: 10px;
+	/*margin-top: 10px;*/
 }
 .user_info {
 	vertical-align: middle;
@@ -21,15 +21,16 @@ ul {
 }
 .markerlist-rwrap {
 	overflow: hidden;
-	background: #fafafa;
-	border-radius: 4px;
-	border: 1px solid #cccccc;
 	margin-top: 10px;
 	/*margin-bottom: 10px;*/
 }
 .markerlist-big-wrap {
 	margin-top: 10px;
 	margin-bottom: 30px;
+	box-shadow: 0 1px 0 #f2f4f5;
+}
+.markerlist-big-wrap li {
+	border-bottom: 1px dotted #eee;
 }
 .user_info_mask {
 	min-height: 100px;
@@ -114,12 +115,14 @@ ul {
 	box-sizing: border-box;
 }
 #btn_add_marker {
-	border: 1px solid black;
-	background: transparent;
+	background: orange;
 	padding: 5px 10px;
 	font-size: 14px;
 	float: right;
 	cursor: pointer;
+	color: white;
+	font-weight: bolder;
+	border-radius: 3px;
 }
 .mark_content .content {
 	white-space: pre-wrap;
@@ -244,4 +247,70 @@ ul {
 	position: fixed;
 	right: 0px;
 	width: 200px;
+}
+
+
+
+.m-me-info {
+	height: 600px;
+	width: 250px;
+	float: left;
+	text-align: center;
+	border: 1px solid #ccc;
+	margin-top: 20px;
+	border-radius: 4px;
+	background-color: #fff6ed;
+	margin-right: 10px;
+	box-sizing: border-box;
+	margin-left: 10px;
+}
+.main {
+	width: 1000px;
+	margin: 0 auto;
+}
+.index-page-info {
+	width: 730px;
+	overflow: hidden;
+	box-sizing: border-box;
+	padding-top: 20px;
+}
+.m-me-info .avatar img {
+	width: 200px;
+	height: 200px;
+	box-shadow: rgb(204, 204, 204) 5px 5px 15px 0px;
+}
+.m-me-info .avatar {
+	margin-top: 25px;
+}
+.m-me-info .username {
+	margin-top: 15px;
+	text-shadow: 0 0 10px #ccc;
+}
+
+.add-marker-wrap {
+	/*display: none;*/
+}
+.add-marker-wrap .tips-warning {
+	font-size: 12px;
+	color: orangered;
+	opacity: 0.5;
+}
+.mine-module {
+	border: 1px solid #ccc;
+	border-radius: 4px;
+	background: white;
+}
+.mine-module .f-title {
+	font-size: 22px;
+	vertical-align: middle;
+	color: #35b558;
+	line-height: 26px;
+	margin-top: 10px;
+	border-bottom: 1px dotted #eee;
+	padding-bottom: 10px;
+}
+.mine-module .f-title .title-icon {
+	height: 30px;
+	vertical-align: middle;
+	margin-left: 10px;
 }

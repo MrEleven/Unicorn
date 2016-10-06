@@ -8,7 +8,7 @@ import tornado.web
 from datetime import datetime, timedelta
 import module.user_ctrl as user_ctrl
 import module.marker_ctrl as marker_ctrl
-from util import to_utf8
+from util import to_utf8, check_mobile
 
 class AddMarkerUIModule(tornado.web.UIModule):
     """签到的输入框"""
@@ -25,7 +25,10 @@ class AddMarkerUIModule(tornado.web.UIModule):
             has_marked = self.check_marked(user_id)
             if has_marked:
                 has_marked_tips = self.gen_marker_tips()
-        return self.render_string("ui_module/add_marker.html", result={"user_id": user_id, "has_marked": has_marked, "has_marked_tips": has_marked_tips})
+        template_path = "ui_module/add_marker.html"
+        if check_mobile(self):
+            template_path = "ui_module/mobile/add_marker.html"
+        return self.render_string(template_path, result={"user_id": user_id, "has_marked": has_marked, "has_marked_tips": has_marked_tips})
 
     def get_current_time_block(self):
         """获取当前时间是签到时间还是总结时间"""
