@@ -28,7 +28,7 @@ var _hmt = _hmt || [];
 				{% for marker in result.get("marker_list", []) %}
 				<li marker-id="{{ marker.get("id", "0") }}">
 					<div class="user_info">
-						<img src="{{ marker.get("avatar_url", "http://image.lanrenzhoumo.com/leo/img/20151011163317_07b20ebf75bf2e730f79621d5afd8afd.jpg") }}@50w_50h_100Q.jpg" alt="user_avatar" />
+						<img src="{{ marker.get("avatar_url", "http://image.lanrenzhoumo.com/leo/img/20151011163317_07b20ebf75bf2e730f79621d5afd8afd.jpg") }}" alt="user_avatar" />
 						<a class="nickname" href="/user/user?user_id={{marker.get("user_id")}}">{{ marker.get("nickname", "")}}</a>
 					</div>
 					<div class="markerlist-rwrap">
@@ -163,7 +163,7 @@ var _hmt = _hmt || [];
 					<a class="comment-reply">回复</a>
 				</div>
 				<div class="avatar-wrap">
-					<a href="/user/user?user_id={{!user_id}}"><img class="avatar" src="{{!avatar_url}}@50w_50h_100Q.jpg" alt="avatar"></a>
+					<a href="/user/user?user_id={{!user_id}}"><img class="avatar" src="{{!avatar_url}}" alt="avatar"></a>
 				</div>
 				<div class="comment-rwrap">
 					<p class="content">
@@ -182,7 +182,7 @@ var _hmt = _hmt || [];
 			{{!#.}}
 			<li marker-id="{{!id}}">
 				<div class="user_info">
-					<img src="{{!avatar_url}}@50w_50h_100Q.jpg" alt="user_avatar" />
+					<img src="{{!avatar_url}}" alt="user_avatar" />
                     <a class="nickname" href="/user/user?user_id={{!user_id}}">{{!nickname}}</a>
 				</div>
 				<div class="markerlist-rwrap">
@@ -196,7 +196,7 @@ var _hmt = _hmt || [];
 						{% if result.get("current_user_id", 0) %}
 						<div class="comment-input-wrap">
 							<div class="avatar-wrap">
-								<img class="avatar" src="{{ result.get("current_user_info", {}).get("avatar_url", "") }}@50w_50h_100Q.jpg" alt="avatar" />
+								<img class="avatar" src="{{ result.get("current_user_info", {}).get("avatar_url", "") }}" alt="avatar" />
 							</div>
 							<div class="comment-input">
 								{% raw xsrf_form_html() %}
