@@ -14,10 +14,10 @@
         <div class="main">
             <div class="m-me-info">
                 <div class="avatar">
-                    <img src="http://image.lanrenzhoumo.com/leo/img/20151206111739_e7e9c4b4ca6a9e496a0866e0dfe7851b.jpg" alt="头像" />
+                    <img src='{{ result.get("current_user_info", {}).get("avatar_url", "") }}' alt="头像" />
                 </div>
                 <div class="username">
-                    玉米同学
+                    {{ result.get("current_user_info", {}).get("nickname", "") }}
                 </div>
             </div>
             <div class="index-page-info">

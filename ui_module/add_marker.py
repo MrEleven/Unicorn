@@ -6,7 +6,6 @@
 
 import tornado.web
 from datetime import datetime, timedelta
-import module.user_ctrl as user_ctrl
 import module.marker_ctrl as marker_ctrl
 from util import to_utf8, check_mobile
 
