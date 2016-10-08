@@ -22,7 +22,7 @@ def get_todo_list(goal_id):
 def delete_todo(todo_id):
     """删除TODO"""
     sql = "update todo set status = %s where id = %s;"
-    return db.execute(sql, todo_id, todo_status.DELETE)
+    return db.execute(sql, todo_status.DELETE, todo_id)
 
 def update_todo(todo_id, goal_id=0, name=None, note=None):
     """更新todo内容"""

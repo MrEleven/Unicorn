@@ -13,3 +13,7 @@ def get_message_list(user_id, start_time=None, count=20):
 def add_message(markder_id, comment_id, receiver_id):
     """增加消息"""
     return message_ctrl.add_message(markder_id, comment_id, receiver_id)
+
+def get_new_message_count(user_id, last_time):
+    """获取心消息数量"""
+    return message_ctrl.get_new_message_count(user_id, last_time)

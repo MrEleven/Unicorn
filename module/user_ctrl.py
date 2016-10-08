@@ -44,3 +44,9 @@ def is_name_exist(nickname):
     sql = "select id from user where nickname = %s;"
     user_id = db.get(sql, nickname)
     return user_id["id"] if user_id else 0
+
+def update_message_time(user_id):
+    """更新消息时间"""
+    now = datetime.now()
+    sql = "update user set message_time = %s where id = %s"
+    return db.execute(sql, now, user_id)

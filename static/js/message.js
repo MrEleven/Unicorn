@@ -11,6 +11,7 @@ $(document).on("mouseover", "#nav-message-wrap #message-icon", function(event){
                 html += "<li>" + data[i]["comment_nickname"] + " 回复了你: " + data[i]["content"] + "</li>"
             }
             $("#nav-message-wrap #message-dropdown").html(html);
+            $(".has-message").removeClass("has-message");
         })
     }
 });

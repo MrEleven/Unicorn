@@ -29,3 +29,7 @@ def is_name_exist(nickname):
     if not nickname:
         return 0
     return user_ctrl.is_name_exist(nickname)
+
+def update_message_time(user_id):
+    """更新用户消息时间"""
+    return user_ctrl.update_message_time(user_id)

@@ -233,3 +233,14 @@ body {
 .nav .broadcast {
 	display: none;
 }
+.has-message:after {
+	content: "";
+	background: red;
+	display: block;
+	position: relative;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	left: 15px;
+	top: 0px;
+}

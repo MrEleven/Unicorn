@@ -7,18 +7,20 @@
 import tornado.web
 from datetime import datetime
 import module.user_ctrl as user_ctrl
-from util import to_utf8
+import module.message_ctrl as message_crtl
+from util import to_utf8, check_mobile
 
 class NavUIModule(tornado.web.UIModule):
     """导航栏"""
     def render(self):
         user_id = self.current_user
-        greeting = ""
-        user_info = {}
-        if user_id:
-            user_info = user_ctrl.get_user(user_id)
-            greeting = self.gen_greeting(to_utf8(user_info["nickname"]))
-        return self.render_string("ui_module/nav.html", result={"user_id": user_id, "greeting": greeting, "user_info": user_info})
+        user_info = user_ctrl.get_user(user_id)
+        greeting = self.gen_greeting(to_utf8(user_info["nickname"]))
+        message_count = message_crtl.get_new_message_count(user_id, user_info["message_time"])
+        template_path = "ui_module/nav.html"
+        if check_mobile(self):
+            template_path = "ui_module/mobile/nav.html"
+        return self.render_string(template_path, result={"user_id": user_id, "greeting": greeting, "user_info": user_info, "message_count": message_count})
 
     def gen_greeting(self, nickname):
         """生成问候语"""

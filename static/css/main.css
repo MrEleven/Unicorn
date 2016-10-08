@@ -42,10 +42,13 @@ a:visited {
 	font-size: 0px;
 	display: inline-block;
 	float: left;
+	height: 50px;
 }
 .nav .nav-list li {
-	display: inline-block;
+	/*display: inline-block;*/
 	font-size: 14px;
+	float: left;
+	line-height: 50px;
 }
 .nav .nav-list li:hover {
 	/*background: #333;*/
@@ -58,10 +61,9 @@ a:visited {
 .nav .nav-list li a {
 	display: block;
 	height: 50px;
-	padding-left: 20px;
-	padding-right: 20px;
+	padding-left: 10px;
+	padding-right: 10px;
 	text-decoration: none;
-	line-height: 28px;
 }
 .nav .user-menu {
 	float: right;
@@ -188,6 +190,17 @@ a:visited {
 	display: inline-block;
 	cursor: pointer;
 }
+.has-message:after {
+	content: "";
+	background: red;
+	display: block;
+	position: relative;
+	width: 10px;
+	height: 10px;
+	border-radius: 50%;
+	left: 15px;
+	top: 0px;
+}
 #message-dropdown {
 	width: 400px;
 }
@@ -205,6 +218,9 @@ a:visited {
 	-webkit-background-size: contain;
 	background-size: contain;
 	vertical-align: middle;
+}
+.icon:after {
+	content: "";
 }
 .icon-marker {
 	background-image: url("http://image.lanrenzhoumo.com/leo/img/20151220171432_834c4c34fc3f5dfda869da54313c4504.png");
@@ -242,5 +258,17 @@ body {
 	font-weight: bolder;
 }
 body {
-	background-color: rgb(246, 246, 246);
+	background-color: #F7F6F2;
+}
+.app-logo {
+	width: 40px;
+	height: 50px;
+	text-align: center;
+	margin-left: 20px;
+	float: left;
+}
+.app-logo img {
+	width: 30px;
+	height: 30px;
+	vertical-align: middle;
 }

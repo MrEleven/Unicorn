@@ -8,6 +8,7 @@ import tornado.web
 from api.apibase import APIHandler
 import service.message_service as message_service
 import service.comment_service as comment_service
+import service.user_service as user_service
 
 class ListHandler(APIHandler):
     """消息列表"""
@@ -21,4 +22,5 @@ class ListHandler(APIHandler):
             message["content"] = comment_info["content"]
             message["comment_user_id"] = comment_info["user_id"]
             message["comment_nickname"] = comment_info["nickname"]
+        user_service.update_message_time(user_id)
         return self.render_json(message_list)
